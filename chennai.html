@@ -1,0 +1,521 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chennai Travel Experience - Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .chennai-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid #f59e0b;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Famous Places Title - Different Style */
+        .famous-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 40px;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Famous Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .place-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.05);
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .place-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Personal Experience Section */
+        .experience-section {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+
+        .experience-title {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .experience-date {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-date i {
+            color: #3b82f6;
+        }
+
+        .experience-content {
+            margin-top: 30px;
+        }
+
+        .experience-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .experience-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Back to About Button */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .famous-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .chennai-hero {
+                height: 30vh;
+                margin-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .experience-section {
+                padding: 30px;
+            }
+            
+            .experience-title {
+                font-size: 2rem;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .famous-title {
+                font-size: 1.8rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .chennai-hero {
+                height: 25vh;
+                margin-top: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="chennai-hero">
+        <div class="container hero-content">
+            <h1>Chennai - The Gateway to South India</h1>
+        </div>
+    </section>
+
+    <!-- 6 Famous Places Title -->
+    <div class="container">
+        <h2 class="famous-title">6 Famous Places in Chennai</h2>
+    </div>
+
+    <!-- Famous Places Section -->
+    <section id="famous-places">
+        <div class="container">
+            <div class="places-grid">
+                <!-- Place 1 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://media.assettype.com/outlooktraveller%2F2025-02-14%2Fvf5ldy6n%2Fshutterstock1730976052.jpg" 
+                         alt="Marina Beach - Blue Flag Beach" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Marina Beach (Blue Flag)</h3>
+                        <p class="place-description">India's longest urban beach and Chennai's iconic landmark. Recently awarded Blue Flag certification for its cleanliness and international standards. Perfect for evening walks, sunrise views, and enjoying local street food.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 2 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/86/2c/66/caption.jpg?w=1200&h=-1&s=1" 
+                         alt="Kapaleeshwarar Temple" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Kapaleeshwarar Temple</h3>
+                        <p class="place-description">A magnificent Dravidian-style temple dedicated to Lord Shiva located in Mylapore. Dating back to the 7th century, its towering gopuram (gateway tower) is adorned with intricate sculptures depicting Hindu mythology.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 3 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://s7ap1.scene7.com/is/image/incredibleindia/san-thome-basilica-chennai2-attr-hero?qlt=82&ts=1726654768684" 
+                         alt="San Thome Basilica" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">San Thome Basilica</h3>
+                        <p class="place-description">A Roman Catholic minor basilica built over the tomb of Saint Thomas the Apostle. This stunning Gothic-style church is one of only three known churches in the world built over the tomb of an apostle of Jesus.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 4 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://s7ap1.scene7.com/is/image/incredibleindia/government-museum-chennai-tamil-nadu-3-attr-hero?qlt=82&ts=1726655021489" 
+                         alt="Government Museum Chennai" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Government Museum</h3>
+                        <p class="place-description">One of the oldest museums in India, established in 1851. It houses a rare collection of archaeological and numismatic items, including the famous bronze gallery with Chola period statues.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 5 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.tourmyindia.com/states/tamilnadu/images/fort-st-Georges1-1.jpg" 
+                         alt="Fort St. George" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Fort St. George</h3>
+                        <p class="place-description">The first English fortress in India, built in 1644. Now houses the Tamil Nadu Legislative Assembly and a museum containing relics of the British Raj. A must-visit for history enthusiasts.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 6 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://curlytales.com/wp-content/uploads/2023/07/Chennai-Satiate-Your-2-AM-Cravings-As-These-2-Food-Streets-Come-Alive-At-Night.jpg" 
+                         alt="Chennai Street Food" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Chennai Street Food Hubs</h3>
+                        <p class="place-description">Famous food streets like Sowcarpet, Triplicane, and Marina Beach offer authentic Chennai cuisine. From crispy Masala Dosas to spicy Chettinad curries and the famous Chennai-style Paan, the culinary experience is unforgettable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section id="personal-experience">
+        <div class="container">
+            <div class="experience-section">
+                <div class="experience-header">
+                    <div class="experience-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2 class="experience-title">My Chennai Experience - January 2024</h2>
+                </div>
+                
+                <div class="experience-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Visit Date: January 5-10, 2024</span>
+                </div>
+                
+                <div class="experience-content">
+                    <div class="experience-text">
+                        <p>My visit to <span class="highlight">Chennai in January 2024</span> was an amazing exploration of South Indian culture, cuisine, and coastal beauty. As someone who loves beach destinations, I was particularly excited to visit the famous <span class="highlight">Marina Beach</span>, which has earned the prestigious Blue Flag certification for its cleanliness and international standards.</p>
+                        
+                        <p>Walking along <span class="highlight">Marina Beach</span> in the early morning was absolutely magical. The 13-kilometer stretch of golden sand, gentle waves, and fresh sea breeze was invigorating. The beach was surprisingly clean and well-maintained, truly living up to its Blue Flag status. I enjoyed watching local fishermen bring in their catch, children playing cricket on the sand, and families enjoying picnics. The sunset views were spectacular, painting the sky in hues of orange and purple.</p>
+                        
+                        <p>The culinary experience in Chennai was a highlight of my trip. I tried authentic <span class="highlight">Tamil Nadu cuisine</span> at local eateries - from crispy paper-thin Masala Dosas with coconut chutney to flavorful Chettinad chicken curry that had the perfect balance of spices. The filter coffee was strong, aromatic, and served in the traditional stainless steel tumbler and davara set. But what really surprised me was the <span class="highlight">Chennai-style Paan</span> - unlike the regular paan, this one had unique fillings including fruits, sweetened coconut, and special masalas. The taste was refreshing and I ended up having it every evening!</p>
+                        
+                        <p>I explored Chennai's rich cultural heritage by visiting the magnificent <span class="highlight">Kapaleeshwarar Temple</span> in Mylapore. The intricate carvings on the temple's gopuram (tower) were breathtaking, each telling stories from Hindu mythology. The spiritual atmosphere during the evening aarti (prayer ceremony) was deeply moving. I also visited the <span class="highlight">San Thome Basilica</span>, a beautiful church built over the tomb of Saint Thomas, showcasing stunning Gothic architecture.</p>
+                        
+                        <p>The <span class="highlight">Government Museum</span> offered fascinating insights into South India's history, particularly the bronze gallery with its exquisite Chola period statues. At <span class="highlight">Fort St. George</span>, I learned about Chennai's colonial history and saw well-preserved artifacts from the British era.</p>
+                        
+                        <p>One of the most memorable experiences was exploring Chennai's <span class="highlight">street food markets</span> in Sowcarpet and Triplicane. The aroma of spices, the sizzle of food being cooked, and the vibrant atmosphere were unforgettable. I tried various local snacks like bonda, vada, and different varieties of dosas. The hospitality of the local people was heartwarming - vendors patiently explained what each dish contained and recommended their specialties.</p>
+                        
+                        <p>Chennai's unique blend of tradition and modernity, its warm-hearted people, delicious food, and beautiful coastline made this trip truly special. The memories of walking on the Blue Flag beach at sunrise, tasting the unique Chennai paan, and exploring historical landmarks will stay with me forever.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to About Button - Scrolls back to Chennai card on about page -->
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+        
+        // Handle back button - will scroll to Chennai section on about page
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            // Store which city to scroll to when returning to about page
+            localStorage.setItem('scrollToCity', 'chennai');
+            
+            // Delay navigation slightly to ensure localStorage is set
+            setTimeout(() => {
+                window.location.href = "about.html";
+            }, 100);
+        });
+        
+        // Optional: If you want to automatically scroll to Chennai section when coming from about page
+        window.addEventListener('load', function() {
+            const fromAbout = sessionStorage.getItem('fromAboutChennai');
+            if (fromAbout === 'true') {
+                window.scrollTo(0, 0);
+                sessionStorage.removeItem('fromAboutChennai');
+            }
+        });
+    </script>
+</body>
+</html>
+

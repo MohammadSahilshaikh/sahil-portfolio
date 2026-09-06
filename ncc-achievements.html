@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCC Achievements | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* NCC Achievements Section */
+        #ncc-achievements {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Achievement Sections */
+        .achievement-section {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .achievement-title {
+            color: #3b82f6;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .achievement-title i {
+            color: #fbbf24;
+        }
+
+        /* Achievement Images */
+        .achievement-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .achievement-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .achievement-images {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .achievement-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .achievement-image:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Achievement Description */
+        .achievement-description {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .achievement-description h4 {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .achievement-description p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .achievement-description ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .achievement-description li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .achievement-highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3b82f6;
+            margin: 25px 0;
+        }
+
+        .ncc-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin: 5px;
+        }
+
+        /* NCC Rank Section */
+        .rank-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .rank-badge {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #fbbf24;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .rank-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rank-badge i {
+            font-size: 4rem;
+            color: #fbbf24;
+        }
+
+        .rank-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .skill-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .achievement-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .achievement-image {
+                height: 200px;
+            }
+            
+            .achievement-section {
+                padding: 25px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .achievement-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html" class="active">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- NCC Achievements Section -->
+    <section id="ncc-achievements">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">NCC Achievements</h1>
+                <p class="section-subtitle">Leadership, Discipline, and Excellence - My journey in the National Cadet Corps with notable achievements in camps, videography, and photography competitions.</p>
+            </div>
+
+            <!-- NCC Rank Badge -->
+            <div class="rank-section">
+                <div class="rank-badge">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <div class="rank-info">
+                    <h3 style="color: #fbbf24; margin-bottom: 15px;">NCC Cadet - Sergeant Rank</h3>
+                    <p>As an NCC cadet, I have achieved the rank of Sergeant through consistent dedication, leadership qualities, and active participation in various NCC activities and training programs.</p>
+                    <div style="margin-top: 15px;">
+                        <span class="ncc-badge">Leadership Training</span>
+                        <span class="ncc-badge">Discipline</span>
+                        <span class="ncc-badge">National Integration</span>
+                        <span class="ncc-badge">Social Service</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement 1: Annual Training Camp -->
+            <div class="achievement-section">
+                <h2 class="achievement-title">
+                    <i class="fas fa-campground"></i>
+                    Annual Training Camp (ATC) 2023
+                </h2>
+                
+                <!-- 3 Images -->
+                <div class="achievement-images">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1540221652346-e9dd7ccd2c4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="NCC Camp Training" class="achievement-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1540221652346-e9dd7ccd2c4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Drill Practice" class="achievement-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1540221652346-e9dd7ccd2c4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Camp Activities" class="achievement-image">
+                </div>
+
+                <!-- Description -->
+                <div class="achievement-description">
+                    <h4>Annual Training Camp Experience</h4>
+                    <p>I participated in the 10-day Annual Training Camp organized by 1 Mah Battalion NCC in December 2023. This camp was a comprehensive training program that enhanced my leadership skills, physical fitness, and knowledge of military discipline.</p>
+                    
+                    <div class="achievement-highlight">
+                        <p><strong>Achievement Summary:</strong> Successfully completed all training modules with excellent grading. Received special recognition for exceptional performance in drill and map reading exercises. Demonstrated outstanding leadership during group activities and obstacle course training.</p>
+                    </div>
+                    
+                    <h4>Camp Activities & Training:</h4>
+                    <ul>
+                        <li>Intensive physical training and obstacle course completion</li>
+                        <li>Weapon training and shooting practice</li>
+                        <li>Map reading and navigation exercises</li>
+                        <li>Leadership and team-building activities</li>
+                        <li>First aid and disaster management training</li>
+                        <li>Cultural programs and national integration sessions</li>
+                    </ul>
+                    
+                    <h4>Skills Developed:</h4>
+                    <div class="skills-section">
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Discipline</span>
+                        <span class="skill-tag">Team Management</span>
+                        <span class="skill-tag">Physical Fitness</span>
+                        <span class="skill-tag">Crisis Management</span>
+                        <span class="skill-tag">Strategic Planning</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement 2: Special Camp -->
+            <div class="achievement-section">
+                <h2 class="achievement-title">
+                    <i class="fas fa-mountain"></i>
+                    Special Adventure Camp 2024
+                </h2>
+                
+                <!-- 3 Images -->
+                <div class="achievement-images">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1536152471326-642d7265f7b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Adventure Camp" class="achievement-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1536152471326-642d7265f7b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Rock Climbing" class="achievement-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1536152471326-642d7265f7b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Camp Fire" class="achievement-image">
+                </div>
+
+                <!-- Description -->
+                <div class="achievement-description">
+                    <h4>Special Adventure Camp Participation</h4>
+                    <p>Attended the 7-day Special Adventure Camp organized at the Himalayan Mountaineering Institute in March 2024. This camp focused on adventure sports, survival skills, and environmental awareness in challenging terrain conditions.</p>
+                    
+                    <div class="achievement-highlight">
+                        <p><strong>Achievement Summary:</strong> Completed advanced adventure training including rock climbing, rappelling, and river crossing. Received "Best Camper" award for exceptional performance in survival skills. Successfully led a team of 15 cadets during a 3-day trekking expedition.</p>
+                    </div>
+                    
+                    <h4>Adventure Activities Completed:</h4>
+                    <ul>
+                        <li>Rock climbing and rappelling exercises</li>
+                        <li>Trekking and navigation in mountainous terrain</li>
+                        <li>River crossing and water survival techniques</li>
+                        <li>Camping and survival skills training</li>
+                        <li>Environmental conservation awareness programs</li>
+                        <li>Team leadership in challenging conditions</li>
+                    </ul>
+                    
+                    <h4>Certifications Earned:</h4>
+                    <div class="skills-section">
+                        <span class="skill-tag">Adventure Training</span>
+                        <span class="skill-tag">Survival Skills</span>
+                        <span class="skill-tag">Mountaineering Basics</span>
+                        <span class="skill-tag">Environmental Awareness</span>
+                        <span class="skill-tag">Emergency Response</span>
+                        <span class="skill-tag">Outdoor Leadership</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement 3: Videography & Photography -->
+            <div class="achievement-section">
+                <h2 class="achievement-title">
+                    <i class="fas fa-camera"></i>
+                    NCC Media Competition Winner 2024
+                </h2>
+                
+                <!-- 3 Images -->
+                <div class="achievement-images">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Photography Award" class="achievement-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Videography Work" class="achievement-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Media Competition" class="achievement-image">
+                </div>
+
+                <!-- Description -->
+                <div class="achievement-description">
+                    <h4>Media Competition Victory</h4>
+                    <p>Participated and won first prize in the NCC State-level Media Competition 2024 in both Videography and Photography categories. The competition focused on capturing the spirit of NCC through visual storytelling.</p>
+                    
+                    <div class="achievement-highlight">
+                        <p><strong>Achievement Summary:</strong> Won <strong>First Prize in Videography</strong> category for documentary "NCC: Shaping Future Leaders" and <strong>First Prize in Photography</strong> category for photo series "Discipline in Action". Received special appreciation from the Commanding Officer for outstanding creative work.</p>
+                    </div>
+                    
+                    <h4>Competition Details:</h4>
+                    <ul>
+                        <li><strong>Videography:</strong> Created a 10-minute documentary highlighting NCC training and its impact on youth development</li>
+                        <li><strong>Photography:</strong> Submitted a series of 15 photographs capturing various aspects of NCC life and training</li>
+                        <li><strong>Themes:</strong> Discipline, Leadership, National Pride, and Social Service</li>
+                        <li><strong>Judges:</strong> Panel of professional photographers and media experts</li>
+                        <li><strong>Recognition:</strong> Featured in NCC annual magazine and awarded at state-level ceremony</li>
+                    </ul>
+                    
+                    <h4>Technical Skills Demonstrated:</h4>
+                    <div class="skills-section">
+                        <span class="skill-tag">Videography</span>
+                        <span class="skill-tag">Photography</span>
+                        <span class="skill-tag">Video Editing</span>
+                        <span class="skill-tag">Photo Editing</span>
+                        <span class="skill-tag">Storytelling</span>
+                        <span class="skill-tag">Creative Direction</span>
+                        <span class="skill-tag">Adobe Premiere Pro</span>
+                        <span class="skill-tag">Adobe Photoshop</span>
+                    </div>
+                    
+                    <h4>Impact and Recognition:</h4>
+                    <p>My winning entries were selected for display at the NCC headquarters and used in recruitment campaigns. The documentary was screened during the Republic Day parade preparations, reaching an audience of over 5000 cadets and officers.</p>
+                </div>
+            </div>
+
+            <!-- Overall NCC Experience -->
+            <div class="achievement-description" style="margin-top: 40px;">
+                <h4>Overall NCC Journey & Growth</h4>
+                <p>My journey in the National Cadet Corps has been transformative, shaping my personality and developing essential life skills. Through various camps, training programs, and competitions, I have grown as a leader, team player, and responsible citizen.</p>
+                
+                <div class="achievement-highlight">
+                    <p><strong>Key Takeaways from NCC:</strong> Developed strong leadership qualities, enhanced physical and mental discipline, learned crisis management skills, improved communication abilities, and cultivated a deep sense of patriotism and social responsibility.</p>
+                </div>
+                
+                <h4>Future Goals in NCC:</h4>
+                <ul>
+                    <li>Aim to achieve the rank of Senior Under Officer (SUO)</li>
+                    <li>Participate in Republic Day Camp selection process</li>
+                    <li>Organize social service activities in local community</li>
+                    <li>Mentor junior cadets in their NCC journey</li>
+                    <li>Continue contributing to NCC media and documentation efforts</li>
+                </ul>
+            </div>
+
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>

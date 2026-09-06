@@ -1,0 +1,1269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videography & Photography Profession | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hamburger:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Profession Hero Section */
+        #profession-hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profession-title {
+            font-size: 3.5rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInUp 1s ease;
+        }
+
+        .profession-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+            animation: expandWidth 1.5s ease;
+        }
+
+        .profession-subtitle {
+            color: #cbd5e1;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 30px auto 40px;
+            line-height: 1.8;
+            animation: fadeInUp 1.2s ease 0.3s both;
+        }
+
+        .highlight-text {
+            color: #3b82f6;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #3b82f6;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-text:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 150px; }
+        }
+
+        /* Project Images Section */
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image:hover {
+            transform: scale(1.05);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Videography Skills Section */
+        .skills-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skill-category h3 {
+            color: #3b82f6;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        .skill-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Camera Equipment Section */
+        .equipment-section {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            position: relative;
+        }
+
+        .equipment-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .equipment-content h3 {
+            color: #3b82f6;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .equipment-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .equipment-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .equipment-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .equipment-item h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .equipment-item p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Experience Timeline */
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6, #3b82f6);
+            border-radius: 2px;
+            animation: timelineGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes timelineGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .timeline-item {
+            margin: 40px 0;
+            position: relative;
+            width: 45%;
+            opacity: 0;
+            animation: slideInFromRight 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+            animation-name: slideInFromLeft;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-right: auto;
+            animation-name: slideInFromRight;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+        }
+
+        .timeline-content h3 {
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .timeline-content .date {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: colorChange 3s infinite;
+        }
+
+        @keyframes colorChange {
+            0%, 100% { color: #fbbf24; }
+            50% { color: #3b82f6; }
+        }
+
+        .timeline-content p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Photography Statistics */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .stat-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Creative Process Section */
+        .process-section {
+            padding: 60px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .process-step:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .process-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .process-step h4 {
+            color: #fbbf24;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .process-step p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin: 40px 0;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Camera Anatomy Section */
+        .camera-anatomy {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .anatomy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .anatomy-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .anatomy-image:hover {
+            transform: scale(1.02);
+        }
+
+        .anatomy-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .anatomy-item {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .anatomy-item:hover {
+            transform: translateX(10px);
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .anatomy-item h4 {
+            color: #3b82f6;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .anatomy-item p {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .profession-title {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .experience-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+            
+            .timeline-content::before {
+                left: -50px !important;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .project-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .equipment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .anatomy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .profession-title {
+                font-size: 2.5rem;
+            }
+            
+            .profession-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .equipment-section {
+                padding: 30px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-image {
+                height: 250px;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .camera-anatomy {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profession-title {
+                font-size: 2rem;
+            }
+            
+            .profession-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .skill-category {
+                padding: 20px;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html" class="active">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Profession Hero Section -->
+    <section id="profession-hero">
+        <div class="container">
+            <h1 class="profession-title">Videography & Photography</h1>
+            <p class="profession-subtitle">
+                <span class="highlight-text">Award-winning visual storyteller</span> with 
+                <span class="highlight-text">2.5+ years of professional experience</span> in capturing 
+                compelling moments through the lens. Expert in camera techniques, lighting, composition, 
+                and post-production to create stunning visual narratives.
+            </p>
+            <p class="profession-subtitle">
+                Combining <span class="highlight-text">technical expertise</span> with 
+                <span class="highlight-text">artistic vision</span> to produce content that tells stories, 
+                evokes emotions, and leaves lasting impressions. Specializing in event coverage, 
+                promotional videos, and creative photography.
+            </p>
+        </div>
+    </section>
+
+    <!-- Camera & Equipment Images -->
+    <section>
+        <div class="container">
+            <div class="project-images">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" 
+                     alt="Professional Camera Equipment" class="project-image">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80" 
+                     alt="Lens Collection & Optics" class="project-image">
+                <img loading="lazy" src="https://petapixel.com/assets/uploads/2019/11/moment-fisheye-14mm-coltonjacobs-3924.jpg" 
+                     alt="Camera Parts & Details" class="project-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Camera Anatomy Section -->
+    <section class="camera-anatomy">
+        <div class="container">
+            <h2 class="section-title">Camera Anatomy & Components</h2>
+            <div class="anatomy-grid">
+                <div>
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" 
+                         alt="Camera Anatomy" class="anatomy-image">
+                </div>
+                <div class="anatomy-list">
+                    <div class="anatomy-item">
+                        <h4>Viewfinder</h4>
+                        <p>Used for composing and framing your shot accurately before capturing</p>
+                    </div>
+                    <div class="anatomy-item">
+                        <h4>Lens Mount</h4>
+                        <p>Where the lens attaches to the camera body, ensuring secure connection</p>
+                    </div>
+                    <div class="anatomy-item">
+                        <h4>Shutter Button</h4>
+                        <p>Controls the camera's shutter to capture the image at the right moment</p>
+                    </div>
+                    <div class="anatomy-item">
+                        <h4>Mode Dial</h4>
+                        <p>Allows selection between different shooting modes (Auto, Manual, etc.)</p>
+                    </div>
+                    <div class="anatomy-item">
+                        <h4>LCD Screen</h4>
+                        <p>Displays settings, previews images, and provides touch controls</p>
+                    </div>
+                    <div class="anatomy-item">
+                        <h4>Memory Card Slot</h4>
+                        <p>Holds the memory card for storing captured images and videos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videography Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Visual Arts Expertise</h2>
+            
+            <div class="skills-grid">
+                <!-- Camera & Equipment -->
+                <div class="skill-category">
+                    <h3>Camera Expertise</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">DSLR Cameras</span>
+                        <span class="skill-item">Mirrorless Systems</span>
+                        <span class="skill-item">Lens Selection</span>
+                        <span class="skill-item">Manual Settings</span>
+                        <span class="skill-item">Aperture Control</span>
+                        <span class="skill-item">Shutter Speed</span>
+                        <span class="skill-item">ISO Management</span>
+                    </div>
+                </div>
+
+                <!-- Video Production -->
+                <div class="skill-category">
+                    <h3>Video Production</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Cinematography</span>
+                        <span class="skill-item">Storyboarding</span>
+                        <span class="skill-item">Lighting Setup</span>
+                        <span class="skill-item">Audio Recording</span>
+                        <span class="skill-item">Camera Movement</span>
+                        <span class="skill-item">Frame Composition</span>
+                        <span class="skill-item">Shot Sequencing</span>
+                    </div>
+                </div>
+
+                <!-- Editing & Software -->
+                <div class="skill-category">
+                    <h3>Editing & Software</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Adobe Premiere Pro</span>
+                        <span class="skill-item">Final Cut Pro</span>
+                        <span class="skill-item">DaVinci Resolve</span>
+                        <span class="skill-item">Adobe After Effects</span>
+                        <span class="skill-item">Photoshop</span>
+                        <span class="skill-item">Lightroom</span>
+                        <span class="skill-item">Color Grading</span>
+                    </div>
+                </div>
+
+                <!-- Photography Styles -->
+                <div class="skill-category">
+                    <h3>Photography Styles</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Portrait Photography</span>
+                        <span class="skill-item">Event Coverage</span>
+                        <span class="skill-item">Landscape Photography</span>
+                        <span class="skill-item">Street Photography</span>
+                        <span class="skill-item">Product Photography</span>
+                        <span class="skill-item">Architectural Photography</span>
+                        <span class="skill-item">Candid Photography</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photography Statistics -->
+            <h2 class="section-title" style="margin-top: 80px;">Visual Achievements</h2>
+            
+            <div class="stats-section">
+                <div class="stat-card" style="animation-delay: 0.1s;">
+                    <div class="stat-number">2.5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card" style="animation-delay: 0.2s;">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Events Covered</div>
+                </div>
+                <div class="stat-card" style="animation-delay: 0.3s;">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card" style="animation-delay: 0.4s;">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Awards Won</div>
+                </div>
+            </div>
+
+            <!-- Camera Equipment Knowledge -->
+            <div class="equipment-section">
+                <div class="equipment-content">
+                    <h3>Camera Equipment Mastery</h3>
+                    
+                    <div class="equipment-grid">
+                        <div class="equipment-item">
+                            <div class="equipment-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h4>Camera Bodies</h4>
+                            <p>Expertise in DSLR and mirrorless camera systems, sensor technology, and camera settings optimization</p>
+                        </div>
+
+                        <div class="equipment-item">
+                            <div class="equipment-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4>Lens Systems</h4>
+                            <p>Understanding focal lengths, aperture ranges, lens coatings, and specialized lens applications</p>
+                        </div>
+
+                        <div class="equipment-item">
+                            <div class="equipment-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Lighting Equipment</h4>
+                            <p>Mastery of natural and artificial lighting, light modifiers, and studio lighting setups</p>
+                        </div>
+
+                        <div class="equipment-item">
+                            <div class="equipment-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <h4>Audio Gear</h4>
+                            <p>Professional audio recording equipment, microphones, and sound capture techniques</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videography Journey Timeline -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title" style="margin-top: 80px;">Visual Arts Journey</h2>
+            
+            <div class="experience-timeline">
+                <div class="timeline-item" style="animation-delay: 0.2s;">
+                    <div class="timeline-content">
+                        <h3>Started University Videography</h3>
+                        <span class="date">2021 - Present</span>
+                        <p>Began creating promotional videos and reels for university events, developing foundational skills in video production and editing.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" style="animation-delay: 0.4s;">
+                    <div class="timeline-content">
+                        <h3>International Kite Festival</h3>
+                        <span class="date">2022</span>
+                        <p>Worked as lead videographer for International Kite Festival, capturing aerial footage and creating promotional content.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" style="animation-delay: 0.6s;">
+                    <div class="timeline-content">
+                        <h3>Award-Winning Performance</h3>
+                        <span class="date">2023</span>
+                        <p>Received "Best Photographer & Videographer Award" in Nagaland for exceptional visual storytelling and technical excellence.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" style="animation-delay: 0.8s;">
+                    <div class="timeline-content">
+                        <h3>Advanced Production Techniques</h3>
+                        <span class="date">2023 - Present</span>
+                        <p>Mastered advanced cinematography techniques, color grading, and professional editing workflows for high-end productions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">Creative Process & Workflow</h2>
+            
+            <div class="process-steps">
+                <div class="process-step" style="animation-delay: 0.1s;">
+                    <div class="step-number">1</div>
+                    <div class="process-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Concept Development</h4>
+                    <p>Brainstorming ideas, creating storyboards, and planning shot lists to visualize the final product</p>
+                </div>
+
+                <div class="process-step" style="animation-delay: 0.3s;">
+                    <div class="step-number">2</div>
+                    <div class="process-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h4>Production Shooting</h4>
+                    <p>Executing planned shots with proper camera settings, lighting, and composition techniques</p>
+                </div>
+
+                <div class="process-step" style="animation-delay: 0.5s;">
+                    <div class="step-number">3</div>
+                    <div class="process-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h4>Post-Production</h4>
+                    <p>Editing footage, color correction, adding effects, audio mixing, and final rendering</p>
+                </div>
+
+                <div class="process-step" style="animation-delay: 0.7s;">
+                    <div class="step-number">4</div>
+                    <div class="process-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h4>Delivery & Distribution</h4>
+                    <p>Final quality checks, format optimization, and delivery across multiple platforms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+
+        // Add animation to skill items on scroll
+        const skillItems = document.querySelectorAll('.skill-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        skillItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+        });
+
+        // Animate statistics counter
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stat = entry.target;
+                    const text = stat.textContent;
+                    
+                    if (text.includes('+')) {
+                        const target = parseInt(text);
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += 0.1;
+                            if (current > target) {
+                                stat.textContent = text;
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = current.toFixed(1) + '+';
+                            }
+                        }, 30);
+                    } else {
+                        const target = parseInt(text);
+                        const increment = target / 50;
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current > target) {
+                                stat.textContent = text;
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = Math.floor(current) + '+';
+                            }
+                        }, 30);
+                    }
+                    
+                    statObserver.unobserve(stat);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => {
+            statObserver.observe(stat);
+        });
+
+        // Animate timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = entry.target.getAttribute('style')?.match(/delay: (\d+\.?\d*)s/)?.[1] || '0s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        timelineItems.forEach(item => {
+            item.style.animationPlayState = 'paused';
+            timelineObserver.observe(item);
+        });
+
+        // Animate process steps
+        const processSteps = document.querySelectorAll('.process-step');
+        const processObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = entry.target.getAttribute('style')?.match(/delay: (\d+\.?\d*)s/)?.[1] || '0s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        processSteps.forEach(step => {
+            step.style.animationPlayState = 'paused';
+            processObserver.observe(step);
+        });
+    </script>
+</body>
+</html>
+

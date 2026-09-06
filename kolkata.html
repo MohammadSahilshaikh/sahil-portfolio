@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolkata Travel Experience - Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .kolkata-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid #f59e0b;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Famous Places Title - Different Style */
+        .famous-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 40px;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Famous Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .place-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.05);
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .place-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Personal Experience Section */
+        .experience-section {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+
+        .experience-title {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .experience-date {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-date i {
+            color: #3b82f6;
+        }
+
+        .experience-content {
+            margin-top: 30px;
+        }
+
+        .experience-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .experience-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Back to About Button */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .famous-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .kolkata-hero {
+                height: 30vh;
+                margin-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .experience-section {
+                padding: 30px;
+            }
+            
+            .experience-title {
+                font-size: 2rem;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .famous-title {
+                font-size: 1.8rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .kolkata-hero {
+                height: 25vh;
+                margin-top: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="kolkata-hero">
+        <div class="container hero-content">
+            <h1>Kolkata - The City of Joy</h1>
+        </div>
+    </section>
+
+    <!-- 6 Famous Places Title -->
+    <div class="container">
+        <h2 class="famous-title">6 Famous Places in Kolkata</h2>
+    </div>
+
+    <!-- Famous Places Section -->
+    <section id="famous-places">
+        <div class="container">
+            <div class="places-grid">
+                <!-- Place 1 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://s7ap1.scene7.com/is/image/incredibleindia/howrah-bridge-howrah-west-bengal-1-attr-hero?qlt=82&ts=1742152582318" 
+                         alt="Howrah Bridge" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Howrah Bridge</h3>
+                        <p class="place-description">An iconic cantilever bridge over the Hooghly River, connecting Kolkata with Howrah. Built without nuts and bolts, it's one of the world's busiest bridges and a symbol of Kolkata's engineering marvel.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 2 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://sciencecitykolkata.org.in/wp-content/uploads/2020/02/banner.jpg" 
+                         alt="Science City" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Science City</h3>
+                        <p class="place-description">The largest science center in India, featuring interactive exhibits, a space theater, and scientific models. It's an educational and entertaining destination for all ages, promoting scientific awareness.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 3 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://cdn.pixabay.com/photo/2017/06/12/08/29/victoria-memorial-2394784_1280.jpg" 
+                         alt="Victoria Memorial" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Victoria Memorial</h3>
+                        <p class="place-description">A magnificent white marble building built in memory of Queen Victoria. This architectural masterpiece houses a museum with colonial-era artifacts and is surrounded by beautiful gardens.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 4 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://images.pexels.com/photos/3520942/pexels-photo-3520942.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
+                         alt="Dakshineswar Kali Temple" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Dakshineswar Kali Temple</h3>
+                        <p class="place-description">A famous Hindu temple dedicated to Goddess Kali, located on the eastern bank of Hooghly River. This is where Sri Ramakrishna Paramahamsa served as priest and had spiritual experiences.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 5 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://s7ap1.scene7.com/is/image/incredibleindia/park-street-kolkata-west-bengal-1-attr-hero?qlt=82&ts=1742152704187" 
+                         alt="Park Street" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Park Street</h3>
+                        <p class="place-description">Kolkata's entertainment and food hub, famous for its colonial architecture, restaurants, pubs, and vibrant nightlife. During Christmas, it transforms into a dazzling display of lights and decorations.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 6 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.thestatesman.com/wp-content/uploads/2020/02/QT-street-food-1024x683.jpg" 
+                         alt="Kolkata Street Food" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Kolkata Street Food</h3>
+                        <p class="place-description">Famous food streets like New Market, Tiretti Bazaar, and College Street offer authentic Bengali cuisine. From Kathi Rolls to Puchka (Pani Puri) and traditional Bengali sweets, the culinary experience is unforgettable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section id="personal-experience">
+        <div class="container">
+            <div class="experience-section">
+                <div class="experience-header">
+                    <div class="experience-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2 class="experience-title">My Kolkata Experience - November 2024</h2>
+                </div>
+                
+                <div class="experience-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Visit Date: November 15-20, 2024</span>
+                </div>
+                
+                <div class="experience-content">
+                    <div class="experience-text">
+                        <p>My visit to <span class="highlight">Kolkata in November 2024</span> was an extraordinary journey through history, culture, and intellectual brilliance. As the cultural capital of India, Kolkata offered me experiences that were both enlightening and deeply memorable.</p>
+                        
+                        <p>The iconic <span class="highlight">Howrah Bridge</span> was my first stop, and it absolutely lived up to its reputation. Walking across this engineering marvel during sunset was breathtaking. The bridge, bustling with traffic and pedestrians, offered stunning views of the Hooghly River below. I learned that this cantilever bridge was built without any nuts and bolts - a true testament to engineering ingenuity. The sight of the bridge illuminated at night against the dark sky was truly magical and something I'll never forget.</p>
+                        
+                        <p>My next destination was the fascinating <span class="highlight">Science City</span>, which turned out to be one of the highlights of my trip. As India's largest science center, it offered interactive exhibits that made learning fun and engaging. The Space Theater with its dome-shaped screen showed incredible documentaries about space and the universe. I spent hours exploring the various galleries - from the Evolution Park with life-sized dinosaur models to the Dynamotion Hall with hands-on scientific experiments. The Maritime Center with its ship models and navigation instruments was particularly interesting. Science City perfectly blends education with entertainment, making science accessible to everyone.</p>
+                        
+                        <p>Kolkata's culinary scene was another revelation. I indulged in authentic <span class="highlight">Bengali cuisine</span> - from the famous Kolkata Kathi Rolls at Nizam's to the delicate Puchka (Kolkata's version of Pani Puri) at street corners. The traditional Bengali thali with fish curry, lentils, and vegetables was a delightful experience. But the real showstopper was the array of <span class="highlight">Bengali sweets</span>. I tried Rosogolla (which originated in Kolkata), Mishti Doi (sweet yogurt), Sandesh in various flavors, and the creamy Rabri. Each sweet had a unique texture and flavor that reflected Bengal's rich culinary heritage.</p>
+                        
+                        <p>I also explored other cultural landmarks including the magnificent <span class="highlight">Victoria Memorial</span> with its stunning architecture and historical exhibits, and the spiritual <span class="highlight">Dakshineswar Kali Temple</span> where I witnessed the evening aarti ceremony. The temple complex along the riverbank had a serene atmosphere that was truly calming.</p>
+                        
+                        <p>One of the most memorable experiences was walking through <span class="highlight">Park Street</span> in the evening. The colonial architecture, vibrant lights, and bustling restaurants created an electric atmosphere. I visited some of the iconic restaurants that have been serving delicious food for decades and experienced Kolkata's famous adda culture - intellectual conversations over tea at local cafes.</p>
+                        
+                        <p>What struck me most about Kolkata was its unique blend of intellectualism and warmth. From rickshaw pullers quoting Rabindranath Tagore to bookstore owners discussing literature, the city breathes culture. The warmth of Kolkata's people, their passion for arts and literature, and their deep connection to their heritage made this trip truly special. The memories of crossing the majestic Howrah Bridge, exploring the wonders of Science City, and savoring Kolkata's culinary delights will stay with me forever.</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+        
+        // Handle back button - will scroll to Kolkata section on about page
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            // Store which city to scroll to when returning to about page
+            localStorage.setItem('scrollToCity', 'kolkata');
+            
+            // Delay navigation slightly to ensure localStorage is set
+            setTimeout(() => {
+                window.location.href = "about.html";
+            }, 100);
+        });
+        
+        // Optional: If you want to automatically scroll to Kolkata section when coming from about page
+        window.addEventListener('load', function() {
+            const fromAbout = sessionStorage.getItem('fromAboutKolkata');
+            if (fromAbout === 'true') {
+                window.scrollTo(0, 0);
+                sessionStorage.removeItem('fromAboutKolkata');
+            }
+        });
+    </script>
+</body>
+</html>
+

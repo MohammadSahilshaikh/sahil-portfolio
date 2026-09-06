@@ -1,0 +1,683 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Events | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Cultural Events Section */
+        #cultural-events {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Event Sections */
+        .event-section {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .event-title {
+            color: #3b82f6;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        /* Team Members Section */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 992px) {
+            .team-members {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-members {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-members {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-member {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #3b82f6;
+            overflow: hidden;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            color: #3b82f6;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .member-role {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Event Images */
+        .event-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .event-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-images {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event-image:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Event Description */
+        .event-description {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .event-description h4 {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .event-description p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .event-description ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .event-description li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .achievement-highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3b82f6;
+            margin: 25px 0;
+        }
+
+        /* 6 Team Members in Circle (Special Layout) */
+        .circle-team {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .circle-member {
+            text-align: center;
+        }
+
+        .circle-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 3px solid #3b82f6;
+            overflow: hidden;
+            background: rgba(59, 130, 246, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .circle-avatar i {
+            font-size: 3rem;
+            color: #3b82f6;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .event-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .event-image {
+                height: 200px;
+            }
+            
+            .event-section {
+                padding: 25px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .event-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html" class="active">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Cultural Events Section -->
+    <section id="cultural-events">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Cultural Events & Achievements</h1>
+                <p class="section-subtitle">A showcase of my participation and achievements in various cultural events at zonal and national levels, representing MANUU with pride and excellence.</p>
+            </div>
+
+            <!-- Event 1: South East Zone -->
+            <div class="event-section">
+                <h2 class="event-title">South East Zone Cultural Competition</h2>
+                
+                <!-- 8 Team Members -->
+                <h3 style="color: #fbbf24; margin-bottom: 20px; text-align: center;">Our Theatre Team (Play: Baa Santi)</h3>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="sakim bhai.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Sakim Bakhtawar Ali Ansari</h4>
+                        <p class="member-role">Lead Actor</p>
+                        <p>Played main role in "Baa Santi"</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="Sahil.jpg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Mohammad Sahil Shaikh</h4>
+                        <p class="member-role">Supporting Actor</p>
+                        <p>Played supporting role</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team4.jpg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Md Hanzala</h4>
+                        <p class="member-role">Supporting Actor</p>
+                        <p>Played supporting role</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="mime badre.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Badre Khan</h4>
+                        <p class="member-role">Director</p>
+                        <p>Directed the play</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="mime6 fahim.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Md Fahim</h4>
+                        <p class="member-role">Script Writer</p>
+                        <p>Wrote the script</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="mime9 ashaq.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Ashaq</h4>
+                        <p class="member-role">Costume Designer</p>
+                        <p>Designed costumes</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Husna Siraj</h4>
+                        <p class="member-role">Music Director</p>
+                        <p>Composed music</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1507591064344-4c6ce005-128b-97c72c4e2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Sadiqa</h4>
+                        <p class="member-role">Choreographer</p>
+                        <p>Designed dance sequences</p>
+                    </div>
+                </div>
+
+                <!-- 3 Event Images -->
+                <div class="event-images">
+                    <img loading="lazy" src="baa santi 1.jpeg" 
+                         alt="Play Performance" class="event-image">
+                    <img loading="lazy" src="baa santi2.jpeg" 
+                         alt="Team Backstage" class="event-image">
+                    <img loading="lazy" src="baa santi3.jpeg" 
+                         alt="Award Ceremony" class="event-image">
+                </div>
+
+                <!-- Event Description -->
+                <div class="event-description">
+                    <h4>Participation in Play "Ba Santi"</h4>
+                    <p>I participated in the South East Zone cultural competition representing MANUU in the play category with our production "Ba Santi". This powerful social drama addressed important contemporary issues and showcased our theatrical talents at the zonal level.</p>
+                    
+                    <div class="achievement-highlight">
+                        <p><strong>Achievement Summary:</strong> I won <strong>3 prizes</strong> in the South East Zone competition and also secured awards at the National level for my performance in the play "Ba Santi". Our team's dedication and hard work were recognized at both zonal and national platforms.</p>
+                    </div>
+                    
+                    <p>The play "Ba Santi" was a critical success, praised for its powerful narrative, strong performances, and social relevance. My role as the lead actor required intense preparation and emotional depth, which I delivered successfully, contributing to our team's overall success.</p>
+                </div>
+            </div>
+
+            <!-- Event 2: Separate Heading Section -->
+            <div class="event-section">
+                <h2 class="event-title">Cultural Performance Achievements</h2>
+                
+                <!-- 6 Team Members in Circle -->
+                <h3 style="color: #fbbf24; margin-bottom: 20px; text-align: center;">Performance Team (6 Members)</h3>
+                <div class="circle-team">
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="Sahil.jpg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Mohammad Sahil Shaikh</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team4.jpg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Md Hanzala</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime6 fahim.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Md Fahim</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime7 badre.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Badre Alam Khan</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="sakim bhai.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Sakim Baktabar Ali Ansari</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime5.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Atib Alam</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                </div>
+
+                <!-- 3 Event Images -->
+                <div class="event-images">
+                    <img loading="lazy" src="mime1.jpeg" 
+                         alt="Cultural Performance" class="event-image">
+                    <img loading="lazy" src="mime2.jpeg" 
+                         alt="Team Practice" class="event-image">
+                    <img loading="lazy" src="mime3.jpeg" 
+                         alt="Award Moment" class="event-image">
+                </div>
+
+                <!-- Event Description -->
+                <div class="event-description">
+                    <h4>Zonal and National Achievements</h4>
+                    <p>Our cultural team participated in multiple events across different categories including dance, music, and theatre. We represented MANUU with excellence and achieved remarkable success at both zonal and national levels.</p>
+                    
+                    <div class="achievement-highlight">
+                        <p><strong>Achievement Summary:</strong> We achieved <strong>2 positions in South East Zone</strong> competitions and also secured <strong>2 positions at the National level</strong>. Our consistent performance and dedication to cultural excellence were recognized through these achievements.</p>
+                    </div>
+                    
+                    <p>The team worked tirelessly for months, practicing daily and perfecting our performances. The synergy between team members, coupled with creative direction and technical excellence, resulted in memorable performances that impressed judges and audiences alike.</p>
+                </div>
+            </div>
+
+            <!-- Event 3: Mime Competition -->
+             <div class="event-section">
+                <h2 class="event-title">Cultural Performance Achievements</h2>
+                
+                <!-- 6 Team Members in Circle -->
+                <h3 style="color: #fbbf24; margin-bottom: 20px; text-align: center;">Performance Team (6 Members)</h3>
+                <div class="circle-team">
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="Sahil.jpg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Mohammad Sahil Shaikh</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team4.jpg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Md Hanzala</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime4.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Abu Talha</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime5.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Atib Ahmad</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime9 ashaq.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Md Ashif Alam</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                    <div class="circle-member">
+                        <div class="circle-avatar">
+                            <img loading="lazy" src="mime8 shaziya.jpeg" alt="Team Member">
+                        </div>
+                        <h4 class="member-name">Shaziya Anwar</h4>
+                        <p class="member-role">Lead Performer</p>
+                    </div>
+                </div>
+
+                <!-- 3 Event Images -->
+                <div class="event-images">
+                    <img loading="lazy" src="mime1.jpeg" 
+                         alt="Cultural Performance" class="event-image">
+                    <img loading="lazy" src="mime2.jpeg" 
+                         alt="Team Practice" class="event-image">
+                    <img loading="lazy" src="mime3.jpeg" 
+                         alt="Award Moment" class="event-image">
+                </div>
+
+
+                <!-- Event Description -->
+                <div class="event-description">
+                    <h4>Mime Competition Achievement</h4>
+                    <p>I participated in the mime competition at the South Zone level, where our team presented a powerful silent performance that conveyed deep emotions and social messages without words. Mime requires exceptional body control, expression, and timing, which we mastered through rigorous practice.</p>
+                    
+                    <div class="achievement-highlight">
+                        <p><strong>Achievement Summary:</strong> I achieved <strong>First Position</strong> in the South Zone mime competition and successfully <strong>qualified for the National level</strong> competition. Our performance was praised for its creativity, emotional depth, and technical excellence.</p>
+                    </div>
+                    
+                    <p>The mime performance told a story of human resilience and hope, using only body language and facial expressions. The hours of practice, attention to detail, and team coordination resulted in a seamless performance that moved the audience and impressed the judges, leading to our qualification for the national competition.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
+

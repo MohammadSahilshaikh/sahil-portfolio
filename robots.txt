@@ -1,0 +1,51 @@
+# 🌐 ROBOTS.TXT - Mohammad Sahil Shaikh Official Website
+# Last Updated: 2026-02-20
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Specify sitemap location
+Sitemap: https://aapkiwebsite.com/sitemap.xml
+
+# Prevent crawling of duplicate content (if any)
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /old/
+Disallow: /draft/
+
+# Increase crawl rate for important pages
+# (Google bots ko priority dena)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# For Bing and Yahoo
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# For Yandex (Russian search engine)
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# For Baidu (Chinese search engine)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Block AI bots (optional - agar nahi chahte toh hata do)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /

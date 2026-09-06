@@ -1,0 +1,507 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore Travel Experience - Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .bangalore-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid #f59e0b;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Famous Places Title - Different Style */
+        .famous-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 40px;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Famous Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .place-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.05);
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .place-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Personal Experience Section */
+        .experience-section {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+
+        .experience-title {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .experience-date {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-date i {
+            color: #3b82f6;
+        }
+
+        .experience-content {
+            margin-top: 30px;
+        }
+
+        .experience-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .experience-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Back to About Button */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .famous-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .bangalore-hero {
+                height: 30vh;
+                margin-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .experience-section {
+                padding: 30px;
+            }
+            
+            .experience-title {
+                font-size: 2rem;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .famous-title {
+                font-size: 1.8rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .bangalore-hero {
+                height: 25vh;
+                margin-top: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bangalore-hero">
+        <div class="container hero-content">
+            <h1>Bangalore - The Silicon Valley of India</h1>
+        </div>
+    </section>
+
+    <!-- 6 Famous Places Title -->
+    <div class="container">
+        <h2 class="famous-title">6 Famous Places in Bangalore</h2>
+    </div>
+
+    <!-- Famous Places Section -->
+    <section id="famous-places">
+        <div class="container">
+            <div class="places-grid">
+                <!-- Place 1 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.shutterstock.com/shutterstock/videos/1024400156/thumb/1.jpg?ip=x480" 
+                         alt="Lalbagh Botanical Garden" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Lalbagh Botanical Garden</h3>
+                        <p class="place-description">A beautiful botanical garden spread over 240 acres, featuring rare plants, a stunning glass house, and one of the largest collections of tropical plants in India. The garden was commissioned by Hyder Ali in 1760.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 2 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://media.istockphoto.com/id/2155978838/photo/the-majestic-bangalore-palace-is-a-19th-century-royal-palace-preserves-in-it-the-spice-of-old.jpg?s=612x612&w=0&k=20&c=dUDJm82kqWUfpFh_mxtzsATzHS0J6o6HAzAtG2D68QU=" 
+                         alt="Bangalore Palace" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Bangalore Palace</h3>
+                        <p class="place-description">Inspired by England's Windsor Castle, this magnificent palace was built in 1878. The Tudor-style architecture, ornate wood carvings, and beautiful paintings make it one of Bangalore's most iconic landmarks.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 3 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://t3.ftcdn.net/jpg/00/68/64/32/360_F_68643285_UPGw7eTERaHKm5zDKA7YlOx5x0pBfAM0.jpg" 
+                         alt="Cubbon Park" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Cubbon Park</h3>
+                        <p class="place-description">Spread over 300 acres in the heart of Bangalore, this lush green park is a favorite among walkers, joggers, and nature lovers. It houses several historic buildings and statues, offering a peaceful escape from city life.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 4 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.shutterstock.com/shutterstock/videos/3946336067/thumb/1.jpg?ip=x480" 
+                         alt="Vidhana Soudha" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Vidhana Soudha</h3>
+                        <p class="place-description">The seat of the state legislature of Karnataka, this magnificent building is an exemplary piece of neo-Dravidian architecture. Illuminated beautifully at night, it's one of the most imposing buildings in Bangalore.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 5 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://as2.ftcdn.net/jpg/03/50/71/37/1000_F_350713736_7B2xwZU701yPNVES8DNkIEWVI4Pl6gG4.jpg" 
+                         alt="ISKCON Temple" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">ISKCON Temple</h3>
+                        <p class="place-description">One of the largest ISKCON temples in the world, this magnificent structure combines modern technology with traditional temple architecture. The temple is dedicated to Lord Krishna and attracts devotees from all over.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 6 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://bkc.christuniversity.in/images/chris-building.jpg" 
+                         alt="Christ University" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Christ University</h3>
+                        <p class="place-description">One of India's premier educational institutions, known for its sprawling campus, excellent infrastructure, and academic excellence. The university campus itself is a landmark with its beautiful architecture and vibrant student life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section id="personal-experience">
+        <div class="container">
+            <div class="experience-section">
+                <div class="experience-header">
+                    <div class="experience-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2 class="experience-title">My Bangalore Experience - March 2025</h2>
+                </div>
+                
+                <div class="experience-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Visit Date: March 10-15, 2025</span>
+                </div>
+                
+                <div class="experience-content">
+                    <div class="experience-text">
+                        <p>My visit to Bangalore in <span class="highlight">March 2025</span> was an incredible experience that blended education, exploration, and culinary delights. I traveled to Bangalore primarily to visit the prestigious <span class="highlight">Christ University</span>, but ended up discovering so much more about this vibrant city.</p>
+                        
+                        <p>My first stop was <span class="highlight">Christ University</span>, where I spent an entire day exploring the magnificent campus. The state-of-the-art infrastructure, lush green spaces, and the vibrant academic atmosphere left a deep impression on me. I had the opportunity to interact with students and faculty, gaining insights into the excellent educational ecosystem that makes Bangalore India's educational hub.</p>
+                        
+                        <p>Beyond the university, I explored Bangalore's beautiful green spaces. <span class="highlight">Lalbagh Botanical Garden</span> with its stunning glass house and diverse plant collections was absolutely breathtaking. The tranquility of <span class="highlight">Cubbon Park</span> in the middle of the bustling city was a welcome surprise, offering peaceful walking trails and historical monuments.</p>
+                        
+                        <p>The culinary experience in Bangalore was extraordinary. I tried authentic local food including <span class="highlight">Masala Dosa</span> at famous eateries, <span class="highlight">Bisi Bele Bath</span> (a traditional Karnataka rice dish), and <span class="highlight">Ragi Mudde</span> (finger millet balls) with spicy curries. The food culture in Bangalore is a perfect blend of traditional Karnataka cuisine and modern cosmopolitan flavors.</p>
+                        
+                        <p>One of the highlights was visiting <span class="highlight">Bangalore Palace</span>, which transported me to a different era with its Tudor-style architecture and royal ambiance. The <span class="highlight">Vidhana Soudha</span> illuminated at night was a spectacular sight, showcasing the city's architectural grandeur.</p>
+                        
+                        <p>What struck me most about Bangalore was its perfect balance between modernity and tradition. The city is India's IT capital with gleaming tech parks, yet it preserves its green spaces, historic sites, and cultural heritage. The pleasant weather (earning it the nickname "Air-conditioned City") made exploring the city throughout the day comfortable and enjoyable.</p>
+                        
+                        <p>This trip to Bangalore was more than just visiting a city; it was an experience of India's technological progress while staying rooted in nature and culture. The memories of the beautiful campuses, delicious food, friendly people, and the city's unique charm will stay with me forever.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to About Button - Scrolls back to Bangalore card on about page -->
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+        
+        // Handle back button - will scroll to Bangalore section on about page
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            // We'll use localStorage to remember which city to scroll to
+            localStorage.setItem('scrollToCity', 'bangalore');
+        });
+    </script>
+</body>
+</html>
+

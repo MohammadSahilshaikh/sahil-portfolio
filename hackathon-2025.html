@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIH 2025 Achievement | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Project Detail Section */
+        #project-detail {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .project-subtitle {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Project Images */
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-image:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Project Content */
+        .project-content {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .project-content h3 {
+            color: #3b82f6;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .project-content h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+
+        .project-content p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .project-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .project-content li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Team Members Section */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .team-member {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #3b82f6;
+            overflow: hidden;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            color: #3b82f6;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .member-role {
+            color: #fbbf24;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Certificate Section */
+        .certificate-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .certificate-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            margin: 20px 0;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-members {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .project-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-members {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-image {
+                height: 200px;
+            }
+            
+            .project-content {
+                padding: 25px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-subtitle {
+                font-size: 1rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html" class="active">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Project Detail Section -->
+    <section id="project-detail">
+        <div class="container">
+            <div class="project-header">
+                <h1 class="project-title">Smart India Hackathon 2025</h1>
+                <p class="project-subtitle">Digital Learning Platform for Rural School Students in Nabha | Project ID: SIH25020 | Theme: Smart Education | Organisation: Government of Punjab</p>
+            </div>
+
+            <!-- Project Images -->
+            <div class="project-images">
+                <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/P-photo2.jpg" 
+                     alt="Hackathon Team Collaboration" class="project-image">
+                <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/P-photo3.jpg" 
+                     alt="Digital Learning Platform" class="project-image">
+                <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/P-photo4.jpg" 
+                     alt="Education Technology" class="project-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="project-content">
+                <h3>Digital Learning Platform for Rural School Students in Nabha</h3>
+                <p>Our team developed a digital learning platform aimed at empowering rural school students in Nabha by providing accessible, engaging, and interactive educational resources.</p>
+                
+                <h4>Team Members</h4>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team1.jpg" alt="Hedayatullah Noor">
+                        </div>
+                        <h4 class="member-name">Hedayatullah Noor</h4>
+                        <p class="member-role">Team Lead</p>
+                        <p>Led the team coordination and project management</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team2.jpg" alt="Md Wasim Ibrar">
+                        </div>
+                        <h4 class="member-name">Md Wasim Ibrar</h4>
+                        <p class="member-role">Frontend Developer</p>
+                        <p>Developed the user interface and frontend components</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team3.jpg" alt="Saif Khan">
+                        </div>
+                        <h4 class="member-name">Saif Khan</h4>
+                        <p class="member-role">Mobile App Developer</p>
+                        <p>Created mobile application for the platform</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team4.jpg" alt="Md Hanzala">
+                        </div>
+                        <h4 class="member-name">Md Hanzala</h4>
+                        <p class="member-role">Backend Developer</p>
+                        <p>Built server-side logic and database management</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team5,jpg" alt="Mohammad Sahil Shaikh">
+                        </div>
+                        <h4 class="member-name">Mohammad Sahil Shaikh</h4>
+                        <p class="member-role">Data Analysis Specialist</p>
+                        <p>Analyzed educational data and learning patterns</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/team6.jpg" alt="Bushra Parween">
+                        </div>
+                        <h4 class="member-name">Bushra Parween</h4>
+                        <p class="member-role">UX/UI Designer</p>
+                        <p>Designed user experience and interface elements</p>
+                    </div>
+                </div>
+                
+                <h4>Detailed Project Description</h4>
+                <p>This project was designed as part of the Smart India Hackathon under the Smart Education theme. Our objective was to build a Digital Learning Platform tailored for rural school students in Nabha. The platform integrates features such as:</p>
+                
+                <ul>
+                    <li>Interactive video lectures and quizzes for better engagement</li>
+                    <li>Offline access for areas with low internet connectivity</li>
+                    <li>Localized content in regional languages</li>
+                    <li>Progress tracking for students and teachers</li>
+                </ul>
+                
+                <p>The initiative, mentored by the Government of Punjab, highlights the importance of bridging the digital divide and ensuring every student has equal access to quality education. Our team collaborated effectively to ideate, design, and prototype a solution that can make a real impact on rural education.</p>
+                
+                <h4>My Role: Data Analysis Specialist</h4>
+                <p>As the Data Analysis Specialist for this project, I was responsible for:</p>
+                <ul>
+                    <li>Analyzing student learning patterns and engagement metrics</li>
+                    <li>Processing educational data to personalize learning experiences</li>
+                    <li>Creating data visualizations for progress tracking</li>
+                    <li>Developing algorithms for recommending learning materials</li>
+                    <li>Ensuring data privacy and security for student information</li>
+                </ul>
+                
+                <h4>Project Features</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">Interactive Learning</span>
+                    <span class="tech-tag">Offline Access</span>
+                    <span class="tech-tag">Regional Language Support</span>
+                    <span class="tech-tag">Progress Tracking</span>
+                    <span class="tech-tag">Personalized Learning</span>
+                    <span class="tech-tag">Mobile Compatible</span>
+                </div>
+                
+                <h4>Technical Implementation</h4>
+                <p>The platform was built using modern web technologies with a focus on accessibility and performance. The frontend was developed using React.js for a responsive user interface, while the backend utilized Node.js and MongoDB for scalable data management. The mobile application was developed using React Native to ensure cross-platform compatibility.</p>
+                
+                <h4>Impact and Outcomes</h4>
+                <ul>
+                    <li>Successfully created a prototype for rural education enhancement</li>
+                    <li>Selected for national round of Smart India Hackathon 2025</li>
+                    <li>Received positive feedback from Government of Punjab mentors</li>
+                    <li>Demonstrated practical application of technology for social good</li>
+                    <li>Gained valuable experience in collaborative problem-solving</li>
+                </ul>
+                
+                <h4>Certificate of Participation</h4>
+                <div class="certificate-section">
+                    <p>Our team successfully participated in and completed the Smart India Hackathon 2025. The certificate recognizes our contribution to developing innovative solutions for smart education in rural areas.</p>
+                    <img loading="lazy" src="https://wasim-ibrar-portfolio.netlify.app/images/sihcertificate.jpg" alt="Certificate of Participation" class="certificate-image">
+                    <div class="tech-stack">
+                        <span class="tech-tag">Smart India Hackathon 2025</span>
+                        <span class="tech-tag">National Level Participation</span>
+                        <span class="tech-tag">Smart Education Theme</span>
+                        <span class="tech-tag">Government of Punjab</span>
+                    </div>
+                </div>
+                
+                <h4>Learning Experience</h4>
+                <p>Participating in Smart India Hackathon 2025 was an invaluable experience that enhanced my skills in data analysis, team collaboration, and problem-solving in a real-world context. Working on a project with social impact taught me the importance of creating technology solutions that are accessible and beneficial to all sections of society.</p>
+                
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
+

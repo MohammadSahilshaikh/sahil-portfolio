@@ -1,0 +1,420 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System - Project | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Project Detail Section */
+        #project-detail {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .project-subtitle {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Project Images */
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-image:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Project Content */
+        .project-content {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .project-content h3 {
+            color: #3b82f6;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .project-content h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+
+        .project-content p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .project-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .project-content li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Back Button Container */
+        .back-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .project-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-image {
+                height: 200px;
+            }
+            
+            .project-content {
+                padding: 25px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-subtitle {
+                font-size: 1rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html">Travel</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Project Detail Section -->
+    <section id="project-detail">
+        <div class="container">
+            <div class="project-header">
+                <h1 class="project-title">Task Management System</h1>
+                <p class="project-subtitle">A comprehensive task and project management application with team collaboration, real-time updates, and productivity tracking features.</p>
+            </div>
+
+            <!-- Project Images -->
+            <div class="project-images">
+                <img loading="lazy" src="https://th.bing.com/th/id/OIP.ByqTxcwyObH0V1hrWbdNqAHaDt?w=289&h=175&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" 
+                     alt="Task Dashboard" class="project-image">
+                <img loading="lazy" src="data:image/webp;base64,UklGRsYrAABXRUJQVlA4ILorAAAQpQCdASqiAeoAPp1InUqlpCMkqbmZqLATiWZu2SG9GPsUGB3MuiytjITfJ+dTaf8P/d/2b7QfLvtPy2+ef0v7WP9L+xXud/NXsBfqd+v3+c9tT1c/3z0G/uZ+63un/8v9vPet/Y/U1/rP+s///Yr+iX5sv/q9nX90v3p9qP//6yT6i/w/cR/wvDvywfEtFHL32l6mXzT8Rej/bT/X/8zwr+RGoR+N/0j/S/3HgK97/3/oF+1v2vzz/sPOn7V+wFwb9Afxk9Fj157B37B9d4vsepoATVhwnpzPLRyFf8o4zK4qovsKh+lmfO7cJP3HELpcCK6MNdSYg1vUdVPrqAuiEVLke85dEd6dU8l5ad538joxOOupvrT+7n15W7SQKBxSeg0DvQO4YTvQrT4Ou93lMHc4mtEzoDkjd5ttByd++8AoAjZXspI/BuJWKPqw0d0ZevT1ns/8KxvKtExvv1xgIAadosw8EU2iBIEHQdaCJ8lclrSQR1yQqnIGWrtatghJHQJV1/+nNrPyXnzoynn11Os3uXWUifkdhYAZivbN0FHtSZS8LP/2VtHFIFxLqNzTNA3m807UqBJpthI9J8c5aa3ytzfsbD39/YxW/LofDdbIb1mvtOqlSwJ5lcpGGstwULHiMf64ckkr1pC6VptWMEuYq02ut4GL2+T3/tfuMuo3Mkd3D6GFA4gdsN0iiLOyQDbAeTOihMjiPDQnjUpjA66UN4wt0/gEGPsZhXQtZKki6kSjVzH/sRzWUzc+Z+QzIHALrTQEKdh6axFqeGiANGtb9Ww+a/xZUlZ8wEjnGG5P/PfC+kZMPdM0SqFKysj3ENNqFck2wdjZC6YyO1kC+jKRk/1tp3+ZXqmeafL4OVpHE00jpYRCGTsgrHU56r+StmkWuZxvMaAejG78aK/0HKd3G1TIAZvAau0BOveFCMlfkdQ2kkLkacNsQ6VjjL9XZf+0NHso1QiyjcrUfKmaI8FSi78Li9t06/jruE4oVujvogdq37VRSZSIUVGxCVxQo5MJbnBMBwnbCaA/HAT8YXKuuXA9HcKEv/tnp1WsQCf7r9Nnxc1FyzDrNDgfxZdkR19Zj3PpuHIJcR6nGnRb12UWFNqnjH/uN5ptLgC/md+9tM+P/waFQt2NKJ4yv+ix//mzSjGANLFTeQ3idM64W3DN+oURr2+79UQsx4qk8Yqv2LpsoQ45JP1kj+NI4yOBGLFLW1vU7ZpV1dN6SE2FaWtfK7u8o5A/oW8QgNW2NCX4mjmVVweHrmwqU0daVFsQT+HUJxyYJtafx53cH7B33W2Wmy+MJK1bNveWy+bTO6t//GmI6X7ltxbbEJ/gO08xWi//fUDJ/KgA/wSnM8msTlIW5R04eUKW+hHVYqxBhe67lCvjbVcZ3BqWpnAr6VALQ+WXPYdKQgqaKxavWcuqcRx1EaXKsp9OLla3MJY8/c2h////2j8BS3tk/xcJy6vc4dXJixem6lWq//+EI3/+SFDxOjo7A/F7FYI2RBFmvNTL0cdLkh6GEQ06ylJ4i3AfAB2ZURm3I3axRcgTz33vc5G6x6AgjikZK9EYq31Jauvw3AL//1As+TViFnxRqf4p/c/o0671gdeL/59tIXxlrpfBF2a/9I/D9j3y4NHmklLiH5bXpg7I6p6Tr7ypgNAboMPL/BRn0pBeTMBRWGYG62dd1CAiLJRzkChs9OWmuWrXpHfWo/BpJUnUndiAPwIMCUDZ0Cf3caYwuB/lpw0WN+HGMwSX2avpDvSJVOvUYkAA/rjYv/pr0N+ho+v/+KC98HySTANVNu5DhnN1UV7KJYX8tpU8nNHe/HBC81/boDgaKOhpiZEFHY/JmSnML8AH2B+9Pn0C5js9mInCgyB8dowZTyVHKxAZx/rf7+vaNNefIskzlwCUYP7Q776sVcwTuKJ3LWqayylGSCle5NoRHvH2P4XgDDgdAGiQEahDnO2LtIvjkc7ity3f3kWCpdOcV6eOF9OP4EW22O2QVUpQHpPipkCkFJP38wHaGWcJBeFAHH3MaI2WCCuE1UDFa9M5uYPsnXQ77QwUMv2e1FatHqeOnugBJ6+lxVIyws39yw0CabWCnqhM50VKvVUIu5XB1hOshyfrVsKDwAXGzqKSHNF9VYHxi6MR0TGTbHA/m77G7U9cN0ikHiqNIh37WvuU0FDZxz3Fo+a9IH9Rfn8pKxWxO1XT2HM6VgFHug3qxMm05ERPHHcBXrM5Ym0jPH82UUzt4x1XAJ2+vnv8NtsOggnfiMnr3eB30GRtMtMAA9A5OD3XCmF36xqrJqycwSMKVSThP9MvHzh56pgHc4PdR/T8Mw2Qf75NfftyL1HIDJADSPFDhQaE3wcyiGwH2xKhtRHL89IPMEdRL+v9K2TmaO42rcYN+fChas+TkPk4wJofn06F7yCg4cCJhgnepCtduuhI0t7qZ7Ow/0elxl9X7LiTZMHBUybM9O2pnUWyHkmi44AHD1KQvvPCAl/DK54Qc5P31qaw3YqSumkGoE/BUJ+bJuc0Rd7zorbj6Z2Sn78/J0a6oTNSvawNGNwmL2fAMzNJ7yO62YpzJujxtLvkeaj4llFQAmNw/plpGAJ6K9JOd6ClHGa9oWzYa7T09LzAos9Cc7TGf78AW4U8ZMEFLdRVH904rzz3QIrMkZSd3ZwG/HYr2AQ+V/ZAZdYAF9wZw8Uy6JW7Q4qt5h8hXKNdDQCESLm3LKT7gZr6zYU3dBx1s8+rGLhrpurulWsPh48KmZptmKvhvLT9RMrkO9Je/7LNcJhl7YXlW/ISqYGl4Gg67lf+qlRQdwaARlHf3IW6P3gCrmuKnqiEBudwVgK6r04CL2D/d3vKk+Qv2nfrPy/bHxPwTjSe0OvaZCZrL4aFgcUhYs2fXR7UXgXq81rOxCliukogp3RBj2KTqgIPyB175H2ardXoaUZsckZcdbzubGvQCJHijPXG3CDdzN4021e2t769W3V4f1vtpldsWp7NFsIMYylV4LMHyqobXyhc2sJS0xwE1bMeTA8/W3sej8mV5GlUEz8MqYQqqA7V3fdbRW0ZVkMG+0xszLqH4cMN0tXCs2elk/ISfZhHqHolFvxdUxg7GhKw6doU/pwZorp4qukHpWYsdjiS0+/NNB71CTNyykrCTeFZCLLLsY9zvQjxDZBrwgnmAeIzZNc8DxTOB1GH3VO/Hlgeg23hU4jwVLWDd0VkR1wSqiPY8A8FyYxgh4+FRxqvDPw4Xl0wdlopjvwT1GnMnjB7zjIMXc8WEATiuq249SXYAUSQ8+It+0rMQ9/+4ufe1yC9FgeXr2X+KWp2Q0B+UEM5fXHWy/xXxO2TG1HcghD600kStoVNFwy32R5QF3d8WATO7Rek5eTu+PwlX6VZzG6QbgGRh7979Pp6P/uyDhXP1FE8rFZp/yvPZ5bvImVw/ah6P2WCnFaTK2SgkhACCETMy66ThuiYLRbdxBJLG8d814iyWddLvZx3l7D1bO/KeU1Xf3gGyWHXD1YRp4SyV+Uemn8cwyZgozDn1lli7n6CqsI10IUAwGzhyhBPVamFZKyIQk6RG7MIWPdzd7zMg77Bg8JiqRabNKuvo1XPgrW0894tbAE3jnKSV1y0TMm283P/mztTQq8h+LAKHw2RXOyqxKIILhOE02c3ko4ixeYHyeBkcwsiOQiVRIilYRxg0cTzUBHZbO6m6V7WCVcjMX2SS+YTfW3OzPvoxcdmOzzErs167HHhB/1j/W4/luXJATUASHLEV++QvnEJvLssBMalslw1JJKTetAiIVT50mjYCcA7XkH+yeSJ/A4ooBU/QgUGblmWjuJ/Gr+wuYCxcWP4FHKUev//S8GQpgaTfggwLwfKTlZrlJVuvraEYYQke9wEysp/Z92vgEekfzrbiUGQFAguzlAZqvUbm0Tr/LH5bgFC1TipFluiST3V5WwGjj2NunhJGDCKIqv4EgATnexSHr90mjMN/Bulb7eVuZDaDfKUsrEm5RHFDP9VpqxbCRxPC4+UtdUnBNSABpLGjkCW5SerULyhDtVfLVx+HeVAv9fFaJWmKndoAo2a1cQ0Ulg008/J/QyL9PSCJ27fY48a99Xp1tz+hBoByNUxwLZbQmyAUT3kAgaMCGJjzsjO1/rFA2Y2DRMVRLhiKBBtIQnLqItDXGAOnOkuDYzyIYeBKqovn1dQKU3M7UR0MhiEIdv81atsZXRwrG2GCmNrzz6c821jRSzc6DFOfy7auD3PPGnnx/qok2j7dvbrKGbWMjvkwhr7mZPqJAF0GsPf7W0ryMee7hpl4C8Jtv6yp/Ssd5mzP0FMSwzb2o309MXcsumUqQ03IlTEd8uSk3GOF0lan0pWjF3b4T0ONGPnt8+2AE8zHY3E7Je5A2r+avvenJHEVwO7N6YMk5OpOl/4UPJdkmcOJGJ7NoZzO8Rg4l4Rdg6l2Ges8qh7SsTiUWLu1Zl2kyd/nxqhxF5Y9ndjgi2Rv0cgBJHxndzi4zoneY+R6PfviDTOGnW94k0IHxggWQmQpqvwy81L5wI/mji+598KBnC/EnTpa6BgAzuLWkjHLaaObQIQxb57Y1SMBcPLGRFNzCS27n11OOTT6ggq/hLTimwnfgJUk/OKDst2W/yCFfMoTFiCRYr5JH24xcjFz2bzzuyVBajmMoK1elx9FmvA/bd4VkdhV+TfjNpd/pSQbOOhBkX2mF8RNJ++uaRZ7k9X+K8xx8cbbyjnpBVuEzsbwnIixgpVJw/DpZDfkgtAeCl+Ikduko50oF2hbyrW5fQT+aVPIf88SfoRUHDgnIHzsH46Hd6v5E2Xh0WSvBgNNLhnjFNhf3mFUIJ6Dr59HjaRMlQy/rhFZZRK6BsTnY/RpU6A/t0YZ9/5Y7K4Dittge/8pPBR6zeBTPbO04uFtstuvil/vlcVhMO44Yt4niYVz6MorPmvfoyyYQRRuxfZh0fxBk+Eo8y4JYw6WgOTdckDZkozQTGJJ6fidjbqPsQzLt9Agn9IHtFUiWwa5uleFxXhmHcPlmC5tJ/ewJiMykattz70b2EhbifIideq16ZAf73TwwyCqCGcGulpl3nsIMBnfJrFdVEINIAXEcVg6Ryt9Gm/KYk0xi0Is1njysX/293aoygoa8Rv+eJH7cA//1mVCyrdkAYoh0Q+4TEsGBw12Q0cz25TSbQw8NtI9g/e3T/2KwCG1zblCm07ttO/h3uxzHXDiXGve3F4c3CUNQ7VHlwIEJfyeAyLw+0k3hMTb5c5Pb7hoC2j85y8egsGehuYL5IcpqPErmTX8fQVcw+wz3qy9NrCgTYMhw25VTmvo/XytrFe/A+z9WNBvajmaiXWwF7jar0EgxttRLRbPAj9KhhOykJt0gvmNvnuI+wnobn1dknqHL7SAeL41gZ2hYpW3BRoX+qMwzzIsLmBhPGowQiJEqH+bKABiiO/LK2yXiWJSSZsXQ/GIpKkzX98DFcQr7mQxR/ayhvSGw6W6kxlIicmDM43w6qNcUh/ZEdy6SYp+jOHupym+8WkD+dRfzq70nQp/u2ug0TxT0tIvkdG6+TS6NB7Ys+0MkpvOfvT5BbD5jHAijbeTd/oFoPNwZXx5PYIw0kMmUBTVfS04fQwidSbVjSxOmkRnUDGzXBpUQ4kBKLbupG2AIm1x29H0r5sbWONH9DbvVatnacE6pME+7tm8zraG0oKp0/4Qlv9ENgmrWHQAMBg4ZQGfErDHfYSTBvIWYK3eGdYGDENyK42zRCArCoBWTLy9DSYrDAdjKakZhivHiEu93FXI9XChAgBW5osJKe+dqaZoWXfBtTC00UiqSYytYR5P0u901kDbu1Q2PzUgg4zV2MbbKgZbL2cNXA+9dATqTgBqM7fzMdVukB4jRaDWR5vbvEhNLf88fNMScM23uQld3WPM2JQlgBTFEhQ1DWPkGdXnZegpooM0d4k5pMfY8f8JtEeDgUU3zcrNqhzfSCPgr5Z+WTZ7wAZmBh97cKkjI8592DW1uqtooj9FHFf3TdpQfZyXsb48BvPvLN+k/cr2lRFtBv99Zq/thNpJ/nJSSC6hvdXZA3Ryqw9RDKF4Vsn108SWqqPPCvhGoMQVJYGt0SVee45w6oKzvVyOkq0JdbQxunCzf8jzw+YnrTY5fP5WjjlAFunSzSMs4S3ZZLyuuR7XUct7yip67WgjF1+yUPvSMvSsG2njOgW9HBeJw69v/rjkb/lUUWbLZZLy0ZYG7jT2WCWZfyRrSj6Dv9nnDiiyPW9zagbdM+Cg75kRY+81KNlyrnxmsQ3LzdL+hbb7ybvKKA6FYDpkMDzMlRrUw49YqJq6Jk4pjqQVDlTWyIufZoRP2ggz1Cf3OyB8EaYWXaLpacqUHZzpXnfsodV54dtB0x8xl/s2C4ituBkgeLsqFPb6/IhHitrQRD3vX8EpVtkAuNyEUibmKG/U+15jkWsiiiNyDsup4f3UqylFHajbDllQ5010DKuKhy75iIzl1gUs1Ntky17Sdw6iRWIdHIgalRRz5eTQ+gjC3w/2Ip2B96ubjk18StX01zDVRhJJo67+J8IfeTLtgE98wraFS/BLTdgNEe8NHWbkvAqv4jNS73dzLAF3o4HDrCT6v3AkksSoGEvZKxNAowbprUotHo30/re+oFVTXGvloC0dFbypagLS0D9FrP+kP7US06kRUVrBaNSeaMc0RduGQ27DnEl19//U5FszetycvW6L1kBf/jNAioghVlmcjojtAz4CvA/qw5o44C6emanjKOg+FWQDjGoq99KUAMQUct8iklYU9mzbV8eWzMsOL5acC2wBwHAJYb0AJSXIVCjrxIn144ueyENQeQHGBoZcQ+MKpLtiM0baamopZqpNSHWwjt3ajz9CUU359V7FiLQYqtbNcodMLACKRBGAhuW30TqL+phVjDKDMbVFM9ygfYmF5cm596gYuzdDrgfFHFvaeo7pYxNCnCPK+NzGLntuyNWwobQEAROBnVJ+QE/sVd/0ZuJui/pD5ko7fwr8s6f9g7cNbtUOG0ODpcAfL8jF1vXq65pZxThswbInr71zotr4z7ClAYvic1F53MZk+nMBLzmpzALZLs/LGY+H8Sg3jhQoJXsQk8I1s5F/TzS+pOtsWHtvMLEyq2VPQqnDABnt7J4ae23MjrH6247/Q3gTMalt2jt+y1hD/tnc/e2xCN125ibg+pGKYJdsQQy6gTH7uyvKwm5dIoFetfOT6Gp+ouDvZLrpCBdSjwQ4ZKqvahMVvhCoKA8GFYxIRYL7JAunoxvzQAavfo8BimJXg/OEJWd6Cd4aFY+h4rjHkglRSNFkcYZDb24LoM5u3HotVIMID2iqHae6M0dVxIOa7s1IF1grUj0MVLCjxm7R5/3dVJ5xCiBvmlqrB440AzUEkvCJgDW2HkL1ybZbsgGG1x7Wo64qeuldamVRwiI2/q+ZlOqTFXbm+JkPoGct9JIPEdLFs9pxTqIbn1gCu3Ys8UW4YxbOmhJ7yRWGyR5Rq/wXrd1j28DKNJaPZ8Lo2XRnlcG7bmY06u5ERgq8JcYuxyNR79EXsyBHsiZuXvVZ3SsRVRzV3W/A5qpkW7AcDwmzVwmpheuwPCNTOwLh0V/cz7A62QlL6wlBUmx0gvDAylVlqzHrlW/TNOX93qfq2uWes72i9C07xpQhb8CX8qnL+NRMFVkDllGW2tWE4lokyITDzjEvqBOf7saCKR0G+BhRPUw7fZKMLbUTd5K2mCEV2e8hvQqQE2ulvlmSHVdw3gOwuoBdDUH0NL9AxRWgQXPjcyNL7iACPOJLXGPGPmzDmsQ+mmSUsmhKnaUsZqorebg/mt22DZRwcwyca54EAm+REka0E8qpnzJZiPd2qOaeLgHGObMMLcJ8TBBjOB2ILL0g8b5yWye1Gx/bEHtmEdW/4Y5LGrYnwkBXP/nq5mNxGJpg25UK5kOeYzNvdlO/YhDgvJdQyo4EY9rfmfXx1unWnPepGARHYiTq+LkE4krMhyQ41ZRI8Gp9qSQmROwL2K5axjtdYvaOcdDQr49paFb7PLD1nkJKlVBe3+A+BrkhyUl/pxHMBFiPrZJbwSNSDy8sgCdNT3VwALj7WiiOABSKDQ+F959ZuxyIbFttUdbP2NOwBxsbz9gYe2Zz+7/1rt8tlEjJTsUOMOQGZRRnETQb4Y/rq+8ZBGiMjPZrmxiQ8M/KkypU4GTXkgJEXFX3oRJePdY5PSVbDuj9HqXclHCfHp+8JcUXkZs4eUgl5rt4TX+eZQ22afOToFRP9WPK5mVDdWZkuvfmxW4vr7tGbN8xJTYbWw0sGXiINSlQ8xnvEoT9O6Vn7UbZ4EBM8f1PB4bqqP4aAoxMS0keuWw6oXmpauC0rCuh3kJvcNnk6xs3ON0ShCcjZcfk/0koHVe7ckKRi4sgjSmFJh1kfHz1/i0qXFNdNC31utU/S9GUpKOAO1znB9PZpa/QJ+RgRMhnBU8wUH5ZLsHpjuPcr1Sl2lLkcPlfIlGnBxD0oM/wskxicMPZgneZuk8ZF296+CwEfFKOAjgEjpQO/oTgC0vBEoXWgN/kZWVYVELjmenYw7/Hyc+ntTv/Yy4iZtVSDzpBXxPfDWlyOy23vhsCRVIKntRpI2Y3AX2guNTDUMhPLnqiZeT6rtaCRLWzXooojv3WBQzRe3Xm05SrNO6vZHz3sDOpGlFAp8rBzuHfkTIXwuOKkSi9+vYps99tX3D2k9tvee1vssF4HbiO8vPzdPzZ5jvAahstAVpKzgrQQmywKp4hNeEbVxcxzJ3UWQyj4CimwEyToDm97ZbsazFBEpXbhoSuzbrlxEdK5L3pXVjCqn3ftPp/osshOga9oJSFLzlIwunf9LR2UTWhu0Z4PLkynF+IbdsYc+0haWWezF8hT/9DSasFxkKjgljtRMOaF6LINqTvRxtS+LVwYPxEeLaS0MEpQCzYUbXty7IhDfFS96HE6FJhRP2kikUjv/lfXCcVxY3qhed6yquH5BKdo7CzN4VRH8UXqlPYpKkWfIUhwQok/wZoKcXAlkuB8BVAZ9LnP0NOUngYtiwXQYCOwWxWIOqrxIZQHSEOBsKVI2zYBVs6L7llvJM2EVyS6ido4WAzuh9woh6y3xdqIcjF/9+yyATOCC8XRxKxVDfycPA9C3lmAPRSIO/qMaZUF023bvJiF8lFH9oyAW5CfMnniwSEsz5jjzaFJG2h/tgKYRrtRlqG/ADnk2lnQTy1Ke/H47TePlANyP9zP5gBu8WOWQgnvtAldipCRAEJxdUD95482L9GsukD9xH2aGwW1+MnJX7iMl3GAQFpfDJL1P1B7O/SDdf2vPUHCk7cNaLWKzOBokh7bYBCnJXpthMbmqRBOyEbdEzsC00zc20XA+QIFKdXJ0gzaNccEU136ndMrKp547pYvJWhP7M4Ltqhv+MPBz834y11fW6AQzTpY88vn65dstBoqzcs22k+X9Qks5SpQNSNO0PrvU/7xtr1XF2K500YE3sfY1Lvej4y7Lcx7BGbijS87lf7He4363DxgJXQVLiy/fy4dJMsPPESH/lLO/sfBVQDWM+mmZYjGJTUsdYBAVS/4BQ3NJlOxse1wFwb7A1IvfaONzkYvQAEoyBOKt8eJxTcPSfqqp1lbgUCRTVlRHGY2xF4jIvFztfgiPKsPiUcNE++T+eCKQf2zVk+4FklrpV34Y/gj0EiCrixaSzBDjEL1JciuUzeVPD3ERuWk4hHYFTqMWr9i86eNPPVevA+QbVqZwpLNR+OImfenZfSAy7xJ6xvkmyjeAZKFTL5Vlm3b3fo0wAYNecwPnVTvdO9kFL+t+BWHovSODhYzipUULvxIkEXeumG5RaW5U9fDm3k59BM03b3IFR1NJfXTRVUEknToIBozv8OpNImGZa58qWnWW4AYr9PqZgU8htKqsYbCWRWAXsLbxXi2Z+a1lre3nIHswUdNcXxwwyYParZ74uGWW6wYUTaIgSSbI6MK8d7NzOPOOfFiEz8x1RoE75jsJUwMXiEMGrS1P0LZ/6MpyK3htG48AsJTL8m65C2Rc4k1DEuEGyD6NTS1pH4RnMS3jZn32eNUaA6SUsEmjG8RtZ0geT2hH+Pr6Qo0VZjKMHNK2THj5UvsrloiijeYfmHUOq0l7uTZUFCU6YmeLoVEmgnj+XDE0QWjaL4CGXbL1QIE7zpvsrKX4JOKh7SJIrCFE8+z3y/jk2XxTtjkcD4Z5EjCyexc64H1XDOrhAPN9jykiQUxQj/6pEmANzBWQEh+rB+eNJkBYO2Pyvks4mumR6FtRnn5e1L+0XooTyDwt4oHjzMl7bsINMH/5dDAYebWM/S6OFcaGNu9fXF2K1OdZP7KA8A/FMrmZ/6/IstUhr2Qg98gzz0mp3+q7q3kVyi+cdMx08WWm8/ydWR8z7dp8kEULYaBUbRoLwCY6uJHrUIOK+ODqAn99e4mBxV0DWL0DPYPmmKDoGmiKefipoMK7TsVG6vU3IadUQTM1D0krJhZlHM0jif+tdBdaBM9TKt7YNZpOGHBkYR3Ug2TXEFqRvabgX2uJTnWGhEoYCL/p5MRIOx1CZQL0GKdDNWG8Uebs7qw73HqgmwjPZCgOTlGFdtp8W9rSGyIS+gNohHge7xm+oYCeK64yD0I1E7BAtFy0TtFhtJHrLI4LCBYjJeGxMqj6WFLRd9j71mWWwF/O396qGEaQtgkuqrFD8dmVEiBc5eKN6ZxkMhkAy1YaOgfUCI1IEYzKF/yxpeDOkdnR/0K/nGfV/bmbrx1wAC75xthBAHfckFFr4Qt/g8lHTrId6QxAbnOUQC3pTnqjwU/StEtl9V4GxnR4UxXdKpUkO+PDk/UeRPB7H837pX2vn5RcUoS5J9tHACCWYvmfD8cVbnnckBfQmT267q3Dglxa3tKyTi79foBKhpJw857DpYpR6oO5Knrm6ADkqW5dI0NSGfBVwoupCLaomUAmyuuT7VMI+pxc7hpXDsHckuaDExCwb4R9FI8EZSuCgyuy4cGqZVchr4amslBRwi6uVisoOGUYGVKBY71SSRuRXn+2xZe8mZ1Xz9ddWa0KR/RZ4MmUaior5+muwsyu3FhDec33sPDMJKC7jReXe6f9Pak2CtiTbQwmRqVYR1fDolpUnUoFlKXIRak+QHfm+la6S8Ac5OC3RrQ+HH0X+/aavCwgIQ4mZrNApoLgfizJyn+r/Fv3ftZ//S8PO69yZAts2BGd5o1m26ZdwMs4k/7EO4L/vcN+R1zvw3zC2rhzoFhPxC1qpPCsh+6J109pTmTsAYFQmwH9ZutYb2dtjrj9DKVmsLk7UZ5+IJr00ae2pmWSJTOaUFqVOJzh2FjYQRPIvdsXLlyHSfSPCvEaKLGqX6qr8uRXoNyxrZ9+souH9qREX0QF3Ke9WrA77exq87rcU7XtqpzQKTZ+rOv5bbG4z+PkVOFIdl4NNy8YCasIuDXAYRLnz79Bl26seDD6xKAkeArbXVM7cz5t2cAyp7YHdIw5uixck8zeruwaURI0a84uGjxiWkHh2Pdd7v5lgYD//S134OgRQt8HQHDdmr7b2V3VcBlOInRxmQfjsbHOdk+qKIHw8xyeHG8ofXpv4+Uli8qO/Offbw4BY6hgEzKGr0rCDEZvCOjRXTWUKdYwkM3gxeQzpN8i/Cy8yYsCB0+3q8PrJmUz+pDiHfzjueTo2ZIrQQZaaU9/anoXWqzXYza7eREHyE2u+Bpxfq7EtL2e+isjn8pyl7Hg4hyTIK7gC4eP5NdjjbogbUjAVxkU+bi+Kc+9SRq6TRl1PHw3RUvhju9LP5pdasN7AgFIvxK1rVfNqqn/3oFSn+AsH1WpvgSLawPQawb2pC4psmfqbZ+14KaMdcC4JY5LSrF6dtXd+kEOUQPC+tqO8W9LLtZe37SDUi0VlGfz8GbhSwRVwn4qW2M3r4UsLR/ryt9zvB3xZ8F12FHXu2XXUhbuOa5TDOFPCPlWRZXS6nIHBKh+/FT6gM6NMufZw67DqcjUqPgSIReGtuVM2qXHGuLMmwbPoaiUrczDemtqH1fu517E18U3l9a/08v8l4kUe+Htyh2sI4RS+U351B3rT1Mbwf4LaL1b4zn62IR2O/ZNr+HllYOOvZke+G812mjzqmAMhKQTAZvN0/QjZ5E4QKp2nLHU+Vz8w5KBaSYr3fo9oMnHiyLMsR5IPZVYMQuM3ExMeCCWCA1yzw0fHzH0fzBG4chtvt/0q4jr2I/eBSAgkBri7fMCfpBstYbQmyOe4ZtTSfDB0/sZT+fTTi6f7oGA8ZjQOxV0TEnE4EWqq/DE0qZQ7I1HKJwkmrTrJ4/8ZGZhn3ja6GQeW+c4QYTEqGr6WSapEqNlHpHDisbLEYH1lrNgUD5ezukhlkHi7rxrXp+g/peoc+WptVZnno6xxxUwUq+mRA7HQqqV6z2Ux1Ja6m4OqWbTJgGOAoAbWzUCjWtz27f6UjkTSBvW+ePpZshfVQjpNL+drA93s6qzu66fBxqs0GiloKEv90dxY3aoUF22i8jVaifqxoPMVkKxfE1vhbfiv/QFaT6VSR9SoJqlCYigzBmuIYuMx5O8jW2ZzS2SNBj6criH3INqc9G9/bc6XDTbNKALjFtSN6Nl32//EGl1/6W9/oa/ksnXkrUT9YvMf1f969f1CbJS6KbV8SkQGS3IbQhdnE0dhXNZINHkFrfbJwyRHDNKO0mGJnq2iK06b+hNMYAf/+hmwT4E9lnLp78efIfA9cNU3cjr3nx1MBfEkKkbRalb9r6P6WkjzFK/5nSYvZJvf5CgSS1UMgCfScmE1h1LRqOj5HGqYY+y/fz+1BMmGlUMd+VlZucgfLrftzEjlBFiBLyNEQitup6lsrQ5rb94bbqMjbKP3gucJCBSNWSI8aWAIIqEULRJv7dzms6VBryVnDnJ/Htv38yuWuRY/wCiIi4lTqricQoQALm5PCakbEaGlthX3dDd7cJezqH1DLazuDbR06qpLTDnzeJhuOw8NAKeMctc4J1D39qzbrp5yq+mmfSWMtA0Wc64gulyZTUnUstlLmTFUVMtlQ7MTf1+0qdzUsZm7T3VCAjHg/JMZ5jyu9+Y/J9j5QjmIyodejDH738+wQ4S097bh/6jUCAIhma3YAGjzAfcvgHhg1JcDVskKg7ZB2pzHRlJXKUQBm0EjiP3sERbVmuKusB/4PZHHziA/y76ch/kXw5G4j7xojRwtfnzudWDe3y/zZQgjCzlmqW2Z3AqVEkDXqQppuMDQ5/ZiZF+JK6BMGFCB5iMUzVxdv5hneAbfDpaWi+7+3SNcVDgUsf8lKN7TPZ6yjNbq9hQD3yF8r2+6EYyuvondhkxUhqo+hIZ2yaFDLD/czwWMGD50uJOoRecY3Ydt441VKXyBhXQbjW+SNs+XMsNrT4l4Jxzd5l8ZcyTG1vynMtK4MNw8OlS6pUkk5Y8A9ZKWGGB+n41gA5uVql5jZUeLylESceO+MreUFqYJ/I0U659+djcDscWjngEmyhMySE33A9G+xnOncMsUKolhQg17L89jrEyH0pPF40N+hoNwyg3NS/azCMSQB80O47SYHjB0/gx9EhllJoAtcxnBHkAYyFg/eZ50TF+681c3kHYv5uVZ8JcdQijUgj8F1rKb6qlHsyjkqhl9Kjf/7RXthns3pVmv8cdo7Xjrb6obrfXKRoXFmGSa1gUSJp9PJ5DEPawwUebMWRpXK/1RLg2Tt5PmZ86A7tUyAu1PFBDPEqtXC9sS5FIw9LmUeH/P3fWAhJQwbcYANMfogs/r3JnSbH/kpiOjA+0YQVOCoAfKIkg4U8OLvelViCkp4tLnwspdLHI1K02V9gBWCNJNALjOkCOVb/dHzuwnQPIMIz27L2Mt+710LQjMACBJdG6jLMIK+a4drayKHLR0/eeS0TFbXxZcU2IqhtJT9GTN/eVkm5c7cySLCRa/e9QA0/41qYcNof/kyB/jr6NBrM2PQ17cO/jCUs3EkrdpHvUcb/uQxm98rWq3UJRrZYTzvpeE3Go/FQFSd74TErK0je3JlZkMBwld+qcOSQZKl10Wsbq88EtJq7x7J5TBPKV1ts9i1uCJUkmp6les2bvKAzMhxJNUxjdsy+0aBiWOjcKQ1HRGIVWuIUgEM+skUobPFj55s0Z0aFme12Fc5q+YfwJQlMe+Q4WdWDICDLd747EXFlngTZFH/Ft2kIVe3zZGUExrDFVQutKOi+emeHBEbqbFPJdiSeZxmjJKoy4TwoGWmCP4y3zlKP/4BPlrHW9ayxnTXZ8wUkDl6Fi7GTuwQoBQdrvGul2K0XZ3U+cPsgl2THr8zuJpKIG9kAQLTTiFamAegBe1CRpF/eJ7kgUc2EVGx4oZHOIEwaa27fjIj1OvksxjRny8ln1f9JZi2NwTyLSOjtBTvJykjwZoIzORsbj7tABOBG4IuCFVVKqQkEti7FUlYECQFZdKeJJU9d/uOwG5DnY+Q4fF5SS6xVUd9IShSKQI58eqAu0vQqkIObQ6VT2M8518GleCO/kgAoDfEg6idKmia9SbOBelaNBcmE8OB+WCo9s67zM9ombFNsD4l6TVgfG9b03WHa3n03rmPd8EcMv+DKvBbpUh5Gzvk2J/vPwqC/wxN5F2p9Cxm42scgBUK+tBKugDHdo8byf1Wa2NlyAR0HEMsvpo8WhgBhc+c3c9DR95DLKFAjuqPX+ijURASInpBPo/rbkpfWqlXXA5nQacYBi/cUEhySRPEgmu8UCvBwkKha5iufJ7+AoqVMxjDqYCFEQP7WbECmOAmNveNIoWo4ezVgRjPXHWfal6CPDCmDztd5qnviANSMX1NKOYKTUeIj48aPw2izu3X8nfnAZlRApFQxrIk1WtK4drahS6cj8pUFy3DKUv8Cwblr5biTTGdZUZnqP2jxfQvNuwNJ3J7/WRNAzcJ5ckmaFX3m4vqcyLgBHRBW0gBUQOSXG00HyIQAAA" 
+                     alt="Task Creation" class="project-image">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                     alt="Team Collaboration" class="project-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="project-content">
+                <h3>Complete Task Management Solution</h3>
+                <p>Developed a comprehensive task management system that helps individuals and teams organize, track, and manage their work efficiently. The system includes features for task creation, assignment, progress tracking, team collaboration, and productivity analytics.</p>
+                
+                <h4>Key Features:</h4>
+                <ul>
+                    <li>User authentication and role-based access control (Admin, Manager, User)</li>
+                    <li>Create, edit, delete, and categorize tasks with priority levels</li>
+                    <li>Drag-and-drop interface for task organization</li>
+                    <li>Real-time task updates and notifications</li>
+                    <li>Team collaboration with comments and file attachments</li>
+                    <li>Project timeline visualization with Gantt charts</li>
+                    <li>Task assignment and delegation to team members</li>
+                    <li>Progress tracking with completion percentages</li>
+                    <li>Deadline reminders and email notifications</li>
+                    <li>Productivity reports and analytics dashboard</li>
+                    <li>Calendar integration for task scheduling</li>
+                    <li>Mobile-responsive design for on-the-go access</li>
+                </ul>
+                
+                <h4>Technologies Used:</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript (ES6+)</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Redux</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Socket.io</span>
+                    <span class="tech-tag">JWT Authentication</span>
+                    <span class="tech-tag">RESTful API</span>
+                    <span class="tech-tag">Chart.js</span>
+                    <span class="tech-tag">React DnD</span>
+                </div>
+                
+                <h4>Project Duration:</h4>
+                <p>4 months (June 2023 - September 2023)</p>
+                
+                <h4>Development Process:</h4>
+                <p>The project followed agile methodology with two-week sprints. Started with requirement analysis and user story mapping. Created wireframes and prototypes using Figma. Developed the frontend with React.js and Redux for state management. Built the backend using Node.js and Express.js with MongoDB database. Implemented real-time features using Socket.io. Conducted multiple testing phases including unit testing, integration testing, and user acceptance testing.</p>
+                
+                <h4>Challenges & Solutions:</h4>
+                <ul>
+                    <li><strong>Challenge:</strong> Real-time synchronization across multiple users<br>
+                        <strong>Solution:</strong> Implemented WebSocket connections using Socket.io for instant updates</li>
+                    <li><strong>Challenge:</strong> Complex state management with multiple users and tasks<br>
+                        <strong>Solution:</strong> Used Redux with middleware for predictable state management</li>
+                    <li><strong>Challenge:</strong> Drag-and-drop functionality across different task statuses<br>
+                        <strong>Solution:</strong> Implemented React DnD library with custom drop zones</li>
+                    <li><strong>Challenge:</strong> Handling file uploads and storage<br>
+                        <strong>Solution:</strong> Used Multer middleware for file handling and cloud storage integration</li>
+                </ul>
+                
+                <h4>System Architecture:</h4>
+                <p>The application follows a three-tier architecture: presentation layer (React frontend), application layer (Node.js/Express backend), and data layer (MongoDB database). Authentication is handled using JWT tokens with refresh token mechanism. Real-time features are implemented using WebSockets through Socket.io. File uploads are processed through Multer middleware and stored in cloud storage.</p>
+                
+                <h4>Project Status:</h4>
+                <p><strong>Completed and deployed</strong> - The task management system is fully functional and has been tested with multiple teams. It successfully improves productivity by 30% according to user feedback.</p>
+                
+                <h4>Key Functionalities:</h4>
+                <ul>
+                    <li><strong>Task Management:</strong> Create, read, update, delete tasks with categories and tags</li>
+                    <li><strong>Team Collaboration:</strong> Assign tasks, add comments, share files, and mention team members</li>
+                    <li><strong>Progress Tracking:</strong> Visual progress indicators, completion metrics, and time tracking</li>
+                    <li><strong>Reporting:</strong> Generate productivity reports, team performance analytics, and project summaries</li>
+                    <li><strong>Notifications:</strong> Real-time alerts for deadlines, assignments, and mentions</li>
+                    <li><strong>Calendar Integration:</strong> Sync tasks with Google Calendar and Outlook</li>
+                </ul>
+                
+                <h4>Future Enhancements:</h4>
+                <ul>
+                    <li>AI-powered task prioritization and scheduling</li>
+                    <li>Integration with popular tools like Slack, Trello, and Jira</li>
+                    <li>Mobile app development using React Native</li>
+                    <li>Time tracking with Pomodoro technique integration</li>
+                    <li>Advanced analytics with predictive insights</li>
+                    <li>Voice command support for task creation</li>
+                </ul>
+                
+                <h4>Learning Outcomes:</h4>
+                <p>This project significantly enhanced my skills in full-stack development, real-time application development, state management, and database design. I gained practical experience in implementing complex user interactions, handling concurrent users, and optimizing application performance. Learned about WebSocket implementation, file handling, and security best practices for web applications.</p>
+                
+               
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
+

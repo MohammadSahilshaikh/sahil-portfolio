@@ -1,0 +1,431 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Project | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Project Detail Section */
+        #project-detail {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .project-subtitle {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Project Images */
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-image:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Project Content */
+        .project-content {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .project-content h3 {
+            color: #3b82f6;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .project-content h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+
+        .project-content p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .project-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .project-content li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Back Button Container */
+        .back-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .project-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-image {
+                height: 200px;
+            }
+            
+            .project-content {
+                padding: 25px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-subtitle {
+                font-size: 1rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html">Travel</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Project Detail Section -->
+    <section id="project-detail">
+        <div class="container">
+            <div class="project-header">
+                <h1 class="project-title">Weather Application</h1>
+                <p class="project-subtitle">A responsive weather application with real-time forecasts, interactive maps, severe weather alerts, and location-based weather information using multiple weather APIs.</p>
+            </div>
+
+            <!-- Project Images -->
+            <div class="project-images">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                     alt="Weather Dashboard" class="project-image">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80" 
+                     alt="Forecast Details" class="project-image">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" 
+                     alt="Weather Maps" class="project-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="project-content">
+                <h3>Comprehensive Weather Forecasting Platform</h3>
+                <p>Developed an advanced weather application that provides real-time weather information, accurate forecasts, severe weather alerts, and interactive weather maps. The application supports multiple locations, customizable units, and offers detailed meteorological data for users worldwide.</p>
+                
+                <h4>Key Features:</h4>
+                <ul>
+                    <li>Real-time weather data with automatic location detection</li>
+                    <li>7-day detailed weather forecast with hourly breakdowns</li>
+                    <li>Interactive weather maps with multiple layers (temperature, precipitation, wind)</li>
+                    <li>Severe weather alerts and notifications</li>
+                    <li>Air quality index (AQI) monitoring and pollution data</li>
+                    <li>Sunrise, sunset, moon phase, and UV index information</li>
+                    <li>Multiple location support with favorites management</li>
+                    <li>Customizable units (Celsius/Fahrenheit, km/h/mph)</li>
+                    <li>Weather radar and satellite imagery</li>
+                    <li>Historical weather data and trends</li>
+                    <li>Offline mode with cached weather data</li>
+                    <li>Dark/light mode based on time of day</li>
+                    <li>Weather widgets for home screen</li>
+                    <li>Voice-enabled weather queries</li>
+                    <li>Share weather reports via social media</li>
+                </ul>
+                
+                <h4>Technologies Used:</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript (ES6+)</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Redux</span>
+                    <span class="tech-tag">OpenWeather API</span>
+                    <span class="tech-tag">WeatherAPI.com</span>
+                    <span class="tech-tag">Leaflet.js</span>
+                    <span class="tech-tag">Chart.js</span>
+                    <span class="tech-tag">Geolocation API</span>
+                    <span class="tech-tag">Service Workers</span>
+                    <span class="tech-tag">PWA</span>
+                    <span class="tech-tag">Local Storage</span>
+                    <span class="tech-tag">IndexedDB</span>
+                    <span class="tech-tag">Web Speech API</span>
+                </div>
+                
+                <h4>Project Duration:</h4>
+                <p>3 months (April 2023 - June 2023)</p>
+                
+                <h4>Development Process:</h4>
+                <p>The project followed agile methodology with two-week sprints. Started with research on weather APIs and data visualization techniques. Created wireframes and prototypes using Figma. Developed the frontend using React.js with functional components and hooks. Implemented state management using Redux for complex data flows. Integrated multiple weather APIs for comprehensive data coverage. Added interactive maps using Leaflet.js with custom weather layers. Implemented PWA features for offline functionality. Added voice recognition using Web Speech API. Conducted extensive testing including API integration testing, responsive design testing, and performance testing. Optimized for fast loading times and minimal data usage.</p>
+                
+                <h4>Challenges & Solutions:</h4>
+                <ul>
+                    <li><strong>Challenge:</strong> Handling multiple API calls and rate limiting<br>
+                        <strong>Solution:</strong> Implemented API caching with IndexedDB and used multiple API fallbacks</li>
+                    <li><strong>Challenge:</strong> Accurate location detection across devices<br>
+                        <strong>Solution:</strong> Combined HTML5 Geolocation API with IP-based location fallback</li>
+                    <li><strong>Challenge:</strong> Real-time data updates without page refresh<br>
+                        <strong>Solution:</strong> Used WebSocket connections for live updates and polling for regular updates</li>
+                    <li><strong>Challenge:</strong> Offline functionality for weather data<br>
+                        <strong>Solution:</strong> Implemented service workers for caching and IndexedDB for data storage</li>
+                    <li><strong>Challenge:</strong> Performance optimization with heavy map data<br>
+                        <strong>Solution:</strong> Used lazy loading for map tiles and optimized image compression</li>
+                </ul>
+                
+                <h4>System Architecture:</h4>
+                <p>The application follows a client-side architecture with React.js frontend. Weather data is fetched from multiple APIs (OpenWeather, WeatherAPI) with fallback mechanisms. Interactive maps are implemented using Leaflet.js with custom tile layers. Data is cached using IndexedDB for offline access. Service workers handle PWA functionality and caching strategies. The application is deployed as a Progressive Web App with responsive design for all devices. Geolocation is handled through browser APIs with IP-based fallback.</p>
+                
+                <h4>Project Status:</h4>
+                <p><strong>Completed and deployed</strong> - The weather application is fully functional and has been tested across multiple locations worldwide. Performance metrics show 95% accuracy in weather predictions and average load time of under 2 seconds even on slower networks.</p>
+                
+                <h4>Key Functionalities:</h4>
+                <ul>
+                    <li><strong>Current Weather:</strong> Real-time temperature, humidity, wind speed, and conditions</li>
+                    <li><strong>Detailed Forecast:</strong> Hourly and daily forecasts with precipitation probability</li>
+                    <li><strong>Interactive Maps:</strong> Weather radar, temperature maps, and precipitation maps</li>
+                    <li><strong>Alerts & Notifications:</strong> Severe weather warnings and daily weather summaries</li>
+                    <li><strong>Location Management:</strong> Add, remove, and reorder multiple locations</li>
+                    <li><strong>Customization:</strong> Theme preferences, unit settings, and notification preferences</li>
+                    <li><strong>Offline Access:</strong> View cached weather data without internet connection</li>
+                    <li><strong>Voice Commands:</strong> Get weather updates using voice recognition</li>
+                </ul>
+                
+                <h4>Future Enhancements:</h4>
+                <ul>
+                    <li>Machine learning for personalized weather predictions</li>
+                    <li>Integration with smart home devices</li>
+                    <li>Weather-based activity suggestions</li>
+                    <li>Augmented reality weather visualization</li>
+                    <li>Historical climate data comparison</li>
+                    <li>Social weather sharing and community reports</li>
+                    <li>Weather-based travel planning</li>
+                    <li>Advanced agricultural weather insights</li>
+                </ul>
+                
+                <h4>Learning Outcomes:</h4>
+                <p>This project significantly enhanced my skills in API integration, data visualization, progressive web apps, and responsive design. I gained practical experience in handling real-time data, implementing offline functionality, working with geolocation services, and optimizing web application performance. Learned about weather data structures, map integration, PWA implementation, and cross-browser compatibility for modern web features.</p>
+                
+               
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
+

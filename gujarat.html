@@ -1,0 +1,507 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gujarat Travel Experience - Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .gujarat-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid #f59e0b;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Famous Places Title - Different Style */
+        .famous-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 40px;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Famous Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .place-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.05);
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .place-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Personal Experience Section */
+        .experience-section {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+
+        .experience-title {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .experience-date {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-date i {
+            color: #3b82f6;
+        }
+
+        .experience-content {
+            margin-top: 30px;
+        }
+
+        .experience-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .experience-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Back to About Button */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .famous-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .gujarat-hero {
+                height: 30vh;
+                margin-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .experience-section {
+                padding: 30px;
+            }
+            
+            .experience-title {
+                font-size: 2rem;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .famous-title {
+                font-size: 1.8rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .gujarat-hero {
+                height: 25vh;
+                margin-top: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gujarat-hero">
+        <div class="container hero-content">
+            <h1>Gujarat - The Land of Legends</h1>
+        </div>
+    </section>
+
+    <!-- 6 Famous Places Title -->
+    <div class="container">
+        <h2 class="famous-title">6 Famous Places in Gujarat</h2>
+    </div>
+
+    <!-- Famous Places Section -->
+    <section id="famous-places">
+        <div class="container">
+            <div class="places-grid">
+                <!-- Place 1 -->
+                <div class="place-card">
+                    <img loading="lazy" src="data:image/jpeg;base64,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" 
+                         alt="Sabarmati Ashram, Ahmedabad" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Sabarmati Ashram, Ahmedabad</h3>
+                        <p class="place-description">The historic residence of Mahatma Gandhi, where he lived for about 12 years. This tranquil ashram on the banks of Sabarmati River was the center of India's freedom movement and showcases Gandhi's simple lifestyle.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 2 -->
+                <div class="place-card">
+                    <img loading="lazy" src="data:image/jpeg;base64,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" 
+                         alt="Manek Chowk, Ahmedabad" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Manek Chowk, Ahmedabad</h3>
+                        <p class="place-description">A bustling market square in Old Ahmedabad that transforms from a vegetable market in the morning, jewelry market in the afternoon, to a famous street food hub at night. Famous for its delicious Gujarati snacks.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 3 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://live.staticflickr.com/2716/4052922240_1e2e585533_b.jpg" 
+                         alt="Malls of Ahmedabad" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Modern Malls of Ahmedabad</h3>
+                        <p class="place-description">Ahmedabad boasts world-class shopping malls like Ahmedabad One Mall, Alpha One Mall, and Himalaya Mall. These malls offer premium shopping, entertainment, dining, and leisure activities with modern architecture.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 4 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.gujarattourism.com/content/dam/gujrattourism/images/june/Mandvi-Beach-thumbnail.jpg" 
+                         alt="Mandvi Beach" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Mandvi Beach</h3>
+                        <p class="place-description">A pristine beach in the Kutch district known for its golden sands, clear waters, and camel rides. The beach offers beautiful sunset views and fresh seafood. It's less crowded and perfect for relaxation.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 5 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/fe/b2/8f/vijay-vilas-palace.jpg?w=900&h=500&s=1" 
+                         alt="Vijay Vilas Palace" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Vijay Vilas Palace</h3>
+                        <p class="place-description">A magnificent royal palace in Mandvi built in 1929. This stunning sandstone palace features intricate carvings, beautiful gardens, and offers a glimpse into the luxurious lifestyle of Kutch royalty.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 6 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://i.ytimg.com/vi/t3qxR9ypNPE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARsnfAsuoZL9ALlzSJnfv7wdYweA" 
+                         alt="Gujarati Food Market" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Gujarati Food & Sweet Markets</h3>
+                        <p class="place-description">Gujarat's vibrant food markets offer authentic local delicacies like Dhokla, Khandvi, Fafda, Thepla, and famous sweets like Mohanthal, Ghevar, and Basundi. The fresh produce markets offer affordable and fresh fruits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section id="personal-experience">
+        <div class="container">
+            <div class="experience-section">
+                <div class="experience-header">
+                    <div class="experience-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2 class="experience-title">My Gujarat Experience - December 2024</h2>
+                </div>
+                
+                <div class="experience-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Visit Date: December 20-27, 2024</span>
+                </div>
+                
+                <div class="experience-content">
+                    <div class="experience-text">
+                        <p>My visit to <span class="highlight">Gujarat in December 2024</span> was an incredible journey through history, culture, and culinary delights. Starting from <span class="highlight">Ahmedabad</span>, I explored this vibrant city known for its perfect blend of heritage and modernity.</p>
+                        
+                        <p>My first stop was the historic <span class="highlight">Sabarmati Ashram</span>, where I felt the peaceful aura of Gandhiji's residence. Walking through the simple rooms and seeing his personal belongings gave me a deep appreciation for India's freedom struggle. From there, I visited the bustling <span class="highlight">Manek Chowk</span>, which completely transforms at night into a food paradise. Trying hot, freshly made street food while sitting on plastic stools amidst the lively atmosphere was unforgettable.</p>
+                        
+                        <p>Ahmedabad's modern side impressed me equally. I visited several <span class="highlight">shopping malls</span> including Ahmedabad One Mall and Alpha One Mall. The sheer scale, variety of stores, entertainment options, and food courts showcased Gujarat's economic progress while maintaining its cultural essence. The malls were beautifully decorated for Christmas, adding to the festive spirit.</p>
+                        
+                        <p>The highlight of my trip was visiting <span class="highlight">Mandvi Beach</span> in Kutch. The golden sands, gentle waves, and camel rides along the shore created perfect vacation memories. Nearby, the magnificent <span class="highlight">Vijay Vilas Palace</span> transported me to the royal era with its stunning architecture, intricate carvings, and beautiful gardens. The palace has also been featured in several Bollywood films, adding to its charm.</p>
+                        
+                        <p>The culinary experience in Gujarat was absolutely divine. I fell in love with the <span class="highlight">local food</span> - from the soft and fluffy Dhokla to the perfectly rolled Khandvi, and the crispy Fafda with spicy chutney. Gujarati sweets were a revelation - the rich Mohanthal, syrupy Ghevar, and creamy Basundi were unlike anything I've tasted before. What surprised me most was how <span class="highlight">affordable and fresh</span> everything was - from juicy fruits sold at roadside stalls to vegetables in local markets.</p>
+                        
+                        <p>As a seafood lover, I particularly enjoyed the <span class="highlight">fresh fish</span> preparations in coastal areas. The pomfret and surmai preparations with local spices were cooked to perfection. The fish markets near Mandvi Beach offered the freshest catch at surprisingly low prices, and watching fishermen bring in their daily haul was a fascinating experience.</p>
+                        
+                        <p>This trip to Gujarat gave me a comprehensive experience - from historical sites and royal palaces to modern malls and pristine beaches, all complemented by extraordinary food. The warmth of Gujarati people, their rich culture, and the state's remarkable progress made this one of my most memorable travel experiences.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to About Button - Scrolls back to Gujarat card on about page -->
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+        
+        // Handle back button - will scroll to Gujarat section on about page
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            // We'll use localStorage to remember which city to scroll to
+            localStorage.setItem('scrollToCity', 'gujarat');
+        });
+    </script>
+</body>
+</html>
+

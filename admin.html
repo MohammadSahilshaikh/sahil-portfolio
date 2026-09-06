@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Website Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #0f172a; color: #f8fafc; min-height: 100vh; padding: 20px; }
+        #authOverlay { position: fixed; top:0; left:0; width:100vw; height:100vh; background:#0f172a; z-index:9999; display:flex; align-items:center; justify-content:center; }
+        .auth-card { background: #1e293b; padding: 40px; border-radius: 15px; border: 1px solid #3b82f6; text-align: center; width: 90%; max-width: 400px; }
+        .auth-card input { width: 100%; padding: 12px; margin: 20px 0; border-radius: 8px; border: none; font-size: 1.1rem; text-align: center; }
+        .btn { background: #3b82f6; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .btn:hover { background: #2563eb; }
+        .btn-success { background: #10b981; } .btn-success:hover { background: #059669; }
+        .btn-danger { background: #ef4444; } .btn-danger:hover { background: #dc2626; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #334155; padding-bottom: 20px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; }
+        .tab-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 10px 20px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+        .tab-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card { background: #1e293b; padding: 25px; border-radius: 15px; border: 1px solid #334155; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #94a3b8; font-weight: 500; font-size: 0.9rem; }
+        input[type="text"], input[type="url"], textarea { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: white; }
+        textarea { min-height: 80px; resize: vertical; }
+        .file-upload-box { border: 2px dashed #10b981; padding: 20px; text-align: center; border-radius: 10px; cursor: pointer; position: relative; margin-bottom:15px; background: rgba(16, 185, 129, 0.05); }
+        .file-upload-box:hover { background: rgba(16, 185, 129, 0.1); }
+        .file-upload-box input[type="file"] { position: absolute; width:100%; height:100%; top:0; left:0; opacity:0; cursor:pointer; }
+        .preview-img { max-width: 100%; max-height: 200px; object-fit: contain; margin-top: 10px; border-radius: 8px; border: 1px solid #334155; display: none; }
+        .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .list-item { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 15px; position: relative; }
+        .list-item img { width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
+        .section-header { margin: 25px 0 15px 0; padding-bottom: 10px; border-bottom: 1px dashed #334155; color: #e2e8f0; }
+        
+        #cropperModal { position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:10000; display:none; align-items:center; justify-content:center; flex-direction:column; padding:20px; }
+        .cropper-container-wrapper { width:100%; max-width:800px; height:60vh; background:#1e293b; margin-bottom:20px; }
+        #cropperImage { max-width:100%; height:auto; }
+        
+        .flex-row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .flex-row > * { flex: 1; min-width: 250px; }
+    </style>
+</head>
+<body>
+
+<div id="authOverlay">
+    <div class="auth-card">
+        <h2><i class="fas fa-lock"></i> Master Access</h2>
+        <input type="password" id="adminPwd" placeholder="Password">
+        <button class="btn btn-success" onclick="checkAuth()" style="width:100%;">Unlock Website</button>
+        <a href="index.html" style="display:block; margin-top:15px; color:#3b82f6; text-decoration:none;">Back to site</a>
+        <p id="authErr" style="color:#ef4444; margin-top:10px; display:none;">Incorrect Password</p>
+    </div>
+</div>
+
+<div id="cropperModal">
+    <h2 style="margin-bottom: 15px;">Crop Your Image</h2>
+    <div class="cropper-container-wrapper"><img id="cropperImage" src=""></div>
+    <div style="display:flex; gap:10px;">
+        <button class="btn" onclick="cancelCrop()">Cancel</button>
+        <button class="btn btn-success" onclick="executeCrop()">Crop & Transfer</button>
+    </div>
+</div>
+
+<div class="header">
+    <h1><i class="fas fa-globe"></i> Ultimate CMS Master</h1>
+    <div>
+        <button class="btn btn-success" onclick="saveCurrentTab()" style="margin-right:10px;"><i class="fas fa-save"></i> Save Changes</button>
+        <a href="index.html" class="btn" style="background:#334155;"><i class="fas fa-arrow-left"></i> View Live Site</a>
+    </div>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('home')">1. Home & Basic Config</button>
+    <button class="tab-btn" onclick="switchTab('about')">2. About Section</button>
+    <button class="tab-btn" onclick="viewCategoryManager('travel', this)">3. Travel Config</button>
+    <button class="tab-btn" onclick="viewCategoryManager('projects', this)">4. Projects Config</button>
+    <button class="tab-btn" onclick="viewCategoryManager('profession', this)">5. Profession Cards</button>
+    <button class="tab-btn" onclick="switchTab('webdev')">5b. Web Dev Page</button>
+    <button class="tab-btn" onclick="viewCategoryManager('achievements', this)">6. Achievements Config</button>
+    <button class="tab-btn" onclick="doReset()" style="color:#ef4444; border-color:#ef4444;"><i class="fas fa-trash"></i> Reset DB</button>
+</div>
+
+<!-- ================== TAB 1: HOME & CONFIG ================== -->
+<div id="home" class="tab-content active">
+    <div class="flex-row">
+        <!-- Identity -->
+        <div class="card">
+            <h2 class="section-header">Hero Identity</h2>
+            <div class="form-group"><label>Display Name</label><input type="text" id="profName"></div>
+            <div class="form-group">
+                <label>Circular Profile Image (Auto-Saves)</label>
+                <div class="file-upload-box"><i class="fas fa-user-circle fa-2x"></i><input type="file" id="profPicInput" accept="image/*"></div>
+                <img id="profPicPreview" class="preview-img">
+            </div>
+            <div class="form-group">
+                <label>Sliding Professions (e.g. Web Developer)</label>
+                <div style="display:flex; gap:10px;"><input type="text" id="newProf"><button class="btn btn-success" onclick="addProfession()">Add</button></div>
+                <ul id="profList" style="list-style:none; line-height:2.2; margin-top:10px;"></ul>
+            </div>
+        </div>
+
+        <!-- Slider -->
+        <div class="card">
+            <h2 class="section-header">Hero Slider Track</h2>
+            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:10px;">Upload image -> Crop -> Auto-saves instantly to loop slider.</p>
+            <div class="file-upload-box"><i class="fas fa-images fa-2x"></i><input type="file" id="sliderInput" accept="image/*"></div>
+            <div class="list-grid" id="sliderGrid" style="grid-template-columns: 1fr; margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <div class="flex-row">
+        <div class="card">
+            <h2 class="section-header">Contact Information</h2>
+            <div class="form-group"><label>Location</label><input type="text" id="cLoc"></div>
+            <div class="form-group"><label>Email</label><input type="text" id="cMail"></div>
+            <div class="form-group"><label>Phone Number</label><input type="text" id="cPhone"></div>
+        </div>
+        <div class="card">
+            <h2 class="section-header">Global Link Setup</h2>
+            <div class="form-group"><label>Instagram URL</label><input type="url" id="socInsta"></div>
+            <div class="form-group"><label>Facebook URL</label><input type="url" id="socFb"></div>
+            <div class="form-group"><label>LinkedIn URL</label><input type="url" id="socLi"></div>
+            <div class="form-group"><label>GitHub URL</label><input type="url" id="socGit"></div>
+            <div class="form-group"><label>CV Download Link / Filename</label><input type="text" id="cvLink"></div>
+        </div>
+    </div>
+    <button class="btn btn-success" style="width:100%; margin-top:10px;" onclick="saveHome()"><i class="fas fa-save"></i> Save Home & Config</button>
+</div>
+
+<!-- ================== TAB 2: ABOUT ================== -->
+<div id="about" class="tab-content">
+    <div class="card">
+        <h2 class="section-header">The "About Me" Story</h2>
+        <div class="form-group"><label>Paragraph 1</label><textarea id="about1"></textarea></div>
+        <div class="form-group"><label>Paragraph 2</label><textarea id="about2"></textarea></div>
+    </div>
+    <div class="card">
+        <h2 class="section-header">Dynamic Counter Stats</h2>
+        <div class="flex-row">
+            <div class="form-group"><label>Years Exp (e.g. 3+)</label><input type="text" id="stExp"></div>
+            <div class="form-group"><label>Projects Done</label><input type="text" id="stProj"></div>
+            <div class="form-group"><label>Certificates</label><input type="text" id="stCert"></div>
+            <div class="form-group"><label>Cities Traveled</label><input type="text" id="stCity"></div>
+        </div>
+    </div>
+    <button class="btn btn-success" style="width:100%; margin-top:10px;" onclick="saveAbout()"><i class="fas fa-save"></i> Save About Section</button>
+</div>
+
+<!-- ================== TAB: WEB DEV PAGE EDITOR ================== -->
+<div id="webdev" class="tab-content">
+    <div class="card" style="border-left: 4px solid #10b981;">
+        <h2 class="section-header"><i class="fas fa-code"></i> Web Development Sub-Page Editor</h2>
+        <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:20px;">Edit the dedicated <strong>web-development.html</strong> page content directly from here.</p>
+
+        <div class="form-group"><label>Page Big Title (e.g. Web Development)</label><input type="text" id="wdTitle" placeholder="Web Development"></div>
+        <div class="form-group"><label>Page Subtitle / Short Description</label><textarea id="wdSubtitle" style="min-height:60px;"></textarea></div>
+
+        <h3 style="margin: 20px 0 10px; color:#3b82f6; font-size:1rem;">3 Banner Images</h3>
+        <div class="flex-row" style="gap:10px;">
+            <div>
+                <label style="font-size:0.8rem;">Image 1</label>
+                <input type="text" id="wdImg1" placeholder="URL or leave blank for default">
+                <div class="file-upload-box" style="padding:10px; margin-top:5px;">
+                    <i class="fas fa-image"></i><input type="file" id="wdImg1File" accept="image/*">
+                </div>
+                <img id="wdImg1Preview" class="preview-img">
+            </div>
+            <div>
+                <label style="font-size:0.8rem;">Image 2</label>
+                <input type="text" id="wdImg2" placeholder="URL or leave blank for default">
+                <div class="file-upload-box" style="padding:10px; margin-top:5px;">
+                    <i class="fas fa-image"></i><input type="file" id="wdImg2File" accept="image/*">
+                </div>
+                <img id="wdImg2Preview" class="preview-img">
+            </div>
+            <div>
+                <label style="font-size:0.8rem;">Image 3</label>
+                <input type="text" id="wdImg3" placeholder="URL or leave blank for default">
+                <div class="file-upload-box" style="padding:10px; margin-top:5px;">
+                    <i class="fas fa-image"></i><input type="file" id="wdImg3File" accept="image/*">
+                </div>
+                <img id="wdImg3Preview" class="preview-img">
+            </div>
+        </div>
+
+        <h3 style="margin: 20px 0 10px; color:#3b82f6; font-size:1rem;">Content Block</h3>
+        <div class="form-group"><label>Expertise Heading (e.g. Web Development Expertise)</label><input type="text" id="wdExpHead"></div>
+        <div class="form-group"><label>Main Description Paragraph</label><textarea id="wdExpPara" style="min-height:80px;"></textarea></div>
+
+        <h3 style="margin: 20px 0 10px; color:#fbbf24; font-size:1rem;">Bullet Point Groups (Sub-heading + List)</h3>
+        <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:10px;">Add each sub-section with its heading and items.</p>
+        <div id="wdBulletGroups"></div>
+        <button class="btn" onclick="addWdBulletGroup()" style="margin-bottom:20px;"><i class="fas fa-plus"></i> Add Sub-Section</button>
+
+        <div class="form-group"><label>Skill Tags (comma separated, e.g. HTML5, CSS3, JavaScript)</label><input type="text" id="wdSkills" placeholder="HTML5, CSS3, JavaScript"></div>
+
+        <button class="btn btn-success" style="width:100%; padding:15px; font-size:1.1rem;" onclick="saveWebDev()"><i class="fas fa-save"></i> Save Web Dev Page</button>
+    </div>
+</div>
+
+<!-- ================== DYNAMIC CATEGORY TAB ================== -->
+<div id="catTemplate" class="tab-content">
+    <div class="card" style="border-left: 4px solid #3b82f6;">
+        <h2 class="section-header"><span id="catHeaderLabel"></span> Section Settings</h2>
+        <div class="form-group"><label>Main Website Heading</label><input type="text" id="catTitle"></div>
+        <div class="form-group"><label>Subtitle / Description</label><textarea id="catDesc" style="min-height:50px;"></textarea></div>
+        <button class="btn btn-success" onclick="saveCategoryMeta()">Save Section Settings</button>
+    </div>
+
+    <!-- The Giant Builder Card -->
+    <div class="card" style="background:#17223b;">
+        <h2 class="section-header" style="color:#10b981;"><i class="fas fa-plus-circle"></i> Create New Detailed Super-Card</h2>
+        <p style="margin-bottom:15px; color:#cbd5e1; font-size:0.9rem;">This card will show on the homepage. When clicked, it opens a rich modal with the inner story.</p>
+        
+        <div class="flex-row">
+            <!-- Part 1: Cover -->
+            <div style="background:#1e293b; padding:15px; border-radius:10px; border:1px solid #334155;">
+                <h3 style="margin-bottom:15px; font-size:1.1rem;"><i class="fas fa-image"></i> A. Outer Cover Info</h3>
+                <div class="form-group"><label>Thumbnail Picture</label>
+                    <div class="file-upload-box" style="padding:10px;"><i class="fas fa-camera"></i><input type="file" id="covImg" accept="image/*"></div>
+                    <img id="covPreview" class="preview-img">
+                </div>
+                <div class="form-group"><label>Cover Title</label><input type="text" id="covTit" placeholder="e.g. Taj Mahal Trip"></div>
+                <div class="form-group"><label>Short Front Description</label><textarea id="covDes" style="min-height:60px;" placeholder="Appears below image on grid..."></textarea></div>
+            </div>
+
+            <!-- Part 2: Inner Content -->
+            <div style="background:#1e293b; padding:15px; border-radius:10px; border:1px solid #334155;">
+                <h3 style="margin-bottom:15px; font-size:1.1rem;"><i class="fas fa-newspaper"></i> B. Inner Modal Story</h3>
+                <div class="form-group"><label>Big Modal Title</label><input type="text" id="innTit" placeholder="e.g. My Awesome Visit to Delhi"></div>
+                <div class="form-group"><label>Full Story Text</label>
+                    <textarea id="innStory" style="min-height:120px;" placeholder="Write everything about this record here..."></textarea>
+                </div>
+                <div class="form-group"><label>Attach up to 3 Detail Photos</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="file" id="innPic1" accept="image/*" style="width:33%;">
+                        <input type="file" id="innPic2" accept="image/*" style="width:33%;">
+                        <input type="file" id="innPic3" accept="image/*" style="width:33%;">
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;" id="innPreviewZone">
+                    <!-- thumbnails injected here -->
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-success" style="width:100%; margin-top:20px; font-size:1.1rem; padding:15px;" onclick="addSuperCard()"><i class="fas fa-paper-plane"></i> PUBLISH CARD & SUB-PAGE</button>
+    </div>
+
+    <!-- Rendered Cards -->
+    <div class="card">
+        <h2 class="section-header">Live Super-Cards</h2>
+        <div class="list-grid" id="catGrid"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<script>
+    function checkAuth() {
+        if(document.getElementById('adminPwd').value === '991308677486') document.getElementById('authOverlay').style.display = 'none';
+        else document.getElementById('authErr').style.display = 'block';
+    }
+    document.getElementById('adminPwd').addEventListener('keyup', e => { if(e.key === 'Enter') checkAuth(); });
+
+    // === DB SCHEMA UPGRADE ===
+    const DB_KEY = "portfolioCMS";
+    let db = JSON.parse(localStorage.getItem(DB_KEY));
+    
+    // Auto-migrate or clean schema to modern nested format
+    if(!db || !db.cats) {
+        db = {
+            meta: db?.meta || { name: "", profImg: "", about1: "", about2: "", cLoc: "", cMail: "", cPhone: "", socInsta: "", socFb: "", socLi: "", socGit: "", cvLink: "", stExp: "", stProj: "", stCert: "", stCity: "" },
+            slider: db?.slider || [], professions: db?.professions || [],
+            cats: {
+                travel: { title: "Travel Experiences", desc: "", items: [] },
+                projects: { title: "My Projects", desc: "", items: [] },
+                profession: { title: "My Profession", desc: "", items: [] },
+                achievements: { title: "My Achievements", desc: "", items: [] }
+            }
+        };
+        // Migrate old flat cards if they existed
+        if(db.cards && Array.isArray(db.cards)) {
+            db.cards.forEach(c => {
+                if(db.cats[c.cat]) db.cats[c.cat].items.push({ id: c.id, covSrc: c.src, covTit: c.tit, covDes: c.des, innTit: c.tit, innStory: c.des, innImgs: [] });
+            });
+            delete db.cards;
+        }
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+    }
+
+    let activeCat = null;
+
+    // === ROUTING & HYDRATION ===
+    function switchTab(id) {
+        activeCat = null;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        if(event) event.target.classList.add('active');
+        document.getElementById(id).classList.add('active');
+        if(id === 'home' || id === 'about') bootGlobal();
+    }
+
+    function viewCategoryManager(catKey, btnNode) {
+        activeCat = catKey;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btnNode.classList.add('active');
+        document.getElementById('catTemplate').classList.add('active');
+
+        // Hydrate specific category text
+        document.getElementById('catHeaderLabel').innerText = catKey.toUpperCase();
+        document.getElementById('catTitle').value = db.cats[catKey].title || "";
+        document.getElementById('catDesc').value = db.cats[catKey].desc || "";
+
+        // Reset builder form
+        _activeCardTemp = { covSrc: "", innImgs: [] };
+        document.getElementById('covImg').value = ""; document.getElementById('covPreview').style.display='none';
+        document.getElementById('innPic1').value = ""; document.getElementById('innPic2').value = ""; document.getElementById('innPic3').value = "";
+        document.getElementById('innPreviewZone').innerHTML = "";
+        document.getElementById('covTit').value = ""; document.getElementById('covDes').value = "";
+        document.getElementById('innTit').value = ""; document.getElementById('innStory').value = "";
+        
+        renderCatItems();
+    }
+
+    function bootGlobal() {
+        const m = db.meta;
+        ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink','about1','about2','stExp','stProj','stCert','stCity'].forEach(id => {
+            if(document.getElementById(id)) document.getElementById(id).value = m[id] || "";
+        });
+        if(m.profImg) { document.getElementById('profPicPreview').src=m.profImg; document.getElementById('profPicPreview').style.display="block"; }
+        renderProf();
+        renderSlider();
+    }
+
+    function saveHome() {
+        const m = db.meta;
+        ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink'].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) m[id] = el.value;
+        });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert('Home & Config Saved!');
+    }
+
+    function saveAbout() {
+        const m = db.meta;
+        ['about1','about2','stExp','stProj','stCert','stCity'].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) m[id] = el.value;
+        });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert('About Section Saved!');
+    }
+
+    function saveCurrentTab() {
+        // Fallback: saves whichever visible tab fields are present
+        const m = db.meta;
+        const allIds = ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink','about1','about2','stExp','stProj','stCert','stCity'];
+        allIds.forEach(id => { const el = document.getElementById(id); if(el) m[id] = el.value; });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert('Changes Saved!');
+    }
+
+    function saveCategoryMeta() {
+        if(!activeCat) return;
+        db.cats[activeCat].title = document.getElementById('catTitle').value;
+        db.cats[activeCat].desc = document.getElementById('catDesc').value;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert("Section Headers Saved!");
+    }
+
+    // === PROF / SLIDER VIEWS ===
+    function renderProf() {
+        let h=""; db.professions.forEach((p,i)=> h+=`<li><button class="btn-danger" style="margin-right:10px; border-radius:5px; padding:3px 8px;" onclick="rmP(${i})"><i class="fas fa-trash"></i></button>${p}</li>`);
+        document.getElementById('profList').innerHTML=h;
+    }
+    function addProfession() { const p=document.getElementById('newProf').value.trim(); if(p){db.professions.push(p); document.getElementById('newProf').value=''; localStorage.setItem(DB_KEY, JSON.stringify(db)); renderProf();} }
+    function rmP(i){ db.professions.splice(i,1); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderProf(); }
+
+    function renderSlider() {
+        let h=""; db.slider.forEach((s,i)=> h+=`<div class="list-item"><img src="${s}"><button class="btn-danger" style="width:100%; border-radius:5px;" onclick="rmS(${i})">Delete Slide</button></div>`);
+        document.getElementById('sliderGrid').innerHTML=h;
+    }
+    function rmS(i){ db.slider.splice(i,1); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderSlider(); }
+
+    // === CROPPER SYSTEM ===
+    let cropperObj = null; let pendingTgt = null;
+    let _activeCardTemp = { covSrc: "", innImgs: [] };
+
+    document.getElementById('profPicInput').addEventListener('change', e=>handleFile(e, 'prof'));
+    document.getElementById('sliderInput').addEventListener('change', e=>handleFile(e, 'slide'));
+    document.getElementById('covImg').addEventListener('change', e=>handleFile(e, 'cardCov'));
+    function buildInnEvt(id) { document.getElementById(id).addEventListener('change', e=> { if(e.target.files[0]){ const u=URL.createObjectURL(e.target.files[0]); buildBase64(u,b=>{_activeCardTemp.innImgs.push(b); drawInnImgs();}); e.target.value="";} }); }
+    buildInnEvt('innPic1'); buildInnEvt('innPic2'); buildInnEvt('innPic3');
+
+    function drawInnImgs() {
+        document.getElementById('innPreviewZone').innerHTML = _activeCardTemp.innImgs.map((b,i)=> `<div style="position:relative"><img src="${b}" style="width:80px;height:80px;object-fit:cover;border-radius:5px;"><button onclick="_activeCardTemp.innImgs.splice(${i},1);drawInnImgs()" style="position:absolute;top:0;right:0;background:red;color:white;border:none;cursor:pointer;padding:2px 5px;">X</button></div>`).join("");
+    }
+
+    function buildBase64(url, cb) {
+        let i = new Image(); i.onload = ()=>{
+            let cv = document.createElement('canvas'); cv.width=i.width; cv.height=i.height;
+            cv.getContext('2d').drawImage(i,0,0);
+            cb(cv.toDataURL('image/jpeg', 0.8));
+        }; i.src = url;
+    }
+
+    function handleFile(e, tgt) {
+        if(e.target.files[0]) {
+            pendingTgt = tgt;
+            let u = URL.createObjectURL(e.target.files[0]);
+            document.getElementById('cropperModal').style.display='flex';
+            document.getElementById('cropperImage').src = u;
+            if(cropperObj) cropperObj.destroy();
+            let ratio = NaN;
+            if(tgt==='prof') ratio=1; if(tgt==='slide') ratio=21/9;
+            cropperObj = new Cropper(document.getElementById('cropperImage'), { aspectRatio: ratio, viewMode:1 });
+            e.target.value = "";
+        }
+    }
+    function cancelCrop() { document.getElementById('cropperModal').style.display='none'; if(cropperObj) cropperObj.destroy(); }
+    
+    function executeCrop() {
+        if(!cropperObj) return;
+        const b64 = cropperObj.getCroppedCanvas({maxWidth:1000,maxHeight:1000}).toDataURL('image/jpeg', 0.8);
+        cancelCrop();
+        
+        if(pendingTgt === 'prof') {
+            db.meta.profImg = b64; localStorage.setItem(DB_KEY, JSON.stringify(db));
+            document.getElementById('profPicPreview').src=b64; document.getElementById('profPicPreview').style.display='block';
+        } else if(pendingTgt === 'slide') {
+            db.slider.push(b64); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderSlider();
+        } else if(pendingTgt === 'cardCov') {
+            _activeCardTemp.covSrc = b64; 
+            document.getElementById('covPreview').src=b64; document.getElementById('covPreview').style.display='block';
+        }
+    }
+
+    // === ADD SUPER CARD ===
+    function addSuperCard() {
+        if(!activeCat) return;
+        if(!_activeCardTemp.covSrc) { alert("Missing Cover Image!"); return; }
+        let covTit = document.getElementById('covTit').value || "Untiled";
+        let covDes = document.getElementById('covDes').value || "";
+        let innTit = document.getElementById('innTit').value || covTit;
+        let innSty = document.getElementById('innStory').value || "";
+
+        db.cats[activeCat].items.unshift({
+            id: Date.now(),
+            covSrc: _activeCardTemp.covSrc, covTit, covDes,
+            innTit, innStory: innSty, innImgs: [..._activeCardTemp.innImgs]
+        });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert("Card Published!");
+        viewCategoryManager(activeCat, document.querySelector('.tab-btn.active')); // refresh form setup
+    }
+
+    function renderCatItems() {
+        if(!activeCat) return;
+        let h=""; db.cats[activeCat].items.forEach((c, idx) => {
+            h+= `<div class="list-item">
+                    <img src="${c.covSrc}">
+                    <div style="margin-bottom:10px;"><strong>${c.covTit}</strong><br><small style="color:#94a3b8">${c.covDes.substring(0,30)}...</small></div>
+                    <div style="font-size:0.8rem; color:#10b981; margin-bottom:10px;"><i class="fas fa-file-alt"></i> Inner Data Attached: ${c.innImgs.length} photos</div>
+                    <button class="btn-danger" style="width:100%; border-radius:5px;" onclick="db.cats['${activeCat}'].items.splice(${idx},1); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderCatItems();">Delete Entry</button>
+                 </div>`;
+        });
+        document.getElementById('catGrid').innerHTML = h;
+    }
+
+    function doReset() {
+        if(confirm("DANGER! This wipes the whole database!")) { localStorage.removeItem(DB_KEY); window.location.reload(); }
+    }
+    
+    function bootWebDev() {
+        const wd = db.webdev || {};
+        document.getElementById('wdTitle').value = wd.title || '';
+        document.getElementById('wdSubtitle').value = wd.subtitle || '';
+        document.getElementById('wdExpHead').value = wd.expHead || '';
+        document.getElementById('wdExpPara').value = wd.expPara || '';
+        document.getElementById('wdSkills').value = (wd.skills || []).join(', ');
+        // Show stored images
+        ['1','2','3'].forEach(n => {
+            const url = wd['img'+n] || '';
+            document.getElementById('wdImg'+n).value = url;
+            if(url) { document.getElementById('wdImg'+n+'Preview').src=url; document.getElementById('wdImg'+n+'Preview').style.display='block'; }
+        });
+        // Render bullet groups
+        document.getElementById('wdBulletGroups').innerHTML = '';
+        (wd.groups || []).forEach(g => addWdBulletGroup(g.heading, g.items.join('\n')));
+    }
+
+    function addWdBulletGroup(heading='', items='') {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.style.cssText = 'background:#0f172a; margin-bottom:15px; position:relative;';
+        div.innerHTML = `
+            <button onclick="this.parentElement.remove()" style="position:absolute;top:10px;right:10px;background:#ef4444;color:white;border:none;border-radius:5px;padding:3px 8px;cursor:pointer;">✕</button>
+            <div class="form-group"><label>Sub-Heading (e.g. Front-End Development:)</label><input type="text" class="wdGrpHead" value="${heading}"></div>
+            <div class="form-group"><label>Bullet Items (one per line)</label><textarea class="wdGrpItems" style="min-height:80px;">${items}</textarea></div>`;
+        document.getElementById('wdBulletGroups').appendChild(div);
+    }
+
+    function saveWebDev() {
+        if(!db.webdev) db.webdev = {};
+        const wd = db.webdev;
+        wd.title = document.getElementById('wdTitle').value;
+        wd.subtitle = document.getElementById('wdSubtitle').value;
+        wd.expHead = document.getElementById('wdExpHead').value;
+        wd.expPara = document.getElementById('wdExpPara').value;
+        wd.skills = document.getElementById('wdSkills').value.split(',').map(s=>s.trim()).filter(Boolean);
+        ['1','2','3'].forEach(n => {
+            const urlVal = document.getElementById('wdImg'+n).value.trim();
+            if(urlVal) wd['img'+n] = urlVal;
+        });
+        wd.groups = [];
+        document.querySelectorAll('#wdBulletGroups .card').forEach(card => {
+            const h = card.querySelector('.wdGrpHead').value.trim();
+            const items = card.querySelector('.wdGrpItems').value.split('\n').map(s=>s.trim()).filter(Boolean);
+            if(h) wd.groups.push({ heading: h, items });
+        });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert('Web Development Page Saved!');
+    }
+
+    // Web Dev image file listeners (base64 convert, no cropper needed for these)
+    ['1','2','3'].forEach(n => {
+        document.getElementById('wdImg'+n+'File').addEventListener('change', function(e) {
+            const f = e.target.files[0]; if(!f) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const b64 = ev.target.result;
+                if(!db.webdev) db.webdev = {};
+                db.webdev['img'+n] = b64;
+                document.getElementById('wdImg'+n).value = '';
+                document.getElementById('wdImg'+n+'Preview').src = b64;
+                document.getElementById('wdImg'+n+'Preview').style.display = 'block';
+            };
+            reader.readAsDataURL(f);
+            e.target.value = '';
+        });
+    });
+
+    // Patch switchTab to also boot webdev
+    const _origSwitch = switchTab;
+    function switchTab(id) {
+        activeCat = null;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        if(event) event.target.classList.add('active');
+        document.getElementById(id).classList.add('active');
+        if(id === 'home' || id === 'about') bootGlobal();
+        if(id === 'webdev') bootWebDev();
+    }
+
+    switchTab('home');
+</script>
+</body>
+</html>

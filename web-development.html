@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development - Profession | Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Profession Detail Section */
+        #profession-detail {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .profession-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .profession-title {
+            font-size: 3rem;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .profession-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .profession-subtitle {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Profession Images */
+        .profession-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .profession-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profession-image:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Profession Content */
+        .profession-content {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .profession-content h3 {
+            color: #3b82f6;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .profession-content h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+
+        .profession-content p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .profession-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profession-content li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Skill Tags */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .profession-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .profession-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .profession-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .profession-image {
+                height: 200px;
+            }
+            
+            .profession-content {
+                padding: 25px;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profession-title {
+                font-size: 2rem;
+            }
+            
+            .profession-subtitle {
+                font-size: 1rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html" class="active">Profession</a></li>
+                
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Profession Detail Section -->
+    <section id="profession-detail">
+        <div class="container">
+            <div class="profession-header">
+                <h1 class="profession-title">Web Development</h1>
+                <p class="profession-subtitle">Specializing in front-end and back-end web development using modern technologies to create responsive, user-friendly websites and web applications.</p>
+            </div>
+
+            <!-- Profession Images -->
+            <div class="profession-images">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                     alt="Web Development" class="profession-image">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                     alt="Coding" class="profession-image">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                     alt="Web Design" class="profession-image">
+            </div>
+
+            <!-- Profession Content -->
+            <div class="profession-content">
+                <h3>Web Development Expertise</h3>
+                <p>As a web developer, I create dynamic, responsive, and user-friendly websites and web applications using the latest technologies and best practices. My expertise spans both front-end and back-end development, allowing me to deliver complete web solutions.</p>
+                
+                <h4>Front-End Development:</h4>
+                <ul>
+                    <li>HTML5, CSS3, and JavaScript (ES6+) for building responsive interfaces</li>
+                    <li>React.js and Vue.js for creating interactive single-page applications</li>
+                    <li>Responsive design with CSS Grid, Flexbox, and Bootstrap</li>
+                    <li>UI/UX design principles for optimal user experience</li>
+                    <li>Cross-browser compatibility and performance optimization</li>
+                </ul>
+                
+                <h4>Back-End Development:</h4>
+                <ul>
+                    <li>Node.js with Express.js for server-side development</li>
+                    <li>RESTful API design and development</li>
+                    <li>Database design with MongoDB and MySQL</li>
+                    <li>Authentication and authorization systems</li>
+                    <li>Server deployment and maintenance</li>
+                </ul>
+                
+                <h4>Technical Skills:</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">REST API</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Bootstrap</span>
+                </div>
+                
+                <h4>Development Approach:</h4>
+                <p>I follow an agile development methodology with a focus on clean code, scalability, and maintainability. Each project begins with thorough planning, wireframing, and prototyping before moving to development. I prioritize responsive design, accessibility, and performance optimization to ensure the best user experience across all devices.</p>
+                
+                <h4>Project Experience:</h4>
+                <ul>
+                    <li>E-commerce websites with payment gateway integration</li>
+                    <li>Portfolio websites with custom animations and interactions</li>
+                    <li>Web applications with real-time features</li>
+                    <li>Content management systems</li>
+                    <li>Responsive mobile-first websites</li>
+                </ul>
+                
+                <h4>Tools & Technologies:</h4>
+                <ul>
+                    <li><strong>Code Editors:</strong> VS Code, Sublime Text</li>
+                    <li><strong>Version Control:</strong> Git, GitHub, GitLab</li>
+                    <li><strong>Design Tools:</strong> Figma, Adobe XD, Photoshop</li>
+                    <li><strong>Deployment:</strong> AWS, Heroku, Netlify, Vercel</li>
+                    <li><strong>Testing:</strong> Jest, Mocha, Chai</li>
+                </ul>
+                
+                <h4>Continuous Learning:</h4>
+                <p>Web development is an ever-evolving field, and I stay updated with the latest trends, frameworks, and best practices through online courses, tech blogs, and community participation. I'm currently exploring Next.js, TypeScript, and advanced React patterns to enhance my development capabilities.</p>
+                
+               
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+
+        // ===== CMS INJECTOR =====
+        (function() {
+            const cmsDB = JSON.parse(localStorage.getItem('portfolioCMS'));
+            if(!cmsDB || !cmsDB.webdev) return;
+            const wd = cmsDB.webdev;
+
+            if(wd.title) document.querySelector('.profession-title').innerText = wd.title;
+            if(wd.subtitle) document.querySelector('.profession-subtitle').innerText = wd.subtitle;
+
+            const imgs = document.querySelectorAll('.profession-image');
+            if(wd.img1 && imgs[0]) imgs[0].src = wd.img1;
+            if(wd.img2 && imgs[1]) imgs[1].src = wd.img2;
+            if(wd.img3 && imgs[2]) imgs[2].src = wd.img3;
+
+            const content = document.querySelector('.profession-content');
+            if(content && (wd.expHead || wd.expPara || wd.groups || wd.skills)) {
+                let html = '';
+                if(wd.expHead) html += `<h3>${wd.expHead}</h3>`;
+                if(wd.expPara) html += `<p>${wd.expPara}</p>`;
+                (wd.groups || []).forEach(g => {
+                    html += `<h4>${g.heading}</h4><ul>${g.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+                });
+                if(wd.skills && wd.skills.length > 0) {
+                    html += `<h4>Technical Skills:</h4><div class="skill-tags">${wd.skills.map(s=>`<span class="skill-tag">${s}</span>`).join('')}</div>`;
+                }
+                content.innerHTML = html;
+            }
+        })();
+    </script>
+</body>
+</html>
+

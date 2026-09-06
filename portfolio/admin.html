@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | MD RAHIL SHAIKH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== LOGIN SCREEN ===================== -->
+<div class="admin-login" id="loginScreen">
+  <div class="admin-login-box">
+    <h2>🔒 Admin Login</h2>
+    <p>Enter password to access content management dashboard.</p>
+    <div class="admin-field">
+      <label>Password</label>
+      <input type="password" id="passwordInput" placeholder="Enter password">
+    </div>
+    <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="tryLogin()">Login</button>
+    <p class="admin-error" id="loginError">Incorrect password. Please try again.</p>
+    <p style="font-size:0.78rem; color:var(--steel-light); margin-top:18px;">
+  
+    </p>
+    <a href="index.html" style="font-size:0.82rem; display:inline-block; margin-top:14px; color:var(--safety-orange);">← Back to site</a>
+  </div>
+</div>
+
+<!-- ===================== ADMIN DASHBOARD ===================== -->
+<div class="admin-shell" id="adminShell" style="display:none;">
+  <div class="admin-header">
+    <div class="brand-text" style="font-size:1.2rem;">⚙ Admin Panel</div>
+    <div style="display:flex; gap:12px;">
+      <a href="index.html" class="btn btn-outline btn-sm">View Site</a>
+      <button class="btn btn-sm btn-danger" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- HERO SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">1</span> Hero Section</h3>
+      <div class="admin-field">
+        <label>Full Name</label>
+        <input type="text" id="f_name">
+      </div>
+      <div class="admin-field">
+        <label>Profession / Title</label>
+        <input type="text" id="f_title">
+      </div>
+      <div class="admin-field">
+        <label>Tagline</label>
+        <input type="text" id="f_tagline">
+      </div>
+      <div class="admin-field">
+        <label>Hero Photo (URL or File)</label>
+        <input type="text" id="f_heroImgUrl" placeholder="Paste image URL (e.g. https://i.ibb.co/...)" oninput="handleHeroUrlChange(this.value)" style="margin-bottom:8px;">
+        <label style="font-size:0.72rem; color:var(--steel-light);">OR UPLOAD FILE (AUTO-COMPRESSED FAST)</label>
+        <input type="file" accept="image/*" id="f_heroImgFile" onchange="handleImageUpload(this, 'heroImg')">
+        <img id="f_heroImgPreview" class="thumb-preview" style="display:none; margin-top:8px;">
+      </div>
+    </div>
+
+    <!-- CV SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">2</span> CV / Resume</h3>
+      <div class="admin-field">
+        <label>Upload CV (PDF)</label>
+        <input type="file" accept="application/pdf" id="f_cvFile" onchange="handleCvUpload(this)">
+        <p id="cvStatus" style="font-size:0.82rem; color:var(--steel-light); margin-top:6px;">No CV file uploaded.</p>
+      </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">3</span> About Me</h3>
+      <div class="admin-field">
+        <label>Education</label>
+        <textarea id="f_education"></textarea>
+      </div>
+      <div class="admin-field">
+        <label>Bio</label>
+        <textarea id="f_bio"></textarea>
+      </div>
+      <div class="admin-field">
+        <label>Core Skills (Separate with commas)</label>
+        <input type="text" id="f_skills" placeholder="AutoCAD, Site Supervision, ...">
+      </div>
+    </div>
+
+    <!-- EXPERIENCE SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">4</span> Experience</h3>
+      <div id="experienceMount"></div>
+      <button class="btn btn-dark btn-sm" onclick="addExperience()">+ Add Experience</button>
+    </div>
+
+    <!-- GALLERY SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">5</span> Gallery</h3>
+      <div id="galleryMount"></div>
+      <button class="btn btn-dark btn-sm" onclick="addGalleryItem()">+ Add Gallery Image</button>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">6</span> Contact & Social Links</h3>
+      <div class="admin-field">
+        <label>Email</label>
+        <input type="email" id="f_email">
+      </div>
+      <div class="admin-field">
+        <label>Phone</label>
+        <input type="tel" id="f_phone">
+      </div>
+      <div class="admin-field">
+        <label>Location</label>
+        <input type="text" id="f_location">
+      </div>
+      <div class="admin-field">
+        <label>Instagram URL</label>
+        <input type="text" id="f_instagram" placeholder="https://instagram.com/yourusername">
+      </div>
+      <div class="admin-field">
+        <label>Facebook URL</label>
+        <input type="text" id="f_facebook" placeholder="https://facebook.com/yourusername">
+      </div>
+      <div class="admin-field">
+        <label>LinkedIn URL</label>
+        <input type="text" id="f_linkedin" placeholder="https://linkedin.com/in/yourusername">
+      </div>
+    </div>
+
+    <!-- EMAILJS SETTINGS SECTION -->
+    <div class="admin-section">
+      <h3><span class="step-num">7</span> EmailJS Settings (Contact Form Email)</h3>
+      <p style="font-size:0.82rem; color:var(--steel-light); margin-bottom:14px;">
+        Configure your EmailJS credentials (Service ID, Template ID, and Public Key) to receive contact form messages directly.
+      </p>
+      <div class="admin-field">
+        <label>EmailJS Service ID</label>
+        <input type="text" id="f_ejs_service" value="portfolio">
+      </div>
+      <div class="admin-field">
+        <label>EmailJS Template ID</label>
+        <input type="text" id="f_ejs_template" placeholder="template_xxxxxx">
+      </div>
+      <div class="admin-field">
+        <label>EmailJS Public Key (User Key)</label>
+        <input type="text" id="f_ejs_public" placeholder="user_xxxxxx / Public Key">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="save-bar">
+    <button class="btn btn-outline" style="border-color:var(--steel-light); color:var(--steel);" onclick="handleReset()">Reset to Default</button>
+    <button class="btn btn-primary" onclick="handleSave()">💾 Save Changes</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script>
+  let workingData = null;
+
+  // ---------- LOGIN ----------
+  function tryLogin() {
+    const val = document.getElementById("passwordInput").value;
+    if (val === ADMIN_PASSWORD) {
+      sessionStorage.setItem("adminLoggedIn", "true");
+      showDashboard();
+    } else {
+      document.getElementById("loginError").style.display = "block";
+    }
+  }
+  function logout() {
+    sessionStorage.removeItem("adminLoggedIn");
+    location.reload();
+  }
+  function showDashboard() {
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("adminShell").style.display = "block";
+    loadFormFromData();
+  }
+
+  if (sessionStorage.getItem("adminLoggedIn") === "true") {
+    showDashboard();
+  }
+  document.getElementById("passwordInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") tryLogin();
+  });
+
+  // ---------- LOAD DATA INTO FORM ----------
+  function loadFormFromData() {
+    workingData = getData();
+    const d = workingData;
+
+    document.getElementById("f_name").value = d.name;
+    document.getElementById("f_title").value = d.title;
+    document.getElementById("f_tagline").value = d.tagline;
+    if (document.getElementById("f_heroImgUrl")) {
+      document.getElementById("f_heroImgUrl").value = d.heroImg || "";
+    }
+    if (d.heroImg) {
+      const preview = document.getElementById("f_heroImgPreview");
+      preview.src = d.heroImg;
+      preview.style.display = "block";
+    }
+
+    if (d.cvFile) {
+      document.getElementById("cvStatus").textContent = "✅ CV uploaded: " + (d.cvFileName || "CV.pdf");
+    }
+
+    document.getElementById("f_education").value = d.about.education;
+    document.getElementById("f_bio").value = d.about.bio;
+    document.getElementById("f_skills").value = (d.about.skills || []).join(", ");
+
+    document.getElementById("f_email").value = d.contact.email || "";
+    document.getElementById("f_phone").value = d.contact.phone || "";
+    document.getElementById("f_location").value = d.contact.location || "";
+    document.getElementById("f_instagram").value = d.contact.instagram || "";
+    document.getElementById("f_facebook").value = d.contact.facebook || "";
+    document.getElementById("f_linkedin").value = d.contact.linkedin || "";
+
+    const ejs = d.emailjs || {};
+    document.getElementById("f_ejs_service").value = ejs.serviceId || "portfolio";
+    document.getElementById("f_ejs_template").value = ejs.templateId || "";
+    document.getElementById("f_ejs_public").value = ejs.publicKey || "";
+
+    renderExperience();
+    renderGallery();
+  }
+
+  // ---------- IMAGE COMPRESSION & UPLOAD HELPERS ----------
+  function compressImage(file, maxWidth, maxHeight, quality, callback) {
+    if (!file || !file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        }
+        if (height > maxHeight) {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL("image/jpeg", quality);
+        callback(dataUrl);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function handleHeroUrlChange(url) {
+    workingData.heroImg = url;
+    const preview = document.getElementById("f_heroImgPreview");
+    if (url) {
+      preview.src = url;
+      preview.style.display = "block";
+    } else {
+      preview.style.display = "none";
+    }
+  }
+
+  function handleImageUpload(input, target) {
+    if (!input.files[0]) return;
+    compressImage(input.files[0], 1000, 1000, 0.75, (compressedUrl) => {
+      workingData[target] = compressedUrl;
+      const urlInput = document.getElementById("f_heroImgUrl");
+      if (urlInput) urlInput.value = "[Uploaded Compressed Photo]";
+      const preview = document.getElementById("f_heroImgPreview");
+      preview.src = compressedUrl;
+      preview.style.display = "block";
+    });
+  }
+
+  function handleCvUpload(input) {
+    if (!input.files[0]) return;
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      workingData.cvFile = reader.result;
+      workingData.cvFileName = file.name;
+      document.getElementById("cvStatus").textContent = "✅ CV uploaded: " + file.name;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ---------- EXPERIENCE (dynamic repeat blocks) ----------
+  function renderExperience() {
+    const mount = document.getElementById("experienceMount");
+    mount.innerHTML = "";
+    workingData.experience.forEach((exp, i) => {
+      const block = document.createElement("div");
+      block.className = "repeat-block";
+      block.innerHTML = `
+        <button class="remove-btn" onclick="removeExperience(${i})">✕</button>
+        <div class="admin-field">
+          <label>Company</label>
+          <input type="text" value="${escapeHtml(exp.company)}" oninput="updateExperience(${i}, 'company', this.value)">
+        </div>
+        <div class="admin-field">
+          <label>Role</label>
+          <input type="text" value="${escapeHtml(exp.role)}" oninput="updateExperience(${i}, 'role', this.value)">
+        </div>
+        <div class="admin-field">
+          <label>Duration</label>
+          <input type="text" value="${escapeHtml(exp.duration)}" oninput="updateExperience(${i}, 'duration', this.value)">
+        </div>
+        <div class="admin-field">
+          <label>Description</label>
+          <textarea oninput="updateExperience(${i}, 'desc', this.value)">${escapeHtml(exp.desc)}</textarea>
+        </div>
+      `;
+      mount.appendChild(block);
+    });
+  }
+  function updateExperience(i, field, value) {
+    workingData.experience[i][field] = value;
+  }
+  function addExperience() {
+    workingData.experience.push({ company: "", role: "", duration: "", desc: "" });
+    renderExperience();
+  }
+  function removeExperience(i) {
+    workingData.experience.splice(i, 1);
+    renderExperience();
+  }
+
+  // ---------- GALLERY (dynamic repeat blocks) ----------
+  function renderGallery() {
+    const mount = document.getElementById("galleryMount");
+    mount.innerHTML = "";
+    workingData.gallery.forEach((item, i) => {
+      const block = document.createElement("div");
+      block.className = "repeat-block";
+      block.innerHTML = `
+        <button class="remove-btn" onclick="removeGalleryItem(${i})">✕</button>
+        <div class="admin-field">
+          <label>Image URL or File Upload</label>
+          <input type="text" value="${escapeHtml(item.img.startsWith('data:') ? '[Uploaded Image]' : item.img)}" placeholder="Paste image URL (https://i.ibb.co/...)" oninput="updateGalleryImgUrl(${i}, this.value)" style="margin-bottom:6px;">
+          <input type="file" accept="image/*" onchange="handleGalleryImage(this, ${i})">
+          ${item.img ? `<img src="${item.img}" class="thumb-preview" style="margin-top:8px;">` : ""}
+        </div>
+        <div class="admin-field">
+          <label>Title</label>
+          <input type="text" value="${escapeHtml(item.title)}" oninput="updateGalleryTitle(${i}, this.value)">
+        </div>
+      `;
+      mount.appendChild(block);
+    });
+  }
+  function updateGalleryImgUrl(i, url) {
+    workingData.gallery[i].img = url;
+  }
+  function handleGalleryImage(input, i) {
+    if (!input.files[0]) return;
+    compressImage(input.files[0], 1000, 1000, 0.75, (compressedUrl) => {
+      workingData.gallery[i].img = compressedUrl;
+      renderGallery();
+    });
+  }
+  function updateGalleryTitle(i, value) {
+    workingData.gallery[i].title = value;
+  }
+  function addGalleryItem() {
+    workingData.gallery.push({ img: "", title: "New Site Photo" });
+    renderGallery();
+  }
+  function removeGalleryItem(i) {
+    workingData.gallery.splice(i, 1);
+    renderGallery();
+  }
+
+  // ---------- SAVE ----------
+  async function handleSave() {
+    workingData.name = document.getElementById("f_name").value;
+    workingData.title = document.getElementById("f_title").value;
+    workingData.tagline = document.getElementById("f_tagline").value;
+
+    const heroUrlField = document.getElementById("f_heroImgUrl");
+    if (heroUrlField) {
+      const val = heroUrlField.value.trim();
+      if (val && !val.startsWith("[Uploaded")) {
+        workingData.heroImg = val;
+      }
+    }
+
+    workingData.about.education = document.getElementById("f_education").value;
+    workingData.about.bio = document.getElementById("f_bio").value;
+    workingData.about.skills = document.getElementById("f_skills").value
+      .split(",").map(s => s.trim()).filter(Boolean);
+
+    workingData.contact.email = document.getElementById("f_email").value;
+    workingData.contact.phone = document.getElementById("f_phone").value;
+    workingData.contact.location = document.getElementById("f_location").value;
+    workingData.contact.instagram = document.getElementById("f_instagram").value;
+    workingData.contact.facebook = document.getElementById("f_facebook").value;
+    workingData.contact.linkedin = document.getElementById("f_linkedin").value;
+
+    workingData.emailjs = {
+      serviceId: document.getElementById("f_ejs_service").value.trim() || "service_6nrx68j",
+      templateId: document.getElementById("f_ejs_template").value.trim(),
+      publicKey: document.getElementById("f_ejs_public").value.trim()
+    };
+
+    saveData(workingData);
+    showToast("💾 Syncing with Supabase Cloud...");
+
+    const password = document.getElementById("passwordInput").value;
+    const res = await saveCloudData(workingData, password);
+    if (res && res.success) {
+      showToast("✅ Saved & Synced across all devices!");
+    } else {
+      showToast("⚠️ Local saved. Cloud sync: " + (res.error || "Done"));
+    }
+  }
+
+  function handleReset() {
+    if (!confirm("Sab kuch default data pe reset ho jayega. Sure?")) return;
+    resetData();
+    loadFormFromData();
+    showToast("↺ Reset to default data.");
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2600);
+  }
+
+  function escapeHtml(str) {
+    return (str || "").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+</script>
+</body>
+</html>

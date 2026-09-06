@@ -1,0 +1,522 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bihar Travel Experience - Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .bihar-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid #f59e0b;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Famous Places Title - Different Style */
+        .famous-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 40px;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Famous Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .place-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.05);
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .place-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Personal Experience Section */
+        .experience-section {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+
+        .experience-title {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .experience-date {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-date i {
+            color: #3b82f6;
+        }
+
+        .experience-content {
+            margin-top: 30px;
+        }
+
+        .experience-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .experience-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Back to About Button */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .famous-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .bihar-hero {
+                height: 30vh;
+                margin-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .experience-section {
+                padding: 30px;
+            }
+            
+            .experience-title {
+                font-size: 2rem;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .famous-title {
+                font-size: 1.8rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .bihar-hero {
+                height: 25vh;
+                margin-top: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bihar-hero">
+        <div class="container hero-content">
+            <h1>Bihar - The Land of Enlightenment</h1>
+        </div>
+    </section>
+
+    <!-- 6 Famous Places Title -->
+    <div class="container">
+        <h2 class="famous-title">6 Famous Places in Bihar</h2>
+    </div>
+
+    <!-- Famous Places Section -->
+    <section id="famous-places">
+        <div class="container">
+            <div class="places-grid">
+                <!-- Place 1 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.hindustantimes.com/ht-img/img/2025/09/01/1600x900/LNMU-at-Darbhanga---HT-file-_1687967717405_1756709541042.jpg" 
+                         alt="Raj Campus - LNMU University" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Raj Campus - LNMU University</h3>
+                        <p class="place-description">The prestigious Lalit Narayan Mithila University (LNMU) in Darbhanga, established in 1972. The Raj Campus is the main campus of this renowned university, known for its excellent academic environment, beautiful architecture, and significant contribution to higher education in Bihar.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 2 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/61/fc/a2/crop-20170822-233322.jpg?w=900&h=500&s=1" 
+                         alt="Taramandal" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Taramandal (Planetarium)</h3>
+                        <p class="place-description">A state-of-the-art planetarium located in Patna, managed by the Patna Museum. It offers fascinating shows about astronomy, celestial bodies, and space science. The dome-shaped theater provides an immersive experience of the night sky and educational programs about the universe.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 3 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/09/Patna-Museum-Cover-Photo-1-840x425.jpg" 
+                         alt="Patna Museum" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Patna Museum</h3>
+                        <p class="place-description">Also known as the Jadu Ghar, Patna Museum is one of the oldest museums in Bihar, established in 1917. It houses an extensive collection of archaeological artifacts, paintings, coins, and sculptures from ancient India, including the famous Didarganj Yakshi statue.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 4 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://crm.flightsmojo.in//UploadedImages/64a17560-e6db-4e08-8506-d079393b05b0.jpg" 
+                         alt="Jay Prakash Narayan Airport" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Jay Prakash Narayan Airport</h3>
+                        <p class="place-description">Patna's international airport, named after the famous socialist leader Jay Prakash Narayan. Located in the capital city, this modern airport serves as Bihar's primary aviation hub with excellent facilities and connectivity to major cities across India and international destinations.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 5 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://deih43ym53wif.cloudfront.net/mahabodhi-temple-bodh-gaya-india-bihar-shutterstock_403098046.jpg_5e9a251de7.jpg" 
+                         alt="Mahabodhi Temple, Bodh Gaya" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Mahabodhi Temple</h3>
+                        <p class="place-description">A UNESCO World Heritage Site in Bodh Gaya where Gautama Buddha attained enlightenment under the Bodhi Tree. This sacred Buddhist pilgrimage site features magnificent architecture, a 50-meter tall pyramidal tower, and a serene atmosphere that attracts visitors from around the world.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 6 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://b.zmtcdn.com/data/reviews_photos/446/2d233298eec4c9384148ec9b17a29446_1531626628.jpg" 
+                         alt="Bihar's Traditional Food" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Traditional Bihari Cuisine</h3>
+                        <p class="place-description">Bihar's rich culinary heritage featuring dishes like Litti Chokha, Sattu Paratha, Malpua, and Thekua. The traditional food is known for its unique flavors, nutritional value, and cultural significance in festivals and daily life. Bihari cuisine reflects the agricultural abundance of the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section id="personal-experience">
+        <div class="container">
+            <div class="experience-section">
+                <div class="experience-header">
+                    <div class="experience-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2 class="experience-title">My Bihar Experience - A Homecoming Journey</h2>
+                </div>
+                
+                <div class="experience-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>My Life in Bihar: Growing up and regular visits</span>
+                </div>
+                
+                <div class="experience-content">
+                    <div class="experience-text">
+                        <p>Being from <span class="highlight">Bihar</span> gives me a deep connection to this land of rich history, culture, and spiritual significance. As my home state, Bihar holds a special place in my heart, and every visit feels like a homecoming filled with warmth, nostalgia, and pride in my roots.</p>
+                        
+                        <p>My educational journey in Bihar includes experiences at the prestigious <span class="highlight">LNMU University (Raj Campus)</span> in Darbhanga. The university's academic environment, knowledgeable faculty, and vibrant campus life played a significant role in shaping my educational foundation. The beautiful campus with its green spaces and modern facilities provided the perfect atmosphere for learning and personal growth.</p>
+                        
+                        <p>One of my favorite educational places in Patna is the <span class="highlight">Taramandal (Planetarium)</span>. As someone fascinated by astronomy and space science, I've spent countless hours watching the fascinating shows about stars, planets, and the universe. The dome-shaped theater provides an immersive experience that makes you feel like you're actually in space. The educational programs here sparked my interest in science and technology from a young age.</p>
+                        
+                        <p>For history and culture, I frequently visit the <span class="highlight">Patna Museum</span> (Jadu Ghar). This museum houses an incredible collection of artifacts that tell the story of Bihar's rich history. From ancient sculptures and coins to historical documents and traditional art, each visit teaches me something new about my heritage. The famous Didarganj Yakshi statue is particularly mesmerizing with its intricate carving and historical significance.</p>
+                        
+                        <p>I have many memories connected to the <span class="highlight">Jay Prakash Narayan Airport</span> in Patna. Whether it's welcoming family members returning home or beginning new journeys myself, this airport represents connections - both to my roots in Bihar and to the wider world. The modern facilities and efficient services make travel smooth and comfortable for everyone visiting my home state.</p>
+                        
+                        <p>Bihar's spiritual significance is embodied in places like the <span class="highlight">Mahabodhi Temple in Bodh Gaya</span>. Visiting this UNESCO World Heritage Site is always a humbling experience. The serene atmosphere under the ancient Bodhi Tree, where Buddha attained enlightenment, creates a sense of peace and spiritual connection that's hard to find elsewhere. The temple's magnificent architecture and peaceful surroundings make it a must-visit destination.</p>
+                        
+                        <p>No experience of Bihar is complete without mentioning our <span class="highlight">traditional cuisine</span>. The flavors of home-cooked Litti Chokha, the nutritious Sattu preparations, the sweet delight of Malpua during festivals, and the crispy Thekua during Chhath Puja - these are not just foods but expressions of our culture and traditions. The culinary diversity of Bihar, from the spicy Bihari kebabs to the simple yet delicious Dal-Puri, represents the warmth and hospitality of our people.</p>
+                        
+                        <p>Growing up in Bihar has given me a deep appreciation for our rich cultural heritage, strong family values, and the resilience of our people. The festivals, especially Chhath Puja with its beautiful rituals at riverbanks during sunrise and sunset, showcase the spiritual depth and community bonding that defines Bihari culture. Every visit back home reinforces my connection to this land and reminds me of the values and traditions that have shaped who I am today.</p>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+        
+        // Handle back button - will scroll to Bihar section on about page
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            // Store which city to scroll to when returning to about page
+            localStorage.setItem('scrollToCity', 'bihar');
+            
+            // Delay navigation slightly to ensure localStorage is set
+            setTimeout(() => {
+                window.location.href = "about.html";
+            }, 100);
+        });
+        
+        // Optional: If you want to automatically scroll to Bihar section when coming from about page
+        window.addEventListener('load', function() {
+            const fromAbout = sessionStorage.getItem('fromAboutBihar');
+            if (fromAbout === 'true') {
+                window.scrollTo(0, 0);
+                sessionStorage.removeItem('fromAboutBihar');
+            }
+        });
+    </script>
+</body>
+</html>
+

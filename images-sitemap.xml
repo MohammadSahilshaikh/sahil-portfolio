@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://aapkiwebsite.com/</loc>
+    <image:image>
+      <image:loc>https://aapkiwebsite.com/Sahil.jpg</image:loc>
+      <image:caption>Mohammad Sahil Shaikh Profile Photo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aapkiwebsite.com/sahil6.jpeg</image:loc>
+      <image:caption>Sahil at University Event</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aapkiwebsite.com/sahil22.jpeg</image:loc>
+      <image:caption>Sahil NCC Camp</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aapkiwebsite.com/mime2.jpeg</image:loc>
+      <image:caption>Sahil Mime Performance</image:caption>
+    </image:image>
+    <!-- Aise hi saari images add karo -->
+  </url>
+</urlset>

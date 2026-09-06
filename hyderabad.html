@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Travel Experience - Mohammad Sahil Shaikh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hyderabad-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid #f59e0b;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 50px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Famous Places Title - Different Style */
+        .famous-title {
+            text-align: center;
+            font-size: 3rem;
+            margin: 60px 0 40px;
+            color: #3b82f6;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Famous Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .place-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.05);
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .place-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Personal Experience Section */
+        .experience-section {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+
+        .experience-title {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .experience-date {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-date i {
+            color: #3b82f6;
+        }
+
+        .experience-content {
+            margin-top: 30px;
+        }
+
+        .experience-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .experience-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Back to About Button */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .famous-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hyderabad-hero {
+                height: 30vh;
+                margin-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .experience-section {
+                padding: 30px;
+            }
+            
+            .experience-title {
+                font-size: 2rem;
+            }
+            
+            .footer-social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .famous-title {
+                font-size: 1.8rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-icons {
+                gap: 15px;
+            }
+            
+            .footer-social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .hyderabad-hero {
+                height: 25vh;
+                margin-top: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Port<span>folio</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                 <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="profession.html">Profession</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="reach.html">Reach Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hyderabad-hero">
+        <div class="container hero-content">
+            <h1>Hyderabad - The City of Pearls</h1>
+        </div>
+    </section>
+
+    <!-- 6 Famous Places Title -->
+    <div class="container">
+        <h2 class="famous-title">6 Famous Places in Hyderabad</h2>
+    </div>
+
+    <!-- Famous Places Section -->
+    <section id="famous-places">
+        <div class="container">
+            <div class="places-grid">
+                <!-- Place 1 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://th-i.thgim.com/public/news/cities/Hyderabad/jgor1f/article69579284.ece/alternates/LANDSCAPE_1200/MANUU%20Hyderabad.jpg" 
+                         alt="MANUU Campus" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">MANUU Campus</h3>
+                        <p class="place-description">Maulana Azad National Urdu University, one of India's premier educational institutions dedicated to promoting Urdu language and education. The sprawling campus features beautiful architecture and excellent academic facilities.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 2 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://w0.peakpx.com/wallpaper/327/605/HD-wallpaper-charminar-hyderabad-place-india.jpg" 
+                         alt="Charminar" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Charminar</h3>
+                        <p class="place-description">The iconic monument and mosque built in 1591 that has become the global symbol of Hyderabad. This magnificent structure with four grand arches stands at the heart of the old city and offers panoramic views from its top.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 3 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://assets-news.housing.com/news/wp-content/uploads/2020/11/02184143/Everything-you-need-to-know-about-Golconda-Fort-FB-1200x700-compressed.jpg" 
+                         alt="Golkonda Fort" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Golkonda Fort</h3>
+                        <p class="place-description">A magnificent fortress and ruined city that was the capital of the medieval sultanate of the Qutb Shahi dynasty. Famous for its acoustic architecture, diamond mines, and the stunning light and sound show.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 4 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://in.apparelresources.com/wp-content/uploads/sites/3/2020/03/Ikea-office.jpg" 
+                         alt="IKEA Hyderabad" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">IKEA Hyderabad</h3>
+                        <p class="place-description">India's first IKEA store, spanning over 400,000 square feet. This massive home furnishings store offers beautifully designed furniture, home accessories, and the famous Swedish meatballs in its restaurant.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 5 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://cdn.siasat.com/wp-content/uploads/2023/10/DLFs-food-street.jpg" 
+                         alt="Asif Nagar Food Street" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Asif Nagar Food Street</h3>
+                        <p class="place-description">Hyderabad's famous food destination known for authentic Hyderabadi cuisine. From the legendary Hyderabadi Biryani to Irani chai, kebabs, and traditional sweets, this place is a food lover's paradise.</p>
+                    </div>
+                </div>
+                
+                <!-- Place 6 -->
+                <div class="place-card">
+                    <img loading="lazy" src="https://www.fabhotels.com/blog/wp-content/uploads/2019/05/Hussain-Sagar-Lake.jpg" 
+                         alt="Hussain Sagar Lake" class="place-img">
+                    <div class="place-content">
+                        <h3 class="place-name">Hussain Sagar Lake</h3>
+                        <p class="place-description">A heart-shaped lake in Hyderabad built in 1563. The massive monolithic Buddha statue standing on Gibraltar Rock in the middle of the lake makes it a major tourist attraction with beautiful sunset views.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section id="personal-experience">
+        <div class="container">
+            <div class="experience-section">
+                <div class="experience-header">
+                    <div class="experience-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2 class="experience-title">My Hyderabad Experience - October 2024</h2>
+                </div>
+                
+                <div class="experience-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Visit Date: October 12-18, 2024</span>
+                </div>
+                
+                <div class="experience-content">
+                    <div class="experience-text">
+                        <p>My visit to <span class="highlight">Hyderabad in October 2024</span> was an extraordinary blend of historical exploration, educational insight, and culinary adventure. As a student with a keen interest in education, visiting <span class="highlight">MANUU (Maulana Azad National Urdu University)</span> was particularly meaningful for me.</p>
+                        
+                        <p>My journey began at the prestigious <span class="highlight">MANUU campus</span>. The university's commitment to promoting Urdu language and education was evident in its beautiful campus architecture and vibrant academic atmosphere. I spent hours exploring the library, interacting with students, and understanding the unique educational approach of this institution. The campus greenery and peaceful environment made it an ideal place for learning and intellectual growth.</p>
+                        
+                        <p>No visit to Hyderabad is complete without seeing the iconic <span class="highlight">Charminar</span>. Standing beneath this magnificent 16th-century monument was awe-inspiring. I climbed to the top for panoramic views of the bustling old city below. The intricate architecture, with its four grand arches and delicate stucco decorations, reflected the glorious Qutb Shahi era. The surrounding Laad Bazaar with its colorful bangles and pearls added to the charm of this historical site.</p>
+                        
+                        <p>My next destination was the formidable <span class="highlight">Golkonda Fort</span>. Climbing up the fort's steep pathways, I marveled at the ingenious acoustic system where a hand clap at the entrance gate could be heard at the highest point of the fort. The light and sound show in the evening narrated the fort's fascinating history, bringing alive stories of diamonds, royalty, and battles. The panoramic view of Hyderabad from the top was absolutely breathtaking.</p>
+                        
+                        <p>A completely different experience awaited me at <span class="highlight">IKEA Hyderabad</span>, India's first IKEA store. The sheer size of the store was overwhelming - spanning over 400,000 square feet! I explored beautifully designed room setups, tried out comfortable furniture, and of course, enjoyed the famous Swedish meatballs at the restaurant. The store perfectly blended modern retail experience with Hyderabad's growing cosmopolitan culture.</p>
+                        
+                        <p>The culinary highlight of my trip was exploring <span class="highlight">Asif Nagar Food Street</span>. This is where I truly experienced Hyderabad's famous food culture. I started with the legendary <span class="highlight">Hyderabadi Biryani</span> - the fragrant basmati rice layered with perfectly spiced meat was simply divine. I then tried various kebabs, haleem (especially popular during Ramadan), and ended with Irani chai and Osmania biscuits. The street food here was authentic, flavorful, and gave me a real taste of Hyderabadi hospitality.</p>
+                        
+                        <p>I also visited the beautiful <span class="highlight">Hussain Sagar Lake</span> and took a boat ride to see the massive Buddha statue in the middle of the lake. The evening view with the city lights reflecting on the water was mesmerizing. Additionally, I explored the Nizam's Museum, Salar Jung Museum, and enjoyed shopping for pearls at the famous markets.</p>
+                        
+                        <p>Hyderabad offered me a perfect mix of ancient heritage and modern development. From the historical grandeur of Charminar and Golkonda to the contemporary appeal of IKEA, from the academic environment of MANUU to the culinary delights of Asif Nagar - every experience was unique and memorable. The city's warm people, rich culture, and perfect blend of tradition and modernity made this trip truly unforgettable.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to About Button - Scrolls back to Hyderabad card on about page -->
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+        
+        // Handle back button - will scroll to Hyderabad section on about page
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            // Store which city to scroll to when returning to about page
+            localStorage.setItem('scrollToCity', 'hyderabad');
+            
+            // Delay navigation slightly to ensure localStorage is set
+            setTimeout(() => {
+                window.location.href = "about.html";
+            }, 100);
+        });
+        
+        // Optional: If you want to automatically scroll to Hyderabad section when coming from about page
+        window.addEventListener('load', function() {
+            const fromAbout = sessionStorage.getItem('fromAboutHyderabad');
+            if (fromAbout === 'true') {
+                window.scrollTo(0, 0);
+                sessionStorage.removeItem('fromAboutHyderabad');
+            }
+        });
+    </script>
+</body>
+</html>
+
