@@ -889,7 +889,6 @@
             position: relative;
             overflow: hidden;
             margin-top: 70px;
-            background: #030712;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-bottom: 3px solid #3b82f6;
             display: flex;
@@ -910,30 +909,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #030712;
-            overflow: hidden;
-        }
-
-        .slider-backdrop {
-            position: absolute;
-            inset: -20px;
-            width: calc(100% + 40px);
-            height: calc(100% + 40px);
-            object-fit: cover;
-            filter: blur(30px) brightness(0.35);
-            transform: scale(1.08);
-            z-index: 1;
-            pointer-events: none;
         }
 
         .slider-img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 100% full image visible with zero cutoff! */
+            object-fit: cover; /* Fills entire screen completely with zero blank bars */
             object-position: center center;
-            position: relative;
-            z-index: 2;
-            transition: all 0.25s ease;
+            transition: object-position 0.2s ease;
         }
 
         .slider-btn {
@@ -972,19 +955,15 @@
         @media (max-width: 768px) {
             .top-slider {
                 margin-top: 80px;
-                aspect-ratio: 16 / 9 !important;
-                height: auto !important;
-                min-height: unset !important;
-                max-height: none !important;
-            }
-
-            .slider-backdrop {
-                display: none !important;
+                aspect-ratio: 16 / 9;
+                height: auto;
+                min-height: unset;
+                max-height: none;
             }
 
             .slider-img {
-                object-fit: cover !important;
-                object-position: center !important;
+                object-fit: cover;
+                object-position: center;
             }
 
             .slider-btn {
@@ -997,19 +976,15 @@
         @media (max-width: 480px) {
             .top-slider {
                 margin-top: 60px;
-                aspect-ratio: 16 / 9 !important;
-                height: auto !important;
-                min-height: unset !important;
-                max-height: none !important;
-            }
-
-            .slider-backdrop {
-                display: none !important;
+                aspect-ratio: 16 / 9;
+                height: auto;
+                min-height: unset;
+                max-height: none;
             }
 
             .slider-img {
-                object-fit: cover !important;
-                object-position: center !important;
+                object-fit: cover;
+                object-position: center;
             }
 
             .slider-btn {
@@ -3133,13 +3108,9 @@
             const slide = document.createElement('div');
             slide.className = 'slider-slide';
             let imgSrc = (typeof item === 'string') ? item : (item.src || item.url || '');
-            let imgFit = (typeof item === 'object' && item.fit) ? item.fit : 'contain';
             let imgPos = (typeof item === 'object' && item.position) ? item.position : 
-                         (imgSrc.includes('Sahil') || imgSrc.includes('sahil6') || imgSrc.includes('sahil14') ? '50% 18%' : '50% 50%');
-            slide.innerHTML = `
-                <img src="${imgSrc}" alt="" class="slider-backdrop" aria-hidden="true">
-                <img src="${imgSrc}" alt="Slide" class="slider-img" style="object-fit: ${imgFit}; object-position: ${imgPos};" onerror="this.style.display='none'">
-            `;
+                         (imgSrc.includes('Sahil.jpg') || imgSrc.includes('sahil6') || imgSrc.includes('sahil14') ? '50% 18%' : 'center center');
+            slide.innerHTML = `<img src="${imgSrc}" alt="Slide" class="slider-img" style="object-position: ${imgPos};" onerror="this.style.display='none'">`;
             sliderTrack.appendChild(slide);
         });
 
