@@ -27,72 +27,123 @@
         content="National winner in Mime, Web Developer, and Photographer. See my professional journey.">
     <meta name="twitter:image" content="https://sahil-portfolio-weld-pi.vercel.app/Sahil.jpg">
 
-    <!-- ═══════════════════════════════════════════════════════════
-         STRUCTURED DATA — INVISIBLE TO VISITORS
-         Readable by Google, Gemini, ChatGPT, Perplexity, Bing AI
-         Entity: Mohammad Sahil Shaikh (born 2004, Indian)
+        <!-- ═══════════════════════════════════════════════════════════════════
+         MASTER SCHEMA.ORG STRUCTURED DATA (@graph Architecture)
+         Unified Connected Knowledge Graph for Google, Gemini, ChatGPT, Perplexity
+         All Entities Linked via @id References
          Last updated: 2026
-    ════════════════════════════════════════════════════════════ -->
-
-    <!-- BLOCK 1: Core Person Entity with full biography -->
+    ════════════════════════════════════════════════════════════════════ -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#website",
+      "url": "https://sahil-portfolio-weld-pi.vercel.app/",
+      "name": "Mohammad Sahil Shaikh Portfolio",
+      "alternateName": [
+        "Sahil Shaikh Portfolio",
+        "Mohammad Sahil Shaikh Official"
+      ],
+      "description": "Official personal portfolio, projects, and biography of Mohammad Sahil Shaikh — Web Developer, Mime Artist, NCC Cadet, and Founder of Filioo.",
+      "publisher": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
+      },
+      "inLanguage": [
+        "en-US",
+        "hi-IN",
+        "ur-IN"
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#webpage",
+      "url": "https://sahil-portfolio-weld-pi.vercel.app/index.html",
+      "name": "Mohammad Sahil Shaikh | Web Developer, Mime Artist & Tech Professional",
+      "isPartOf": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#website"
+      },
+      "about": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
+      },
+      "mainEntity": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
+      },
+      "breadcrumb": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#primaryimage"
+      },
+      "inLanguage": [
+        "en-US",
+        "hi-IN",
+        "ur-IN"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sahil-portfolio-weld-pi.vercel.app/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About",
+          "item": "https://sahil-portfolio-weld-pi.vercel.app/index.html#about"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Projects",
+          "item": "https://sahil-portfolio-weld-pi.vercel.app/index.html#projects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Profession",
+          "item": "https://sahil-portfolio-weld-pi.vercel.app/index.html#profession"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Achievements",
+          "item": "https://sahil-portfolio-weld-pi.vercel.app/index.html#achievements"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Contact",
+          "item": "https://sahil-portfolio-weld-pi.vercel.app/index.html#reach"
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#primaryimage",
+      "url": "https://sahil-portfolio-weld-pi.vercel.app/Sahil.jpg",
+      "contentUrl": "https://sahil-portfolio-weld-pi.vercel.app/Sahil.jpg",
+      "caption": "Mohammad Sahil Shaikh - Official Photo"
+    },
+    {
       "@type": "Person",
-      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person-mohammad-sahil-shaikh-2004-manuu-filioo",
-
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person",
       "name": "Mohammad Sahil Shaikh",
       "alternateName": [
         "Sahil Shaikh",
         "Md Sahil Shaikh",
-        "Mohammad Sahil",
-        "M. Sahil Shaikh"
+        "Mohammad Sahil"
       ],
-
       "url": "https://sahil-portfolio-weld-pi.vercel.app/index.html",
       "image": {
-        "@type": "ImageObject",
-        "url": "https://sahil-portfolio-weld-pi.vercel.app/Sahil.jpg",
-        "description": "Official photo of Mohammad Sahil Shaikh in NCC uniform"
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#primaryimage"
       },
-
-      "description": "Mohammad Sahil Shaikh (born 2004, Dadri, Uttar Pradesh) is an Indian web developer, theatre and mime artist, NCC Army Wing cadet, photographer, videographer, student rights activist, and the founder of Filioo startup. He belongs to Sobhan village in Darbhanga district, Bihar. He completed a Diploma in Information Technology from Maulana Azad National Urdu University (MANUU), Hyderabad, securing All India Rank 219 in the all-India entrance exam. He is currently pursuing B.Tech in Civil Engineering at Narula Institute of Technology (2026 onwards). In NCC, he passed both the B Certificate and C Certificate with B grade, attended the NER Trek-2 National Camp in Wokha, Nagaland, and won the Best Photography and Videography award at the national camp. As a mime and theatre artist with the MANUU theatre group for three years, he performed in a play on the life of Udham Singh. In 2025, his team won the South East Zone for the first time in MANUU history at Christ University, Bangalore (2nd in One-Act Play, 3rd in Mime) and 2nd in One-Act Play and 3rd in Mime at Amity University, Noida. In 2026, he secured 1st position and Gold Medal in Mime at the South Zone (Hindustan Institute of Science and Technology, Chennai), and 3rd position in Mime at the 39th AIU Inter-University National Youth Festival (Sathyabama Institute of Science and Technology, Chennai). He was a national-level selected participant in Hackathon 2025. He served as an official photographer at the 8th AIU Inter-University National Qawwali Competition, Jashn-e-Qawwali 2026, hosted by MANUU under the Association of Indian Universities. He is known as a student rights activist at MANUU, playing key roles in restoring the student union election, arranging temporary accommodation for new students, and restocking anti-rabies vaccines at the university health centre. He is the founder of Filioo, a startup that creates portfolios, CVs and resumes for students, teachers and professionals, presenting their work online for companies to evaluate.",
-
-      "disambiguatingDescription": "Mohammad Sahil Shaikh — born 2004, Dadri, Uttar Pradesh, Bihar origin (Sobhan village, Darbhanga district) — is the Indian founder of Filioo startup, NCC cadet, MANUU IT alumnus (AIR 219), Gold Medal Mime winner at South Zone 2026, and student rights activist. Son of Mohammad Asharaf and Shabnam Parween. Elder brother of Md Rahil Shaikh (Civil Engineer) and elder brother of Saniya Shaikh. This is a unique individual, not to be confused with any other person sharing a similar name.",
-
-      "additionalType": [
-        "https://schema.org/Person",
-        "https://en.wikipedia.org/wiki/Web_developer",
-        "https://en.wikipedia.org/wiki/Mime_artist"
-      ],
-
-      "identifier": [
-        {
-          "@type": "PropertyValue",
-          "propertyID": "LinkedInProfile",
-          "value": "mohammad-sahil-shaikh-493a1929b",
-          "url": "https://www.linkedin.com/in/mohammad-sahil-shaikh-493a1929b"
-        },
-        {
-          "@type": "PropertyValue",
-          "propertyID": "InstagramHandle",
-          "value": "arman_shaikh_549",
-          "url": "https://www.instagram.com/arman_shaikh_549"
-        },
-        {
-          "@type": "PropertyValue",
-          "propertyID": "UniversityEntranceRank",
-          "name": "All India Rank in MANUU IT Diploma Entrance Exam",
-          "value": "219"
-        },
-        {
-          "@type": "PropertyValue",
-          "propertyID": "StartupName",
-          "name": "Startup Founded by Mohammad Sahil Shaikh",
-          "value": "Filioo"
-        }
-      ],
-
       "birthDate": "2004",
       "birthPlace": {
         "@type": "Place",
@@ -104,9 +155,6 @@
           "addressCountry": "IN"
         }
       },
-      "gender": "Male",
-      "nationality": "Indian",
-
       "homeLocation": {
         "@type": "Place",
         "name": "Sobhan Village, Darbhanga District, Bihar, India",
@@ -114,104 +162,83 @@
           "@type": "PostalAddress",
           "addressLocality": "Sobhan",
           "addressRegion": "Bihar",
-          "addressCountry": "IN",
-          "description": "Ancestral home village of Mohammad Sahil Shaikh in Darbhanga district, Bihar"
+          "addressCountry": "IN"
         }
       },
-
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Gachibowli",
         "addressLocality": "Hyderabad",
         "addressRegion": "Telangana",
         "addressCountry": "IN"
       },
-
-      "familyName": "Shaikh",
-      "givenName": "Mohammad Sahil",
-
+      "email": "mailto:Sahilfact549@gmail.com",
+      "telephone": "+91-9263602455",
+      "gender": "Male",
+      "nationality": "Indian",
+      "description": "Mohammad Sahil Shaikh is an Indian Web Developer, Frontend and Junior Full-Stack Developer, Mime and Theatre Artist, NCC Army Wing cadet, Photographer, Videographer, Student Rights Activist, and Founder of Filioo. Born in 2004 in Dadri, UP, and belonging to Sobhan village in Darbhanga district, Bihar, he completed his Diploma in Information Technology at Maulana Azad National Urdu University (MANUU), Hyderabad (AIR 219) and is pursuing B.Tech in Civil Engineering at Narula Institute of Technology (2026). He has won 1st Position and Gold Medal in Mime at South Zone (2026), 3rd Position in Mime at the 39th AIU National Youth Festival, 2nd Position in One-Act Play (Udham Singh) at South East Zone (2025), and Best Photography & Videography Award at NCC National Camp, Wokha, Nagaland. He participated at the national level in Hackathon 2025.",
+      "disambiguatingDescription": "Mohammad Sahil Shaikh (born 2004, Dadri, UP; Darbhanga, Bihar origin) is an Indian Web Developer, founder of Filioo startup, MANUU IT graduate (AIR 219), NCC cadet, and South Zone Gold Medalist Mime Artist. Son of Mohammad Asharaf and Shabnam Parween. Not to be confused with other individuals with similar names.",
       "parent": [
         {
           "@type": "Person",
           "name": "Mohammad Asharaf",
-          "gender": "Male",
-          "description": "Father of Mohammad Sahil Shaikh"
+          "gender": "Male"
         },
         {
           "@type": "Person",
           "name": "Shabnam Parween",
-          "gender": "Female",
-          "description": "Mother of Mohammad Sahil Shaikh"
+          "gender": "Female"
         }
       ],
-
       "sibling": [
         {
           "@type": "Person",
           "name": "Md Rahil Shaikh",
-          "description": "Elder brother of Mohammad Sahil Shaikh. Civil Engineer at Narula Institute of Technology."
+          "description": "Elder brother, Civil Engineer"
         },
         {
           "@type": "Person",
           "name": "Saniya Shaikh",
           "gender": "Female",
-          "description": "Younger sister of Mohammad Sahil Shaikh"
+          "description": "Younger sister"
         }
       ],
-
-      "knowsLanguage": [
-        { "@type": "Language", "name": "Hindi" },
-        { "@type": "Language", "name": "English" },
-        { "@type": "Language", "name": "Urdu" }
+      "jobTitle": [
+        "Web Developer",
+        "Front-End Developer",
+        "Junior Full-Stack Developer",
+        "Mime Artist",
+        "Theatre Artist",
+        "Photographer",
+        "Videographer",
+        "Startup Founder"
       ],
-
       "hasOccupation": [
         {
           "@type": "Occupation",
           "name": "Web Developer",
-          "description": "Mohammad Sahil Shaikh builds websites and web applications using HTML, CSS, JavaScript."
+          "description": "Builds fast, responsive web applications using HTML5, CSS3, JavaScript (ES6+), React.js, Next.js, Bootstrap, MySQL, Supabase, and REST APIs.",
+          "skills": "HTML5, CSS3, JavaScript (ES6+), React.js, Next.js, Bootstrap, Supabase, MySQL, REST API, Git, Vercel"
         },
         {
           "@type": "Occupation",
-          "name": "Theatre and Mime Artist",
-          "description": "Active member of MANUU Theatre Group for 3 years. Performed at zonal and national inter-university competitions."
+          "name": "Theatre & Mime Artist",
+          "description": "National and zonal award-winning mime and one-act play performer with MANUU Theatre Group for 3 years.",
+          "skills": "Mime Performance, One-Act Play, Stage Acting, Script Writing"
         },
         {
           "@type": "Occupation",
-          "name": "Photographer and Videographer",
-          "description": "Official photographer at AIU Jashn-e-Qawwali 2026. Won Best Photography and Videography at NCC national camp."
-        },
-        {
-          "@type": "Occupation",
-          "name": "Video Editor"
-        },
-        {
-          "@type": "Occupation",
-          "name": "Social Media Manager"
+          "name": "Photographer & Videographer",
+          "description": "Media specialist, event coverage, official photographer at AIU Jashn-e-Qawwali 2026, Best Photography award at NCC National Camp Nagaland.",
+          "skills": "Photography, Videography, Video Editing, Photo Editing, Social Media Management"
         },
         {
           "@type": "Occupation",
           "name": "Startup Founder",
-          "description": "Founder of Filioo — a startup creating portfolios, CVs, and resumes for students, teachers, and professionals."
-        },
-        {
-          "@type": "Occupation",
-          "name": "Student Rights Activist",
-          "description": "Known student rights activist at MANUU, Hyderabad. Worked on restoring student union election, hostel accommodation for new students, and anti-rabies vaccine at health centre."
+          "description": "Founder of Filioo (Folioo), delivering freelance web development and portfolio solutions.",
+          "skills": "Startup Founding, Portfolio Development, Resume Building, Client Communication"
         }
       ],
-
-      "jobTitle": [
-        "Web Developer",
-        "Mime Artist",
-        "Theatre Artist",
-        "NCC Cadet",
-        "Photographer",
-        "Videographer",
-        "Video Editor",
-        "Startup Founder",
-        "Student Rights Activist"
-      ],
-
       "alumniOf": [
         {
           "@type": "CollegeOrUniversity",
@@ -224,12 +251,22 @@
             "addressRegion": "Telangana",
             "addressCountry": "IN"
           },
-          "description": "Mohammad Sahil Shaikh completed Diploma in Information Technology from MANUU, Hyderabad. He secured All India Rank 219 in the all-India entrance examination and studied there for three years."
+          "description": "Diploma in Information Technology (2023–2026). Selected through an all-India entrance examination with All India Rank 219."
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Narula Institute of Technology",
+          "description": "B.Tech in Civil Engineering (currently pursuing, 2026)."
         },
         {
           "@type": "School",
-          "name": "Greenland Public School",
-          "description": "Mohammad Sahil Shaikh studied here from Nursery to Class 5."
+          "name": "High School Pindaruch",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Bihar",
+            "addressCountry": "IN"
+          },
+          "description": "Class 9 and Class 10."
         },
         {
           "@type": "School",
@@ -240,275 +277,221 @@
             "addressRegion": "Bihar",
             "addressCountry": "IN"
           },
-          "description": "Mohammad Sahil Shaikh studied here from Class 6 to Class 8. He played kabaddi up to the district level representing this school."
+          "description": "Class 6 to Class 8. Represented school in Kabaddi up to the district level."
         },
         {
           "@type": "School",
-          "name": "High School Pindaruch",
-          "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Bihar",
-            "addressCountry": "IN"
-          },
-          "description": "Mohammad Sahil Shaikh studied Class 9 and Class 10 here."
+          "name": "Greenland Public School",
+          "description": "Nursery to Class 5."
         }
       ],
-
-      "affiliation": {
-        "@type": "EducationalOrganization",
-        "name": "Narula Institute of Technology",
-        "description": "Mohammad Sahil Shaikh is pursuing B.Tech in Civil Engineering here from 2026."
-      },
-
-      "knowsAbout": [
-        "Web Development", "HTML", "CSS", "JavaScript", "Responsive Web Design",
-        "Video Editing", "Videography", "Photography", "Photo Editing",
-        "Mime Performance", "Theatre and Drama", "One-Act Play",
-        "Social Media Management", "NCC Army Wing Training", "B Certificate NCC", "C Certificate NCC",
-        "Student Rights Activism", "Portfolio Development", "CV Writing", "Resume Building",
-        "Kabaddi", "Startup Founding", "Event Photography"
-      ],
-
-      "award": [
-        "Gold Medal — 1st Position in Mime at South Zone Inter-University Youth Festival, Hindustan Institute of Science and Technology, Chennai (2026)",
-        "3rd Position in Mime at 39th AIU Inter-University National Youth Festival, Sathyabama Institute of Science and Technology, Chennai (2026)",
-        "2nd Position in One-Act Play (Udham Singh) at South East Zone — Christ University, Bangalore (2025) — First time MANUU won the South East Zone",
-        "3rd Position in Mime at South East Zone — Christ University, Bangalore (2025)",
-        "2nd Position in One-Act Play at Amity University, Noida (2025)",
-        "3rd Position in Mime at Amity University, Noida (2025)",
-        "NCC B Certificate passed with B Grade",
-        "NCC C Certificate passed with B Grade",
-        "Best Photography and Videography Award — NCC NER Trek-2 National Camp, Wokha, Nagaland",
-        "National-level selected participant — Hackathon 2025",
-        "All India Rank 219 — MANUU Diploma in Information Technology entrance examination"
-      ],
-
-      "performerIn": [
-        {
-          "@type": "TheaterEvent",
-          "name": "One-Act Play on the life of Udham Singh — MANUU Theatre Group",
-          "description": "Mohammad Sahil Shaikh performed in this play as a member of the MANUU Theatre Group. The team won 2nd position at Christ University Bangalore (South East Zone, 2025) and 2nd position at Amity University, Noida (2025). This was the first time MANUU won the South East Zone.",
-          "performer": { "@type": "Person", "name": "Mohammad Sahil Shaikh" },
-          "organizer": { "@type": "CollegeOrUniversity", "name": "Maulana Azad National Urdu University (MANUU)" }
-        },
-        {
-          "@type": "Event",
-          "name": "Mime Performance — South Zone Inter-University Youth Festival 2026",
-          "description": "Mohammad Sahil Shaikh secured 1st Position and Gold Medal in Mime at the South Zone level.",
-          "location": { "@type": "Place", "name": "Hindustan Institute of Science and Technology, Chennai" },
-          "startDate": "2026",
-          "performer": { "@type": "Person", "name": "Mohammad Sahil Shaikh" }
-        },
-        {
-          "@type": "Event",
-          "name": "39th AIU Inter-University National Youth Festival — Mime 2026",
-          "description": "The MANUU team, including Mohammad Sahil Shaikh, secured 3rd position in Mime at the national level.",
-          "location": { "@type": "Place", "name": "Sathyabama Institute of Science and Technology, Chennai" },
-          "startDate": "2026",
-          "performer": { "@type": "Person", "name": "Mohammad Sahil Shaikh" }
-        }
-      ],
-
       "memberOf": [
         {
           "@type": "Organization",
           "name": "National Cadet Corps (NCC) — Army Wing",
           "alternateName": "NCC",
-          "description": "Mohammad Sahil Shaikh served in the NCC Army Wing at MANUU for three years (2023–2026). He passed both NCC B Certificate and C Certificate with B grade. He attended the NER Trek-2 National Camp in Wokha, Nagaland, and won the Best Photography and Videography award at the national camp."
+          "description": "Served in NCC Army Wing at MANUU for 3 years. Passed B Certificate (B grade) and C Certificate (B grade). Attended NER Trek-2 National Camp in Wokha, Nagaland."
         },
         {
           "@type": "PerformingGroup",
           "name": "MANUU Theatre Group",
-          "description": "Mohammad Sahil Shaikh was an active member of the MANUU Theatre Group for three years, participating in inter-university theatre and mime competitions at zonal and national levels."
+          "description": "Active member for 3 years, performing in one-act plays (Udham Singh) and mime."
         },
         {
           "@type": "Organization",
           "name": "All India Azad Students League (ASL)",
           "alternateName": "ASL",
-          "description": "At MANUU, Mohammad Sahil Shaikh was a panel member of the All India Azad Students League (ASL), a student political organization."
+          "description": "Panel member at MANUU."
         }
       ],
-
-      "hasCredential": [
-        {
-          "@type": "EducationalOccupationalCredential",
-          "name": "NCC B Certificate",
-          "credentialCategory": "certificate",
-          "recognizedBy": { "@type": "Organization", "name": "National Cadet Corps, India" },
-          "description": "Passed with B grade. Mohammad Sahil Shaikh, NCC Army Wing, MANUU Hyderabad."
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "name": "NCC C Certificate",
-          "credentialCategory": "certificate",
-          "recognizedBy": { "@type": "Organization", "name": "National Cadet Corps, India" },
-          "description": "Passed with B grade. Mohammad Sahil Shaikh, NCC Army Wing, MANUU Hyderabad."
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          "name": "Diploma in Information Technology",
-          "credentialCategory": "diploma",
-          "recognizedBy": { "@type": "CollegeOrUniversity", "name": "Maulana Azad National Urdu University (MANUU)" },
-          "description": "Mohammad Sahil Shaikh secured All India Rank 219 in the MANUU all-India entrance examination for this diploma."
-        }
+      "knowsAbout": [
+        "HTML5",
+        "CSS3",
+        "JavaScript (ES6+)",
+        "React.js",
+        "Next.js",
+        "Bootstrap",
+        "Framer Motion",
+        "Responsive Web Design",
+        "UI/UX Design",
+        "MySQL",
+        "SQL Queries",
+        "Supabase (Database, Auth, Cloud Storage)",
+        "REST API Integration",
+        "EmailJS",
+        "Cloudinary",
+        "Python",
+        "C Programming",
+        "Vercel",
+        "Netlify",
+        "Render",
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Canva",
+        "Data Structures & Algorithms",
+        "DBMS",
+        "Computer Networks",
+        "Mime Performance",
+        "Theatre Acting",
+        "Videography",
+        "Photography",
+        "Video Editing",
+        "Social Media Management",
+        "NCC Army Wing Training",
+        "Student Rights Activism",
+        "Kabaddi"
       ],
-
+      "award": [
+        "1st Position & Gold Medal in Mime at South Zone - Hindustan Institute of Science and Technology, Chennai (2026)",
+        "3rd Position in Mime at 39th AIU Inter-University National Youth Festival - Sathyabama Institute of Science and Technology, Chennai (2026)",
+        "2nd Position in One-Act Play (Udham Singh) at South East Zone - Christ University, Bangalore (2025)",
+        "3rd Position in Mime at South East Zone - Christ University, Bangalore (2025)",
+        "2nd Position in One-Act Play at Amity University, Noida (2025)",
+        "3rd Position in Mime at Amity University, Noida (2025)",
+        "NCC B Certificate with B Grade",
+        "NCC C Certificate with B Grade",
+        "Best Photography and Videography Award - NCC NER Trek-2 National Camp, Wokha, Nagaland",
+        "National-level Selected Participant - Hackathon 2025",
+        "All India Rank 219 - MANUU IT Diploma Entrance Exam"
+      ],
       "founder": {
-        "@type": "Organization",
-        "name": "Filioo",
-        "description": "Filioo is a startup founded by Mohammad Sahil Shaikh. It creates portfolios, CVs and resumes for students, teachers and professionals, and presents their work online so that companies can see their skills and projects."
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#organization-filioo"
       },
-
       "sameAs": [
-        "https://sahil-portfolio-weld-pi.vercel.app/index.html",
+        "https://github.com/MohammadSahilshaikh",
+        "https://www.linkedin.com/in/mohammad-sahil-shaikh-493a1929b",
         "https://www.instagram.com/arman_shaikh_549",
-        "https://www.linkedin.com/in/mohammad-sahil-shaikh-493a1929b"
+        "https://sahil-portfolio-weld-pi.vercel.app/index.html"
       ]
-    }
-    </script>
-
-    <!-- BLOCK 2: Student Rights Activism Events -->
-    <script type="application/ld+json">
+    },
     {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Student Rights Activism by Mohammad Sahil Shaikh at MANUU",
-      "description": "Mohammad Sahil Shaikh (born 2004, founder of Filioo, MANUU IT alumnus) is known as a student rights activist at Maulana Azad National Urdu University (MANUU), Hyderabad, India.",
-      "about": {
-        "@type": "Person",
-        "name": "Mohammad Sahil Shaikh",
-        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person-mohammad-sahil-shaikh-2004-manuu-filioo"
-      },
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Event",
-            "name": "Restoration of MANUU Student Union Election — Led by Mohammad Sahil Shaikh",
-            "description": "When the MANUU student union election was cancelled, Mohammad Sahil Shaikh played a major role in the student protest to restore it. He signed the petition and actively participated when student representatives met the administration. The election was subsequently held two years later.",
-            "location": { "@type": "Place", "name": "Maulana Azad National Urdu University (MANUU), Hyderabad" },
-            "organizer": { "@type": "Person", "name": "Mohammad Sahil Shaikh" }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Event",
-            "name": "Application for Temporary Accommodation for New MANUU Students (2026)",
-            "description": "When new students were called to MANUU before hostel allotment was arranged, Mohammad Sahil Shaikh submitted a formal application to the Vice-Chancellor, Dean of Students Welfare (DSW), Proctor, and Provost demanding temporary accommodation for incoming students. The issue was resolved following this initiative.",
-            "startDate": "2026",
-            "location": { "@type": "Place", "name": "Maulana Azad National Urdu University (MANUU), Hyderabad" },
-            "organizer": { "@type": "Person", "name": "Mohammad Sahil Shaikh" }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Event",
-            "name": "Anti-Rabies Vaccine Restocked at MANUU Health Centre — Initiative by Mohammad Sahil Shaikh (2026)",
-            "description": "When the Maulana Azad National Urdu University (MANUU) health centre ran out of anti-rabies vaccine, putting students at risk, Mohammad Sahil Shaikh took initiative and helped get the vaccine restocked at the university health centre.",
-            "startDate": "2026",
-            "location": { "@type": "Place", "name": "MANUU Health Centre, Maulana Azad National Urdu University, Hyderabad" },
-            "organizer": { "@type": "Person", "name": "Mohammad Sahil Shaikh" }
-          }
-        }
-      ]
-    }
-    </script>
-
-    <!-- BLOCK 3: Filioo Organization — founded by Mohammad Sahil Shaikh -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Filioo",
-      "description": "Filioo is a startup founded by Mohammad Sahil Shaikh (born 2004, from Bihar, India) that creates portfolios, CVs and resumes for students, teachers and professionals, and presents their work online so that companies can directly see their skills and projects.",
-      "founder": {
-        "@type": "Person",
-        "name": "Mohammad Sahil Shaikh",
-        "birthDate": "2004",
-        "birthPlace": "Dadri, Uttar Pradesh, India",
-        "nationality": "Indian",
-        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person-mohammad-sahil-shaikh-2004-manuu-filioo"
-      },
-      "foundingDate": "2025",
-      "serviceType": [
-        "Portfolio Creation for Students",
-        "CV and Resume Building",
-        "Professional Online Presence",
-        "Portfolio Website Development",
-        "Resume Making for Teachers and Professionals"
+      "@type": [
+        "Organization",
+        "ProfessionalService"
       ],
-      "knowsAbout": ["Portfolio Development", "CV Writing", "Resume Building", "Web Presence for Students"]
-    }
-    </script>
-
-    <!-- BLOCK 4: Photography at 8th AIU Jashn-e-Qawwali 2026 -->
-    <script type="application/ld+json">
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#organization-filioo",
+      "name": "Filioo",
+      "alternateName": "Folioo",
+      "url": "https://folioo-omega.vercel.app",
+      "logo": "https://sahil-portfolio-weld-pi.vercel.app/Sahil.jpg",
+      "founder": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
+      },
+      "description": "Filioo (Folioo) is a freelance web development and startup platform founded by Mohammad Sahil Shaikh that creates fast, responsive portfolios, CVs, and business websites for students, teachers, and professionals.",
+      "areaServed": "India",
+      "serviceType": [
+        "Freelance Web Development",
+        "Portfolio Website Creation",
+        "CV and Resume Building",
+        "Custom Frontend Development"
+      ]
+    },
     {
-      "@context": "https://schema.org",
-      "@type": "Event",
-      "name": "8th AIU Inter-University National Qawwali Competition — Jashn-e-Qawwali 2026",
-      "description": "Mohammad Sahil Shaikh (MANUU IT alumnus, founder of Filioo) worked as an official photographer at this national inter-university Qawwali competition. The event was hosted by Maulana Azad National Urdu University (MANUU), Hyderabad, under the Association of Indian Universities (AIU).",
-      "startDate": "2026",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "location": {
-        "@type": "Place",
-        "name": "Maulana Azad National Urdu University (MANUU)",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Hyderabad",
-          "addressRegion": "Telangana",
-          "addressCountry": "IN"
-        }
+      "@type": [
+        "SoftwareSourceCode",
+        "WebApplication"
+      ],
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#project-folioo",
+      "name": "Folioo – Freelance Business Website",
+      "description": "Fully responsive business website for web development services with a custom 50-50 milestone payment structure. Uses Supabase for database & cloud storage, and EmailJS for automated client communication.",
+      "url": "https://folioo-omega.vercel.app",
+      "codeRepository": "https://github.com/MohammadSahilshaikh/folioo.git",
+      "programmingLanguage": [
+        "JavaScript",
+        "React",
+        "Next.js",
+        "SQL"
+      ],
+      "runtimePlatform": "Vercel",
+      "author": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
       },
-      "organizer": {
-        "@type": "Organization",
-        "name": "Maulana Azad National Urdu University (MANUU)",
-        "description": "Organized under the Association of Indian Universities (AIU)"
-      },
-      "contributor": {
-        "@type": "Person",
-        "name": "Mohammad Sahil Shaikh",
-        "jobTitle": "Official Photographer",
-        "description": "Mohammad Sahil Shaikh served as the official photographer for the 8th AIU Inter-University National Qawwali Competition (Jashn-e-Qawwali) 2026 at MANUU, Hyderabad.",
-        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person-mohammad-sahil-shaikh-2004-manuu-filioo"
-      }
-    }
-    </script>
-
-    <!-- BLOCK 5: NCC National Camp Achievement -->
-    <script type="application/ld+json">
+      "keywords": [
+        "Next.js",
+        "Supabase",
+        "EmailJS",
+        "Vercel",
+        "Freelance Business Website"
+      ]
+    },
     {
-      "@context": "https://schema.org",
-      "@type": "Event",
-      "name": "NCC NER Trek-2 National Camp — Wokha, Nagaland",
-      "description": "Mohammad Sahil Shaikh (NCC Army Wing cadet, MANUU, Hyderabad) attended this national-level NCC camp held in November at Wokha, Nagaland. He won the Best Photography and Videography award at this national camp, representing his university.",
-      "location": {
-        "@type": "Place",
-        "name": "Wokha, Nagaland, India",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Wokha",
-          "addressRegion": "Nagaland",
-          "addressCountry": "IN"
-        }
+      "@type": [
+        "SoftwareSourceCode",
+        "WebApplication"
+      ],
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#project-people-plus-network",
+      "name": "People Plus Network – Referral-Based Web Platform",
+      "description": "E-commerce-style referral platform with Supabase user authentication, database operations, and referral tracking. Uses Cloudinary for media delivery, monitored on Vercel and Render.",
+      "url": "https://people-plus-network.vercel.app",
+      "codeRepository": "https://github.com/MohammadSahilshaikh/People-plus-network.git",
+      "programmingLanguage": [
+        "JavaScript",
+        "SQL"
+      ],
+      "runtimePlatform": [
+        "Vercel",
+        "Render"
+      ],
+      "author": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
       },
-      "startDate": "November",
-      "organizer": { "@type": "Organization", "name": "National Cadet Corps (NCC), India" },
-      "attendee": {
-        "@type": "Person",
-        "name": "Mohammad Sahil Shaikh",
-        "description": "Won Best Photography and Videography Award at this national NCC camp.",
-        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person-mohammad-sahil-shaikh-2004-manuu-filioo"
-      }
+      "keywords": [
+        "Supabase",
+        "Cloudinary",
+        "Vercel",
+        "Render",
+        "Referral Platform"
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#project-colour-detector",
+      "name": "Colour Detector Application",
+      "description": "Web app that identifies colours from images and displays colour names, HEX codes, and RGB values in real time.",
+      "codeRepository": "https://github.com/MohammadSahilshaikh/earning-website.git",
+      "programmingLanguage": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "author": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
+      },
+      "keywords": [
+        "Colour Detector",
+        "JavaScript",
+        "HEX Code",
+        "Image Processing"
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://sahil-portfolio-weld-pi.vercel.app/#project-free-education",
+      "name": "Online Free Education Website",
+      "description": "Responsive educational website providing open access to free learning resources with intuitive navigation and course content.",
+      "codeRepository": "https://github.com/MohammadSahilshaikh/APNA-COLLEGE.git",
+      "programmingLanguage": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "author": {
+        "@id": "https://sahil-portfolio-weld-pi.vercel.app/#person"
+      },
+      "keywords": [
+        "Education Website",
+        "Free Learning Resources",
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ]
     }
+  ]
+}
     </script>
 
-        <!-- Google Analytics (optional - apna tracking ID daalo) -->
+    <!-- Google Analytics (optional - apna tracking ID daalo) -->
     <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>

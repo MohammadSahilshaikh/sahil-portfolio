@@ -36,6 +36,113 @@
         .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         .list-item { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 15px; position: relative; }
         .list-item img { width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
+        
+        /* Modern Slider Card in Admin */
+        .slider-admin-card {
+            background: #090e17;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        .slider-admin-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15);
+        }
+        .slider-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .slide-badge {
+            background: #1e293b;
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .slider-thumb-box {
+            width: 100%;
+            height: 150px;
+            background: #030712;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #1f2937;
+        }
+        .slider-thumb-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .slide-path-text {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            word-break: break-all;
+            background: #0b1120;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            max-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .slide-btn-group {
+            display: flex;
+            gap: 6px;
+        }
+        .slide-btn-group .btn {
+            flex: 1;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* Hero Image Admin Box */
+        .hero-admin-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #090e17;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            margin-bottom: 15px;
+        }
+        .hero-preview-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid #3b82f6;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background: #030712;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);
+        }
+        .hero-preview-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Supabase Card Styling */
+        .supabase-card {
+            background: linear-gradient(135deg, #0e1e2e 0%, #0f172a 100%);
+            border: 1px solid #0284c7;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+        }
         .section-header { margin: 25px 0 15px 0; padding-bottom: 10px; border-bottom: 1px dashed #334155; color: #e2e8f0; }
         
         #cropperModal { position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:10000; display:none; align-items:center; justify-content:center; flex-direction:column; padding:20px; }
@@ -89,32 +196,136 @@
 <!-- ================== TAB 1: HOME & CONFIG ================== -->
 <div id="home" class="tab-content active">
     <div class="flex-row">
-        <!-- Identity -->
-        <div class="card">
-            <h2 class="section-header">Hero Identity</h2>
-            <div class="form-group"><label>Display Name</label><input type="text" id="profName"></div>
-            <div class="form-group">
-                <label>Circular Profile Image (Auto-Saves)</label>
-                <div class="file-upload-box"><i class="fas fa-user-circle fa-2x"></i><input type="file" id="profPicInput" accept="image/*"></div>
-                <img id="profPicPreview" class="preview-img">
+        <!-- 1. Hero Identity & Image Manager -->
+        <div class="card" style="border-top: 4px solid #3b82f6;">
+            <h2 class="section-header"><i class="fas fa-user-circle"></i> Hero Profile Image & Identity</h2>
+            
+            <div class="hero-admin-box">
+                <div class="hero-preview-circle">
+                    <img id="profPicPreview" src="Sahil.jpg" alt="Hero Profile">
+                </div>
+                <span style="font-size:0.85rem; color:#94a3b8; margin-bottom:10px;">Current Live Hero Image</span>
+                
+                <div style="display:flex; gap:8px; width:100%;">
+                    <button class="btn btn-danger" style="flex:1; font-size:0.8rem; padding:8px;" onclick="resetHeroDefault()">
+                        <i class="fas fa-undo"></i> Reset to Sahil.jpg
+                    </button>
+                </div>
             </div>
+
             <div class="form-group">
-                <label>Sliding Professions (e.g. Web Developer)</label>
-                <div style="display:flex; gap:10px;"><input type="text" id="newProf"><button class="btn btn-success" onclick="addProfession()">Add</button></div>
+                <label><i class="fas fa-link"></i> Update Hero Image via Cloud URL (Supabase / Web)</label>
+                <div style="display:flex; gap:10px;">
+                    <input type="url" id="heroUrlInput" placeholder="https://...supabase.co/.../image.jpg">
+                    <button class="btn" onclick="applyHeroUrl()"><i class="fas fa-check"></i> Apply</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-upload"></i> Or Upload New Hero Image from Computer</label>
+                <div class="file-upload-box">
+                    <i class="fas fa-cloud-upload-alt fa-2x" style="color:#3b82f6;"></i>
+                    <p style="margin-top:6px; font-size:0.85rem; color:#cbd5e1;">Click or drag photo here to crop &amp; upload</p>
+                    <input type="file" id="profPicInput" accept="image/*">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Display Name</label>
+                <input type="text" id="profName" placeholder="Mohammad Sahil Shaikh">
+            </div>
+
+            <div class="form-group">
+                <label>Sliding Professions Rotator</label>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="newProf" placeholder="e.g. Full-Stack Developer">
+                    <button class="btn btn-success" onclick="addProfession()"><i class="fas fa-plus"></i> Add</button>
+                </div>
                 <ul id="profList" style="list-style:none; line-height:2.2; margin-top:10px;"></ul>
             </div>
         </div>
 
-        <!-- Slider -->
-        <div class="card">
-            <h2 class="section-header">Hero Slider Track</h2>
-            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:10px;">Upload image -> Crop -> Auto-saves instantly to loop slider.</p>
-            <div class="file-upload-box"><i class="fas fa-images fa-2x"></i><input type="file" id="sliderInput" accept="image/*"></div>
-            <div class="list-grid" id="sliderGrid" style="grid-template-columns: 1fr; margin-top:20px;"></div>
+        <!-- 2. Hero Slider Track Manager -->
+        <div class="card" style="border-top: 4px solid #10b981;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px dashed #334155; padding-bottom: 10px;">
+                <h2 style="font-size:1.25rem; color:#e2e8f0; margin:0;"><i class="fas fa-images"></i> Hero Slider Track</h2>
+                <span id="sliderCountBadge" class="slide-badge" style="background:#059669; color:white; font-size:0.85rem; padding:4px 12px;">6 Slides</span>
+            </div>
+
+            <!-- Add Slide Options -->
+            <div style="background:#090e17; padding:15px; border-radius:10px; border:1px solid #334155; margin-bottom:20px;">
+                <label style="color:#60a5fa; font-weight:600;"><i class="fas fa-plus-circle"></i> Add New Slide Image</label>
+                
+                <div style="display:flex; gap:10px; margin-top:8px; margin-bottom:12px;">
+                    <input type="url" id="newSlideUrlInput" placeholder="Paste Cloud Storage URL (https://...)" style="flex:1;">
+                    <button class="btn btn-success" onclick="addSlideByUrl()"><i class="fas fa-plus"></i> Add URL</button>
+                </div>
+
+                <div class="file-upload-box" style="margin-bottom:0; padding:12px;">
+                    <i class="fas fa-file-image fa-lg" style="color:#10b981;"></i>
+                    <span style="margin-left:8px; font-size:0.85rem; color:#cbd5e1;">Or upload image from computer to add as slide</span>
+                    <input type="file" id="sliderInput" accept="image/*">
+                </div>
+            </div>
+
+            <!-- Current Slides Visual Grid -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <label style="color:#94a3b8; font-weight:600;">Current Active Slides in Rotation:</label>
+                <button class="btn btn-danger" style="font-size:0.75rem; padding:4px 10px;" onclick="resetSliderDefault()">
+                    <i class="fas fa-undo"></i> Reset to Default 6 Slides
+                </button>
+            </div>
+
+            <div class="list-grid" id="sliderGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:15px;">
+                <!-- Dynamically populated -->
+            </div>
         </div>
     </div>
 
-    <div class="flex-row">
+    <!-- 3. Supabase Cloud Storage Integration Hub -->
+    <div class="card supabase-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h2 style="color:#38bdf8; margin:0; font-size:1.3rem;">
+                <i class="fas fa-cloud"></i> Supabase Cloud Storage Integration
+            </h2>
+            <span style="font-size:0.8rem; background:#0369a1; color:white; padding:3px 10px; border-radius:20px;">Fast CDN Delivery</span>
+        </div>
+        <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:20px;">
+            Apne Supabase Storage bucket se images serve karein taaki website super-fast load ho aur server/hosting par load na pade.
+        </p>
+
+        <div class="flex-row">
+            <div class="form-group">
+                <label>Supabase Project URL</label>
+                <input type="url" id="sbUrl" placeholder="https://your-project.supabase.co">
+            </div>
+            <div class="form-group">
+                <label>Supabase Public Anon Key</label>
+                <input type="text" id="sbAnonKey" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+            </div>
+            <div class="form-group">
+                <label>Storage Bucket Name</label>
+                <input type="text" id="sbBucket" placeholder="portfolio" value="portfolio">
+            </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-bottom:20px;">
+            <button class="btn" style="background:#0284c7;" onclick="saveSupabaseConfig()"><i class="fas fa-save"></i> Save Supabase Settings</button>
+            <button class="btn" style="background:#334155;" onclick="testSupabaseConnection()"><i class="fas fa-plug"></i> Test Connection</button>
+        </div>
+
+        <!-- Direct Upload Box -->
+        <div style="background:#071220; padding:20px; border-radius:10px; border:2px dashed #0284c7;">
+            <h3 style="font-size:1rem; color:#bae6fd; margin-bottom:8px;"><i class="fas fa-cloud-upload-alt"></i> Direct Upload to Supabase Bucket</h3>
+            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:12px;">Image select karein -> Direct Supabase Cloud Storage me upload hogi -> Direct link mil jayega.</p>
+            
+            <input type="file" id="sbUploadInput" accept="image/*" style="margin-bottom:10px;">
+            <div id="sbUploadStatus" style="font-size:0.85rem; margin-top:10px;"></div>
+        </div>
+    </div>
+
+    <!-- 4. Contact & Global Links -->
+    <div class="flex-row" style="margin-top:20px;">
         <div class="card">
             <h2 class="section-header">Contact Information</h2>
             <div class="form-group"><label>Location</label><input type="text" id="cLoc"></div>
@@ -130,7 +341,7 @@
             <div class="form-group"><label>CV Download Link / Filename</label><input type="text" id="cvLink"></div>
         </div>
     </div>
-    <button class="btn btn-success" style="width:100%; margin-top:10px;" onclick="saveHome()"><i class="fas fa-save"></i> Save Home & Config</button>
+    <button class="btn btn-success" style="width:100%; margin-top:10px;" onclick="saveHome()"><i class="fas fa-save"></i> Save Home &amp; Config</button>
 </div>
 
 <!-- ================== TAB 2: ABOUT ================== -->
@@ -337,14 +548,63 @@
         renderCatItems();
     }
 
+    const DEFAULT_SLIDER_IMAGES = [
+        'Sahil.jpg', 'sahil6.jpeg', 'sahil14.jpeg',
+        'sahil23.jpeg', 'sahil33.jpeg', 'sahil39.jpeg'
+    ];
+    const DEFAULT_HERO_IMAGE = 'Sahil.jpg';
+
     function bootGlobal() {
         const m = db.meta;
         ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink','about1','about2','stExp','stProj','stCert','stCity'].forEach(id => {
             if(document.getElementById(id)) document.getElementById(id).value = m[id] || "";
         });
-        if(m.profImg) { document.getElementById('profPicPreview').src=m.profImg; document.getElementById('profPicPreview').style.display="block"; }
+
+        // Initialize slider if empty
+        if (!db.slider || db.slider.length === 0) {
+            db.slider = [...DEFAULT_SLIDER_IMAGES];
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+        }
+
+        // Initialize Hero Image
+        const currentHero = m.profImg || DEFAULT_HERO_IMAGE;
+        const heroPrev = document.getElementById('profPicPreview');
+        if (heroPrev) heroPrev.src = currentHero;
+        const heroUrlEl = document.getElementById('heroUrlInput');
+        if (heroUrlEl && m.profImg && m.profImg.startsWith('http')) {
+            heroUrlEl.value = m.profImg;
+        }
+
+        // Hydrate Supabase settings
+        try {
+            const sb = JSON.parse(localStorage.getItem('supabase_config') || '{}');
+            if (sb.url && document.getElementById('sbUrl')) document.getElementById('sbUrl').value = sb.url;
+            if (sb.key && document.getElementById('sbAnonKey')) document.getElementById('sbAnonKey').value = sb.key;
+            if (sb.bucket && document.getElementById('sbBucket')) document.getElementById('sbBucket').value = sb.bucket;
+        } catch(e) {}
+
         renderProf();
         renderSlider();
+    }
+
+    function applyHeroUrl() {
+        const url = (document.getElementById('heroUrlInput').value || '').trim();
+        if (!url) { alert('Please enter an image URL!'); return; }
+        db.meta.profImg = url;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        const heroPrev = document.getElementById('profPicPreview');
+        if (heroPrev) heroPrev.src = url;
+        alert('Hero Profile Image updated successfully! Live on website.');
+    }
+
+    function resetHeroDefault() {
+        db.meta.profImg = DEFAULT_HERO_IMAGE;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        const heroPrev = document.getElementById('profPicPreview');
+        if (heroPrev) heroPrev.src = DEFAULT_HERO_IMAGE;
+        const urlInp = document.getElementById('heroUrlInput');
+        if (urlInp) urlInp.value = '';
+        alert('Hero Image reset to Sahil.jpg!');
     }
 
     function saveHome() {
@@ -354,7 +614,7 @@
             if(el) m[id] = el.value;
         });
         localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert('Home & Config Saved!');
+        alert('Home & Config Saved! All changes will reflect on the live site.');
     }
 
     function saveAbout() {
@@ -368,7 +628,6 @@
     }
 
     function saveCurrentTab() {
-        // Fallback: saves whichever visible tab fields are present
         const m = db.meta;
         const allIds = ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink','about1','about2','stExp','stProj','stCert','stCity'];
         allIds.forEach(id => { const el = document.getElementById(id); if(el) m[id] = el.value; });
@@ -384,27 +643,240 @@
         alert("Section Headers Saved!");
     }
 
-    // === PROF / SLIDER VIEWS ===
+    // === PROFESSIONS VIEWS ===
     function renderProf() {
-        let h=""; db.professions.forEach((p,i)=> h+=`<li><button class="btn-danger" style="margin-right:10px; border-radius:5px; padding:3px 8px;" onclick="rmP(${i})"><i class="fas fa-trash"></i></button>${p}</li>`);
-        document.getElementById('profList').innerHTML=h;
+        let h = "";
+        (db.professions || []).forEach((p, i) => {
+            h += `<li style="background:#090e17; padding:6px 12px; border-radius:6px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+                <span>${p}</span>
+                <button class="btn-danger" style="border-radius:4px; padding:3px 8px; font-size:0.75rem;" onclick="rmP(${i})"><i class="fas fa-trash"></i></button>
+            </li>`;
+        });
+        document.getElementById('profList').innerHTML = h;
     }
-    function addProfession() { const p=document.getElementById('newProf').value.trim(); if(p){db.professions.push(p); document.getElementById('newProf').value=''; localStorage.setItem(DB_KEY, JSON.stringify(db)); renderProf();} }
+    function addProfession() {
+        const p = document.getElementById('newProf').value.trim();
+        if(p) {
+            db.professions.push(p);
+            document.getElementById('newProf').value = '';
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+            renderProf();
+        }
+    }
     function rmP(i){ db.professions.splice(i,1); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderProf(); }
 
+    // === SLIDER MANAGER ===
     function renderSlider() {
-        let h=""; db.slider.forEach((s,i)=> h+=`<div class="list-item"><img src="${s}"><button class="btn-danger" style="width:100%; border-radius:5px;" onclick="rmS(${i})">Delete Slide</button></div>`);
-        document.getElementById('sliderGrid').innerHTML=h;
-    }
-    function rmS(i){ db.slider.splice(i,1); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderSlider(); }
+        const grid = document.getElementById('sliderGrid');
+        if (!grid) return;
+        const list = db.slider || [];
+        
+        const badge = document.getElementById('sliderCountBadge');
+        if (badge) badge.innerText = list.length + " Slides";
 
-    // === CROPPER SYSTEM ===
-    let cropperObj = null; let pendingTgt = null;
+        if (list.length === 0) {
+            grid.innerHTML = '<p style="color:#94a3b8; grid-column:1/-1;">No slides added yet. Click "Reset to Default 6 Slides" or upload above.</p>';
+            return;
+        }
+
+        let h = "";
+        list.forEach((s, i) => {
+            const isFirst = i === 0;
+            const isLast = i === list.length - 1;
+            const displayName = s.length > 35 ? s.substring(0, 32) + '...' : s;
+
+            h += `<div class="slider-admin-card">
+                <div class="slider-card-header">
+                    <span class="slide-badge">Slide #${i + 1}</span>
+                    <button class="btn-danger" style="padding:3px 8px; border-radius:4px; font-size:0.75rem;" onclick="rmS(${i})" title="Delete Slide">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="slider-thumb-box">
+                    <img src="${s}" alt="Slide ${i+1}" onerror="this.src='https://via.placeholder.com/300x150?text=Image+Not+Found'">
+                </div>
+                <div class="slide-path-text" title="${s}">${displayName}</div>
+                <div class="slide-btn-group">
+                    <button class="btn" style="background:#334155;" onclick="moveSlide(${i}, -1)" ${isFirst ? 'disabled style="opacity:0.4; cursor:not-allowed;"' : ''} title="Move Earlier">
+                        <i class="fas fa-arrow-left"></i> Earlier
+                    </button>
+                    <button class="btn" style="background:#334155;" onclick="moveSlide(${i}, 1)" ${isLast ? 'disabled style="opacity:0.4; cursor:not-allowed;"' : ''} title="Move Later">
+                        Later <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>`;
+        });
+        grid.innerHTML = h;
+    }
+
+    function moveSlide(i, dir) {
+        const target = i + dir;
+        if (target < 0 || target >= db.slider.length) return;
+        const temp = db.slider[i];
+        db.slider[i] = db.slider[target];
+        db.slider[target] = temp;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderSlider();
+    }
+
+    function rmS(i) {
+        if (!confirm('Are you sure you want to delete Slide #' + (i + 1) + '?')) return;
+        db.slider.splice(i, 1);
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderSlider();
+    }
+
+    function addSlideByUrl() {
+        const input = document.getElementById('newSlideUrlInput');
+        const url = (input.value || '').trim();
+        if (!url) { alert('Please enter a valid Image URL!'); return; }
+        if (!db.slider) db.slider = [];
+        db.slider.push(url);
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        input.value = '';
+        renderSlider();
+        alert('New slide added to rotation!');
+    }
+
+    function resetSliderDefault() {
+        if (!confirm('Reset slider to the default 6 portfolio images?')) return;
+        db.slider = [...DEFAULT_SLIDER_IMAGES];
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderSlider();
+        alert('Slider reset to default 6 photos!');
+    }
+
+    // === SUPABASE STORAGE CLIENT-SIDE INTEGRATION ===
+    function saveSupabaseConfig() {
+        const url = (document.getElementById('sbUrl').value || '').trim().replace(/\/$/, '');
+        const key = (document.getElementById('sbAnonKey').value || '').trim();
+        const bucket = (document.getElementById('sbBucket').value || 'portfolio').trim();
+
+        if (!url || !key) {
+            alert('Please enter both Supabase Project URL and Anon Key!');
+            return;
+        }
+
+        const config = { url, key, bucket };
+        localStorage.setItem('supabase_config', JSON.stringify(config));
+        alert('Supabase credentials saved successfully!');
+    }
+
+    async function testSupabaseConnection() {
+        const url = (document.getElementById('sbUrl').value || '').trim().replace(/\/$/, '');
+        const key = (document.getElementById('sbAnonKey').value || '').trim();
+        const bucket = (document.getElementById('sbBucket').value || 'portfolio').trim();
+
+        if (!url || !key) {
+            alert('Please fill in Supabase URL and Key first!');
+            return;
+        }
+
+        try {
+            const res = await fetch(`${url}/storage/v1/bucket/${bucket}`, {
+                headers: {
+                    'apikey': key,
+                    'Authorization': 'Bearer ' + key
+                }
+            });
+            if (res.ok) {
+                alert('Connection SUCCESS! Connected to Supabase bucket: ' + bucket);
+            } else {
+                const errText = await res.text();
+                alert('Connected to Supabase, but bucket check returned: ' + res.status + ' (' + errText + '). Make sure the bucket exists and is set to PUBLIC.');
+            }
+        } catch(e) {
+            alert('Connection failed: ' + e.message);
+        }
+    }
+
+    // Direct Upload to Supabase Bucket
+    const sbInput = document.getElementById('sbUploadInput');
+    if (sbInput) {
+        sbInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const url = (document.getElementById('sbUrl').value || '').trim().replace(/\/$/, '');
+            const key = (document.getElementById('sbAnonKey').value || '').trim();
+            const bucket = (document.getElementById('sbBucket').value || 'portfolio').trim();
+
+            if (!url || !key) {
+                alert('Please enter your Supabase URL and Anon Key in the fields above first!');
+                e.target.value = '';
+                return;
+            }
+
+            const status = document.getElementById('sbUploadStatus');
+            status.innerHTML = '<span style="color:#38bdf8;"><i class="fas fa-spinner fa-spin"></i> Uploading to Supabase Cloud Storage...</span>';
+
+            // Clean filename
+            const cleanName = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+
+            try {
+                const uploadRes = await fetch(`${url}/storage/v1/object/${bucket}/${cleanName}`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': key,
+                        'Authorization': 'Bearer ' + key,
+                        'Content-Type': file.type || 'image/jpeg'
+                    },
+                    body: file
+                });
+
+                if (!uploadRes.ok) {
+                    const err = await uploadRes.text();
+                    status.innerHTML = '<span style="color:#ef4444;"><i class="fas fa-times"></i> Upload failed: ' + err + '</span>';
+                    return;
+                }
+
+                // Public URL
+                const publicUrl = `${url}/storage/v1/object/public/${bucket}/${cleanName}`;
+                status.innerHTML = `<div style="background:#0b1329; border:1px solid #10b981; border-radius:8px; padding:12px; margin-top:8px;">
+                    <p style="color:#10b981; font-weight:600; margin-bottom:6px;"><i class="fas fa-check-circle"></i> Uploaded Successfully to Supabase!</p>
+                    <div style="font-size:0.75rem; word-break:break-all; color:#94a3b8; margin-bottom:8px;">${publicUrl}</div>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn btn-success" style="font-size:0.8rem; padding:6px 12px;" onclick="setAsHero('${publicUrl}')">
+                            <i class="fas fa-user"></i> Set as Hero Image
+                        </button>
+                        <button class="btn" style="font-size:0.8rem; padding:6px 12px; background:#3b82f6;" onclick="addAsSlide('${publicUrl}')">
+                            <i class="fas fa-images"></i> Add to Slider Track
+                        </button>
+                    </div>
+                </div>`;
+                e.target.value = '';
+            } catch(err) {
+                status.innerHTML = '<span style="color:#ef4444;"><i class="fas fa-times"></i> Error: ' + err.message + '</span>';
+            }
+        });
+    }
+
+    function setAsHero(url) {
+        db.meta.profImg = url;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        const heroPrev = document.getElementById('profPicPreview');
+        if (heroPrev) heroPrev.src = url;
+        const heroUrlEl = document.getElementById('heroUrlInput');
+        if (heroUrlEl) heroUrlEl.value = url;
+        alert('Hero Image updated to Supabase Cloud URL!');
+    }
+
+    function addAsSlide(url) {
+        if (!db.slider) db.slider = [];
+        db.slider.push(url);
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderSlider();
+        alert('Added to Slider Track! Now active on website.');
+    }
+
+    // === CROPPER SYSTEM (Lightweight with resize) ===
+    let cropperObj = null;
+    let pendingTgt = null;
     let _activeCardTemp = { covSrc: "", innImgs: [] };
 
-    document.getElementById('profPicInput').addEventListener('change', e=>handleFile(e, 'prof'));
-    document.getElementById('sliderInput').addEventListener('change', e=>handleFile(e, 'slide'));
-    document.getElementById('covImg').addEventListener('change', e=>handleFile(e, 'cardCov'));
+    document.getElementById('profPicInput').addEventListener('change', e => handleFile(e, 'prof'));
+    document.getElementById('sliderInput').addEventListener('change', e => handleFile(e, 'slide'));
+    document.getElementById('covImg').addEventListener('change', e => handleFile(e, 'cardCov'));
     function buildInnEvt(id) { document.getElementById(id).addEventListener('change', e=> { if(e.target.files[0]){ const u=URL.createObjectURL(e.target.files[0]); buildBase64(u,b=>{_activeCardTemp.innImgs.push(b); drawInnImgs();}); e.target.value="";} }); }
     buildInnEvt('innPic1'); buildInnEvt('innPic2'); buildInnEvt('innPic3');
 
@@ -413,11 +885,21 @@
     }
 
     function buildBase64(url, cb) {
-        let i = new Image(); i.onload = ()=>{
-            let cv = document.createElement('canvas'); cv.width=i.width; cv.height=i.height;
-            cv.getContext('2d').drawImage(i,0,0);
+        let i = new Image();
+        i.onload = () => {
+            let maxDim = 1200;
+            let w = i.width;
+            let h = i.height;
+            if (w > maxDim || h > maxDim) {
+                if (w > h) { h = Math.round(h * (maxDim / w)); w = maxDim; }
+                else { w = Math.round(w * (maxDim / h)); h = maxDim; }
+            }
+            let cv = document.createElement('canvas');
+            cv.width = w; cv.height = h;
+            cv.getContext('2d').drawImage(i, 0, 0, w, h);
             cb(cv.toDataURL('image/jpeg', 0.8));
-        }; i.src = url;
+        };
+        i.src = url;
     }
 
     function handleFile(e, tgt) {
@@ -428,7 +910,8 @@
             document.getElementById('cropperImage').src = u;
             if(cropperObj) cropperObj.destroy();
             let ratio = NaN;
-            if(tgt==='prof') ratio=1; if(tgt==='slide') ratio=21/9;
+            if(tgt === 'prof') ratio = 1; // square/circle for profile
+            if(tgt === 'slide') ratio = NaN; // free ratio for slide
             cropperObj = new Cropper(document.getElementById('cropperImage'), { aspectRatio: ratio, viewMode:1 });
             e.target.value = "";
         }
@@ -437,17 +920,26 @@
     
     function executeCrop() {
         if(!cropperObj) return;
-        const b64 = cropperObj.getCroppedCanvas({maxWidth:1000,maxHeight:1000}).toDataURL('image/jpeg', 0.8);
+        // Limit output dimensions to avoid filling localStorage quota
+        const b64 = cropperObj.getCroppedCanvas({maxWidth: 1200, maxHeight: 1200}).toDataURL('image/jpeg', 0.8);
         cancelCrop();
         
         if(pendingTgt === 'prof') {
-            db.meta.profImg = b64; localStorage.setItem(DB_KEY, JSON.stringify(db));
-            document.getElementById('profPicPreview').src=b64; document.getElementById('profPicPreview').style.display='block';
+            db.meta.profImg = b64;
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+            const prev = document.getElementById('profPicPreview');
+            if (prev) prev.src = b64;
+            alert('Hero Image updated!');
         } else if(pendingTgt === 'slide') {
-            db.slider.push(b64); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderSlider();
+            if (!db.slider) db.slider = [];
+            db.slider.push(b64);
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+            renderSlider();
+            alert('New slide added to slider!');
         } else if(pendingTgt === 'cardCov') {
             _activeCardTemp.covSrc = b64; 
-            document.getElementById('covPreview').src=b64; document.getElementById('covPreview').style.display='block';
+            document.getElementById('covPreview').src = b64;
+            document.getElementById('covPreview').style.display = 'block';
         }
     }
 

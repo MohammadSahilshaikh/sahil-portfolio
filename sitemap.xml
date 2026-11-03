@@ -3,65 +3,66 @@
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/index.html</loc>
     <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/ncc.html</loc>
     <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/ncc-achievements.html</loc>
     <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/hackathon-2025.html</loc>
     <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/cultural-achievements.html</loc>
     <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://sahil-portfolio-weld-pi.vercel.app/web-development.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/videography-photography.html</loc>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sahil-portfolio-weld-pi.vercel.app/web-development.html</loc>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/social-media-management.html</loc>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sahil-portfolio-weld-pi.vercel.app/weather-app.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sahil-portfolio-weld-pi.vercel.app/task-management.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sahil-portfolio-weld-pi.vercel.app/chat-application.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sahil-portfolio-weld-pi.vercel.app/ecommerce-website.html</loc>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/hyderabad.html</loc>
     <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/bangalore.html</loc>
     <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://sahil-portfolio-weld-pi.vercel.app/ Bihar.html</loc>
+    <loc>https://sahil-portfolio-weld-pi.vercel.app/bihar.html</loc>
     <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://sahil-portfolio-weld-pi.vercel.app/delhi.html</loc>
     <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://sahil-portfolio-weld-pi.vercel.app/kolkata.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>

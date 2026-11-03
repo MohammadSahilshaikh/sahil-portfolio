@@ -15,3 +15,6 @@ Thumbs.db
 
 # VS Code settings
 .vscode/
+
+# Heavy image backup directory
+image_originals_backup/
