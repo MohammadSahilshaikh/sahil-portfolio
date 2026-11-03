@@ -610,10 +610,10 @@
 
         /* ======= SECTIONS ======= */
         .page-section {
-            min-height: calc(100vh - 70px);
-            padding: 45px 0 35px;
+            min-height: 100vh;
+            padding: 60px 0 50px;
             position: relative;
-            scroll-margin-top: 70px;
+            scroll-margin-top: 75px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -644,14 +644,14 @@
 
         /* ======= HOME SECTION ======= */
         #home {
-            min-height: calc(100vh - 70px);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px 0;
+            padding: 60px 0 80px;
             position: relative;
             overflow: hidden;
-            scroll-margin-top: 70px;
+            scroll-margin-top: 75px;
             box-sizing: border-box;
         }
 
@@ -1143,47 +1143,94 @@
         }
 
         /* ======= TRAVEL SECTION ======= */
+        .travel-subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .travel-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-top: 25px;
         }
 
         .travel-card {
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 15px;
+            background: rgba(30, 41, 59, 0.75);
+            border-radius: 18px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.35s ease;
+            border: 1px solid rgba(59, 130, 246, 0.15);
             cursor: pointer;
             text-decoration: none;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
         }
 
         .travel-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             border-color: #3b82f6;
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 16px 35px rgba(59, 130, 246, 0.25);
         }
 
         .travel-img {
             width: 100%;
-            height: 180px;
+            height: 230px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
         .travel-card:hover .travel-img {
-            transform: scale(1.05);
+            transform: scale(1.06);
+        }
+
+        .travel-content {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .travel-name {
-            padding: 15px;
-            text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             color: #f8fafc;
-            font-size: 1.2rem;
+            font-size: 1.45rem;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .travel-desc {
+            color: #94a3b8;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .travel-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #60a5fa;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: auto;
+        }
+
+        .travel-card:hover .travel-btn {
+            color: #93c5fd;
+            gap: 12px;
         }
 
         /* ======= PROJECTS SECTION ======= */
@@ -2271,12 +2318,9 @@
     <!-- Travel Section -->
     <section id="travel" class="page-section">
         <div class="container">
-
-
             <h2 class="section-title">Travel Experiences</h2>
 
-            <p
-                style="text-align: center; color: #cbd5e1; font-size: 1.1rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <p class="travel-subtitle">
                 I have traveled to various cities across India, experiencing different cultures, famous places, and
                 local cuisines. Each journey has been a unique learning experience and an opportunity to explore the
                 diversity of our country.
@@ -2284,39 +2328,67 @@
 
             <div class="travel-grid">
                 <a href="delhi.html" class="travel-card">
-                    <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+                    <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
                         alt="Delhi" class="travel-img">
-                    <div class="travel-name">Delhi</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Delhi <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">Historical monuments, rich heritage, and bustling markets of India's capital.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
                 <a href="bangalore.html" class="travel-card">
                     <img src="https://bangaloretourism.in/images/v2/headers/bangalore-1-day-tour-packages-bangalore-header-bangalore-tourism-cr-mbell1975.jpg"
                         alt="Bangalore" class="travel-img">
-                    <div class="travel-name">Bangalore</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Bangalore <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">Silicon Valley of India, lush green gardens, and vibrant tech culture.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
                 <a href="gujarat.html" class="travel-card">
                     <img src="https://www.kutchtourguide.com/blog/wp-content/uploads/2015/01/Vijay_Vilas_Palace.jpg"
                         alt="Gujarat" class="travel-img">
-                    <div class="travel-name">Gujarat</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Gujarat <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">Rich traditions, White Desert of Kutch, and royal historical palaces.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
                 <a href="chennai.html" class="travel-card">
                     <img src="https://media.licdn.com/dms/image/v2/C4E12AQGmIluMk0G6GA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520238944692?e=2147483647&v=beta&t=pYZiKqRVUWP0vq0UDPY_-kRGwRbYQUYK1sgBoBjVib4"
                         alt="Chennai" class="travel-img">
-                    <div class="travel-name">Chennai</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Chennai <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">Coastal gateway of South India, ancient temples, and rich Carnatic arts.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
                 <a href="kolkata.html" class="travel-card">
                     <img src="https://cdn.pixabay.com/photo/2017/06/12/08/29/victoria-memorial-2394784_1280.jpg"
                         alt="Kolkata" class="travel-img">
-                    <div class="travel-name">Kolkata</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Kolkata <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">City of Joy, colonial architecture, cultural festivals, and iconic Howrah Bridge.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
                 <a href="hyderabad.html" class="travel-card">
                     <img src="https://as1.ftcdn.net/v2/jpg/03/97/74/64/1000_F_397746410_YP1kxMSzQUhzDrlXCGu9wpKeDakisHjH.jpg"
                         alt="Hyderabad" class="travel-img">
-                    <div class="travel-name">Hyderabad</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Hyderabad <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">City of Pearls, historic Charminar, Golconda Fort, and world-famous cuisine.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
                 <a href="bihar.html" class="travel-card">
                     <img src="https://i.pinimg.com/736x/d4/0c/e3/d40ce388bbde6e0c4160433ddd132e74.jpg" alt="Bihar"
                         class="travel-img">
-                    <div class="travel-name">Bihar</div>
+                    <div class="travel-content">
+                        <div class="travel-name">Bihar <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                        <p class="travel-desc">Land of ancient Nalanda University, Bodh Gaya enlightenment, and rich historic legacy.</p>
+                        <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -2813,10 +2885,11 @@
                     this.classList.add('active');
 
                     // Scroll to section with clean header offset (lands on Hello I'm section)
-                    const headerHeight = 70;
+                    const header = document.querySelector('header');
+                    const headerHeight = header ? header.offsetHeight : 70;
                     const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     window.scrollTo({
-                        top: elementTop - headerHeight,
+                        top: Math.max(0, Math.round(elementTop - headerHeight)),
                         behavior: 'smooth'
                     });
                 }
@@ -2839,11 +2912,10 @@
             }
 
             // Update active nav link based on scroll position
-            let current = '';
+            let current = 'home';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 100)) {
+                if (window.scrollY >= (sectionTop - 120)) {
                     current = section.getAttribute('id');
                 }
             });
@@ -3154,7 +3226,11 @@
                         if (catKey === 'travel') {
                             html = `
                                 <img src="${card.covSrc}" alt="${card.covTit}" class="travel-img" style="object-fit:cover;">
-                                <div class="travel-name">${card.covTit}</div>`;
+                                <div class="travel-content">
+                                    <div class="travel-name">${card.covTit} <i class="fas fa-arrow-right" style="font-size:1rem; color:#3b82f6;"></i></div>
+                                    <p class="travel-desc">${card.covDes || ''}</p>
+                                    <span class="travel-btn">Explore City <i class="fas fa-chevron-right"></i></span>
+                                </div>`;
                         } else if (catKey === 'projects') {
                             const tagsHtml = card.tags ? card.tags.split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join(' ') : '';
                             const demoBtn = card.demoUrl ? `<a href="${card.demoUrl}" target="_blank" rel="noopener noreferrer" class="view-project-btn" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : '';
