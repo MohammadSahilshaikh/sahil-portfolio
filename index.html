@@ -642,9 +642,10 @@
         #home {
             display: flex;
             align-items: center;
-            padding-top: 100px;
+            padding: 25px 0 35px;
             position: relative;
             overflow: hidden;
+            scroll-margin-top: 70px;
         }
 
         #home::before {
@@ -672,10 +673,11 @@
         }
 
         .home-text h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 12px;
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -2657,6 +2659,13 @@
 
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
+
+                if (targetId === '#home') {
+                    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
