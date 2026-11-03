@@ -766,8 +766,16 @@
 
                 <div class="slide-path-text" title="${imgSrc}">${displayName}</div>
 
-                <!-- Face / Vertical Alignment Range Slider -->
+                <!-- Fit Mode & Face / Vertical Alignment Controls -->
                 <div style="background:#0b1322; padding:8px 10px; border-radius:8px; border:1px solid #1e293b;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size:0.75rem; color:#cbd5e1;"><i class="fas fa-expand" style="color:#10b981;"></i> Display Fit:</span>
+                        <div style="display:flex; gap:4px;">
+                            <button type="button" class="btn" style="padding:2px 8px; font-size:0.7rem; background:${(s.fit === 'cover') ? '#10b981' : '#1e293b'}; color:white;" onclick="setSlideFit(${i}, 'cover')" title="Fill Entire Container">Fill (Cover)</button>
+                            <button type="button" class="btn" style="padding:2px 8px; font-size:0.7rem; background:${(s.fit !== 'cover') ? '#10b981' : '#1e293b'}; color:white;" onclick="setSlideFit(${i}, 'contain')" title="Show 100% Full Photo (No Cutoff)">Full Photo (Contain)</button>
+                        </div>
+                    </div>
+                    
                     <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:#cbd5e1; margin-bottom:4px;">
                         <span><i class="fas fa-arrows-alt-v" style="color:#38bdf8;"></i> Face / Focus:</span>
                         <span id="posValBadge_${i}" style="color:#38bdf8; font-weight:700;">${posVal}%</span>
@@ -808,6 +816,16 @@
         if (thumb) thumb.style.objectPosition = '50% ' + val + '%';
         const badge = document.getElementById('posValBadge_' + i);
         if (badge) badge.innerText = val + '%';
+    }
+
+    function setSlideFit(i, fitMode) {
+        if (!db.slider || !db.slider[i]) return;
+        const current = db.slider[i];
+        const src = typeof current === 'string' ? current : (current.src || current.url);
+        const pos = typeof current === 'object' && current.position ? current.position : '50% 50%';
+        db.slider[i] = { src: src, position: pos, fit: fitMode };
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderSlider();
     }
 
     function saveSlidePos(i, val) {
@@ -1019,7 +1037,7 @@
     function buildBase64(url, cb) {
         let i = new Image();
         i.onload = () => {
-            let maxDim = 1200;
+            let maxDim = 2560;
             let w = i.width;
             let h = i.height;
             if (w > maxDim || h > maxDim) {
@@ -1029,7 +1047,7 @@
             let cv = document.createElement('canvas');
             cv.width = w; cv.height = h;
             cv.getContext('2d').drawImage(i, 0, 0, w, h);
-            cb(cv.toDataURL('image/jpeg', 0.8));
+            cb(cv.toDataURL('image/jpeg', 0.94));
         };
         i.src = url;
     }
@@ -1054,7 +1072,7 @@
     function executeCrop() {
         if(!cropperObj) return;
         // Limit output dimensions to avoid filling localStorage quota
-        const b64 = cropperObj.getCroppedCanvas({maxWidth: 1200, maxHeight: 1200}).toDataURL('image/jpeg', 0.8);
+        const b64 = cropperObj.getCroppedCanvas({maxWidth: 2560, maxHeight: 2560}).toDataURL('image/jpeg', 0.94);
         cancelCrop();
         
         if(pendingTgt === 'prof') {

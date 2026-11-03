@@ -881,12 +881,13 @@
         /* ======= SLIDER SECTION (TOP) ======= */
         .top-slider {
             width: 100%;
-            aspect-ratio: 16 / 9; /* Modern aspect-ratio property */
-            height: auto;
+            height: calc(100vh - 70px);
+            max-height: calc(100vh - 70px);
+            min-height: 480px;
             position: relative;
             overflow: hidden;
             margin-top: 70px;
-            /* offset for fixed header */
+            background: #030712;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-bottom: 3px solid #3b82f6;
             display: flex;
@@ -907,14 +908,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background: #030712;
+            overflow: hidden;
+        }
+
+        .slider-backdrop {
+            position: absolute;
+            inset: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            object-fit: cover;
+            filter: blur(30px) brightness(0.35);
+            transform: scale(1.08);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .slider-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Fills container while maintaining quality */
-            object-position: 50% 18%; /* Focus on face & upper body for portrait photos in 16:9 */
-            transition: object-position 0.2s ease;
+            object-fit: contain; /* 100% full image visible with zero cutoff! */
+            object-position: center center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.25s ease;
         }
 
         .slider-btn {
@@ -3082,9 +3099,13 @@
             const slide = document.createElement('div');
             slide.className = 'slider-slide';
             let imgSrc = (typeof item === 'string') ? item : (item.src || item.url || '');
+            let imgFit = (typeof item === 'object' && item.fit) ? item.fit : 'contain';
             let imgPos = (typeof item === 'object' && item.position) ? item.position : 
                          (imgSrc.includes('Sahil') || imgSrc.includes('sahil6') || imgSrc.includes('sahil14') ? '50% 18%' : '50% 50%');
-            slide.innerHTML = `<img src="${imgSrc}" alt="Slide" class="slider-img" style="object-position: ${imgPos};" onerror="this.style.display='none'">`;
+            slide.innerHTML = `
+                <img src="${imgSrc}" alt="" class="slider-backdrop" aria-hidden="true">
+                <img src="${imgSrc}" alt="Slide" class="slider-img" style="object-fit: ${imgFit}; object-position: ${imgPos};" onerror="this.style.display='none'">
+            `;
             sliderTrack.appendChild(slide);
         });
 
