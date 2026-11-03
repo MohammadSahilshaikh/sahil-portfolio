@@ -911,7 +911,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Fills container while maintaining quality */
-            object-position: center; /* Centers the focus for better cropping if necessary */
+            object-position: 50% 18%; /* Focus on face & upper body for portrait photos in 16:9 */
+            transition: object-position 0.2s ease;
         }
 
         .slider-btn {
@@ -3048,16 +3049,19 @@
     <script>
         // SLIDER LOGIC WITH CMS
         const defaultImages = [
-            'Sahil.jpg', 'sahil6.jpeg', 'sahil14.jpeg',
-            'sahil23.jpeg', 'sahil33.jpeg', 'sahil39.jpeg'
+            { src: 'Sahil.jpg', position: '50% 18%' },
+            { src: 'sahil6.jpeg', position: '50% 20%' },
+            { src: 'sahil14.jpeg', position: '50% 20%' },
+            { src: 'sahil23.jpeg', position: '50% 50%' },
+            { src: 'sahil33.jpeg', position: '50% 50%' },
+            { src: 'sahil39.jpeg', position: '50% 50%' }
         ];
 
         let sliderData = [];
         const dbFallback = JSON.parse(localStorage.getItem('portfolioCMS'));
         if (dbFallback && dbFallback.slider && dbFallback.slider.length > 0) {
-            sliderData = dbFallback.slider; // purely base64 or URL strings now
+            sliderData = dbFallback.slider;
         } else {
-            // Legacy / Default
             let legacy = JSON.parse(localStorage.getItem('sliderImages'));
             if (legacy && legacy.length > 0) {
                 sliderData = legacy;
@@ -3072,8 +3076,10 @@
         sliderData.forEach(item => {
             const slide = document.createElement('div');
             slide.className = 'slider-slide';
-            let imgSrc = (typeof item === 'string') ? item : item.src; // handles legacy if necessary
-            slide.innerHTML = `<img src="${imgSrc}" alt="Slide" class="slider-img" onerror="this.src='https://via.placeholder.com/1200x400?text=Image+Not+Found'">`;
+            let imgSrc = (typeof item === 'string') ? item : (item.src || item.url || '');
+            let imgPos = (typeof item === 'object' && item.position) ? item.position : 
+                         (imgSrc.includes('Sahil') || imgSrc.includes('sahil6') || imgSrc.includes('sahil14') ? '50% 18%' : '50% 50%');
+            slide.innerHTML = `<img src="${imgSrc}" alt="Slide" class="slider-img" style="object-position: ${imgPos};" onerror="this.style.display='none'">`;
             sliderTrack.appendChild(slide);
         });
 
