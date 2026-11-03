@@ -132,6 +132,51 @@
             justify-content: center;
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);
         }
+        
+        /* Category Card Admin Items */
+        .card-admin-item {
+            background: #090e17;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        .card-admin-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15);
+        }
+        .card-admin-thumb {
+            width: 100%;
+            height: 140px;
+            background: #030712;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #1f2937;
+        }
+        .card-admin-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-admin-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .card-admin-actions .btn {
+            flex: 1;
+            min-width: 60px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
         .hero-preview-circle img {
             width: 100%;
             height: 100%;
@@ -356,21 +401,53 @@
 
 <!-- ================== TAB 2: ABOUT ================== -->
 <div id="about" class="tab-content">
-    <div class="card">
-        <h2 class="section-header">The "About Me" Story</h2>
-        <div class="form-group"><label>Paragraph 1</label><textarea id="about1"></textarea></div>
-        <div class="form-group"><label>Paragraph 2</label><textarea id="about2"></textarea></div>
+    <div class="card" style="border-left: 4px solid #3b82f6;">
+        <h2 class="section-header"><i class="fas fa-user"></i> The "About Me" Story</h2>
+        <div class="form-group"><label>Paragraph 1 (Introduction & Studies)</label><textarea id="about1" style="min-height:90px;" oninput="updateAboutPreview()"></textarea></div>
+        <div class="form-group"><label>Paragraph 2 (Representing University & Awards)</label><textarea id="about2" style="min-height:110px;" oninput="updateAboutPreview()"></textarea></div>
     </div>
-    <div class="card">
-        <h2 class="section-header">Dynamic Counter Stats</h2>
+    <div class="card" style="border-left: 4px solid #10b981;">
+        <h2 class="section-header"><i class="fas fa-chart-line"></i> Dynamic Counter Stats</h2>
         <div class="flex-row">
-            <div class="form-group"><label>Years Exp (e.g. 3+)</label><input type="text" id="stExp"></div>
-            <div class="form-group"><label>Projects Done</label><input type="text" id="stProj"></div>
-            <div class="form-group"><label>Certificates</label><input type="text" id="stCert"></div>
-            <div class="form-group"><label>Cities Traveled</label><input type="text" id="stCity"></div>
+            <div class="form-group"><label>Years Exp (e.g. 3+)</label><input type="text" id="stExp" oninput="updateAboutPreview()"></div>
+            <div class="form-group"><label>Projects Done (e.g. 5+)</label><input type="text" id="stProj" oninput="updateAboutPreview()"></div>
+            <div class="form-group"><label>Certificates (e.g. 10+)</label><input type="text" id="stCert" oninput="updateAboutPreview()"></div>
+            <div class="form-group"><label>Cities Traveled (e.g. 7+)</label><input type="text" id="stCity" oninput="updateAboutPreview()"></div>
         </div>
     </div>
-    <button class="btn btn-success" style="width:100%; margin-top:10px;" onclick="saveAbout()"><i class="fas fa-save"></i> Save About Section</button>
+    
+    <!-- Live Preview Card for About Section -->
+    <div class="card" style="background:#090e17; border: 1px dashed #334155;">
+        <h3 style="font-size:0.95rem; color:#94a3b8; margin-bottom:12px;"><i class="fas fa-eye"></i> Live About Preview (How it appears on website)</h3>
+        <div style="background:#1e293b; padding:20px; border-radius:12px; border:1px solid #334155;">
+            <h4 id="aboutPrevName" style="color:#3b82f6; font-size:1.2rem; margin-bottom:10px;">Mohammad Sahil Shaikh</h4>
+            <p id="aboutPrev1" style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin-bottom:12px;"></p>
+            <p id="aboutPrev2" style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin-bottom:18px;"></p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
+                <div style="background:#0f172a; padding:12px; border-radius:8px; text-align:center; border:1px solid rgba(59,130,246,0.2);">
+                    <div id="statPrevExp" style="font-size:1.4rem; font-weight:700; color:#3b82f6;">3+</div>
+                    <div style="font-size:0.75rem; color:#94a3b8;">Years Experience</div>
+                </div>
+                <div style="background:#0f172a; padding:12px; border-radius:8px; text-align:center; border:1px solid rgba(59,130,246,0.2);">
+                    <div id="statPrevProj" style="font-size:1.4rem; font-weight:700; color:#3b82f6;">5+</div>
+                    <div style="font-size:0.75rem; color:#94a3b8;">Projects Completed</div>
+                </div>
+                <div style="background:#0f172a; padding:12px; border-radius:8px; text-align:center; border:1px solid rgba(59,130,246,0.2);">
+                    <div id="statPrevCert" style="font-size:1.4rem; font-weight:700; color:#3b82f6;">10+</div>
+                    <div style="font-size:0.75rem; color:#94a3b8;">Certificates</div>
+                </div>
+                <div style="background:#0f172a; padding:12px; border-radius:8px; text-align:center; border:1px solid rgba(59,130,246,0.2);">
+                    <div id="statPrevCity" style="font-size:1.4rem; font-weight:700; color:#3b82f6;">7+</div>
+                    <div style="font-size:0.75rem; color:#94a3b8;">Cities Traveled</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+        <button class="btn btn-success" style="flex:1; padding:12px;" onclick="saveAbout()"><i class="fas fa-save"></i> Save About Section</button>
+        <button class="btn btn-danger" style="padding:12px;" onclick="resetAboutDefault()"><i class="fas fa-undo"></i> Reset to Defaults</button>
+    </div>
 </div>
 
 <!-- ================== TAB: WEB DEV PAGE EDITOR ================== -->
@@ -427,36 +504,68 @@
 
 <!-- ================== DYNAMIC CATEGORY TAB ================== -->
 <div id="catTemplate" class="tab-content">
+    <!-- 1. Section Title & Desc -->
     <div class="card" style="border-left: 4px solid #3b82f6;">
         <h2 class="section-header"><span id="catHeaderLabel"></span> Section Settings</h2>
         <div class="form-group"><label>Main Website Heading</label><input type="text" id="catTitle"></div>
         <div class="form-group"><label>Subtitle / Description</label><textarea id="catDesc" style="min-height:50px;"></textarea></div>
-        <button class="btn btn-success" onclick="saveCategoryMeta()">Save Section Settings</button>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-success" onclick="saveCategoryMeta()"><i class="fas fa-save"></i> Save Section Settings</button>
+            <button class="btn btn-danger" onclick="resetActiveCategoryDefault()"><i class="fas fa-undo"></i> Reset This Section to Website Defaults</button>
+        </div>
     </div>
 
-    <!-- The Giant Builder Card -->
-    <div class="card" style="background:#17223b;">
-        <h2 class="section-header" style="color:#10b981;"><i class="fas fa-plus-circle"></i> Create New Detailed Super-Card</h2>
-        <p style="margin-bottom:15px; color:#cbd5e1; font-size:0.9rem;">This card will show on the homepage. When clicked, it opens a rich modal with the inner story.</p>
+    <!-- 2. The Card Builder / Editor Box -->
+    <div class="card" id="cardEditorBox" style="background:#17223b; border: 1px solid #334155;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #334155; padding-bottom:10px;">
+            <h2 class="section-header" id="cardFormTitle" style="color:#10b981; margin:0;"><i class="fas fa-plus-circle"></i> Add New Card</h2>
+            <button id="cancelEditBtn" class="btn btn-danger" style="display:none; padding:6px 12px; font-size:0.85rem;" onclick="cancelCardEdit()"><i class="fas fa-times"></i> Cancel Edit</button>
+        </div>
         
         <div class="flex-row">
-            <!-- Part 1: Cover -->
+            <!-- Part 1: Cover Image & Front Info -->
             <div style="background:#1e293b; padding:15px; border-radius:10px; border:1px solid #334155;">
-                <h3 style="margin-bottom:15px; font-size:1.1rem;"><i class="fas fa-image"></i> A. Outer Cover Info</h3>
-                <div class="form-group"><label>Thumbnail Picture</label>
-                    <div class="file-upload-box" style="padding:10px;"><i class="fas fa-camera"></i><input type="file" id="covImg" accept="image/*"></div>
-                    <img id="covPreview" class="preview-img">
+                <h3 style="margin-bottom:15px; font-size:1.05rem; color:#60a5fa;"><i class="fas fa-image"></i> Cover Photo & Front Card Info</h3>
+                
+                <div class="form-group">
+                    <label>Cover Photo (Upload or Paste URL)</label>
+                    <div style="display:flex; gap:8px; margin-bottom:8px;">
+                        <input type="text" id="covUrlInput" placeholder="Paste Image URL (Supabase/Web) or upload below..." style="flex:1;">
+                        <button class="btn" style="background:#0284c7; padding:8px 14px;" onclick="applyCoverUrl()"><i class="fas fa-check"></i> Apply URL</button>
+                    </div>
+                    <div class="file-upload-box" style="padding:10px;">
+                        <i class="fas fa-camera"></i> Upload &amp; Crop from Computer
+                        <input type="file" id="covImg" accept="image/*">
+                    </div>
+                    <img id="covPreview" class="preview-img" style="max-height:160px; width:100%; object-fit:cover; display:none;">
                 </div>
-                <div class="form-group"><label>Cover Title</label><input type="text" id="covTit" placeholder="e.g. Taj Mahal Trip"></div>
-                <div class="form-group"><label>Short Front Description</label><textarea id="covDes" style="min-height:60px;" placeholder="Appears below image on grid..."></textarea></div>
+
+                <div class="form-group"><label>Card Title</label><input type="text" id="covTit" placeholder="e.g. Delhi or Folioo"></div>
+                <div class="form-group"><label>Short Front Description</label><textarea id="covDes" style="min-height:60px;" placeholder="Appears below image on website..."></textarea></div>
+                
+                <!-- Category-Specific Extra Fields -->
+                <div class="form-group" id="cardExtraGroup">
+                    <label id="cardExtraLabel">Tags / Skills (comma separated)</label>
+                    <input type="text" id="cardExtraText" placeholder="HTML5, CSS3, JavaScript or March 2025">
+                </div>
+
+                <div class="form-group">
+                    <label id="cardLinkGroupLabel">Sub-page Link or External URL</label>
+                    <input type="text" id="cardLink" placeholder="e.g. delhi.html, web-development.html, or https://...">
+                </div>
+
+                <div id="projectSpecificUrls" style="display:none;">
+                    <div class="form-group"><label>Live Demo URL</label><input type="url" id="cardDemoUrl" placeholder="https://..."></div>
+                    <div class="form-group"><label>GitHub Code URL</label><input type="url" id="cardGithubUrl" placeholder="https://github.com/..."></div>
+                </div>
             </div>
 
-            <!-- Part 2: Inner Content -->
+            <!-- Part 2: Inner Content (Rich Detail Modal) -->
             <div style="background:#1e293b; padding:15px; border-radius:10px; border:1px solid #334155;">
-                <h3 style="margin-bottom:15px; font-size:1.1rem;"><i class="fas fa-newspaper"></i> B. Inner Modal Story</h3>
-                <div class="form-group"><label>Big Modal Title</label><input type="text" id="innTit" placeholder="e.g. My Awesome Visit to Delhi"></div>
+                <h3 style="margin-bottom:15px; font-size:1.05rem; color:#60a5fa;"><i class="fas fa-newspaper"></i> Detail Modal Story (Optional)</h3>
+                <div class="form-group"><label>Big Modal Title</label><input type="text" id="innTit" placeholder="e.g. My Experience in Delhi"></div>
                 <div class="form-group"><label>Full Story Text</label>
-                    <textarea id="innStory" style="min-height:120px;" placeholder="Write everything about this record here..."></textarea>
+                    <textarea id="innStory" style="min-height:110px;" placeholder="Full story and details when clicked..."></textarea>
                 </div>
                 <div class="form-group"><label>Attach up to 3 Detail Photos</label>
                     <div style="display:flex; gap:10px;">
@@ -471,12 +580,15 @@
             </div>
         </div>
 
-        <button class="btn btn-success" style="width:100%; margin-top:20px; font-size:1.1rem; padding:15px;" onclick="addSuperCard()"><i class="fas fa-paper-plane"></i> PUBLISH CARD & SUB-PAGE</button>
+        <button id="saveCardBtn" class="btn btn-success" style="width:100%; margin-top:15px; font-size:1.05rem; padding:13px;" onclick="saveSuperCard()"><i class="fas fa-paper-plane"></i> Publish Card to Website</button>
     </div>
 
-    <!-- Rendered Cards -->
+    <!-- 3. Live Cards on Website -->
     <div class="card">
-        <h2 class="section-header">Live Super-Cards</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #334155; padding-bottom:10px;">
+            <h2 class="section-header" style="margin:0;"><i class="fas fa-th-large"></i> Live Cards on Website</h2>
+            <span id="catCardCountBadge" class="slide-badge">0 Cards</span>
+        </div>
         <div class="list-grid" id="catGrid"></div>
     </div>
 </div>
@@ -508,83 +620,682 @@
     document.getElementById('authOverlay').style.display = 'flex';
     document.getElementById('adminPwd').addEventListener('keyup', e => { if(e.key === 'Enter') checkAuth(); });
 
-    // === DB SCHEMA UPGRADE ===
-    const DB_KEY = "portfolioCMS";
-    let db = JSON.parse(localStorage.getItem(DB_KEY));
     
-    // Auto-migrate or clean schema to modern nested format
-    if(!db || !db.cats) {
-        db = {
-            meta: db?.meta || { name: "", profImg: "", about1: "", about2: "", cLoc: "", cMail: "", cPhone: "", socInsta: "", socFb: "", socLi: "", socGit: "", cvLink: "", stExp: "", stProj: "", stCert: "", stCity: "" },
-            slider: db?.slider || [], professions: db?.professions || [],
-            cats: {
-                travel: { title: "Travel Experiences", desc: "", items: [] },
-                projects: { title: "My Projects", desc: "", items: [] },
-                profession: { title: "My Profession", desc: "", items: [] },
-                achievements: { title: "My Achievements", desc: "", items: [] }
+    // === MASTER WEBSITE DEFAULT DATA ===
+    const DEFAULT_WEBSITE_DATA = {
+        meta: {
+            name: "Mohammad Sahil Shaikh",
+            profImg: "Sahil.jpg",
+            about1: "I am a Diploma in Information Technology student at Maulana Azad National Urdu University (MANUU), Hyderabad. I am passionate about technology, web development, and learning new skills beyond academics.",
+            about2: "Along with my technical journey, I have actively represented my university in various national and zonal events. I participated in Hackathon 2025 and was selected at the national level. I am also deeply involved in cultural activities, where I have achieved multiple awards including second position in Mime and Play at the South East Zone level, and first position in Mime at the South Zone level, qualifying for the national competition.",
+            stExp: "3+",
+            stProj: "5+",
+            stCert: "10+",
+            stCity: "7+",
+            cLoc: "Hyderabad, India",
+            cMail: "sahilfact549@gmail.com",
+            cPhone: "+91 9263602455",
+            socInsta: "https://www.instagram.com/arman_shaikh_549?igsh=ZDlqc2w3ZXEzOTRx",
+            socFb: "https://facebook.com",
+            socLi: "https://www.linkedin.com/in/mohammad-sahil-shaikh-493a1929b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            socGit: "https://github.com/MohammadSahilshaikh",
+            cvLink: "Sahil CV.pdf"
+        },
+        professions: ["Web Developer", "Video Editor", "Videographer", "Photographer", "Photo Editor", "Software Engineer"],
+        slider: [
+            { src: 'Sahil.jpg', position: '50% 18%' },
+            { src: 'sahil6.jpeg', position: '50% 20%' },
+            { src: 'sahil14.jpeg', position: '50% 20%' },
+            { src: 'sahil23.jpeg', position: '50% 50%' },
+            { src: 'sahil33.jpeg', position: '50% 50%' },
+            { src: 'sahil39.jpeg', position: '50% 50%' }
+        ],
+        cats: {
+            travel: {
+                title: "Travel Experiences",
+                desc: "I have traveled to various cities across India, experiencing different cultures, famous places, and local cuisines. Each journey has been a unique learning experience and an opportunity to explore the diversity of our country.",
+                items: [
+                    {
+                        id: 1,
+                        covSrc: "https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+                        covTit: "Delhi",
+                        covDes: "Historical monuments, rich heritage, and bustling markets of India's capital.",
+                        link: "delhi.html",
+                        innTit: "Delhi – Exploring the Capital",
+                        innStory: "Visited iconic landmarks in Delhi including India Gate, Red Fort, Qutub Minar, and experienced the vibrant culture, delicious street food, and rich historical heritage.",
+                        innImgs: []
+                    },
+                    {
+                        id: 2,
+                        covSrc: "https://bangaloretourism.in/images/v2/headers/bangalore-1-day-tour-packages-bangalore-header-bangalore-tourism-cr-mbell1975.jpg",
+                        covTit: "Bangalore",
+                        covDes: "Silicon Valley of India, lush green gardens, and vibrant tech culture.",
+                        link: "bangalore.html",
+                        innTit: "Bangalore – The Silicon Valley",
+                        innStory: "Explored the Garden City of India, experienced the pleasant weather, tech hubs, beautiful botanical gardens like Lalbagh, and modern lifestyle.",
+                        innImgs: []
+                    },
+                    {
+                        id: 3,
+                        covSrc: "https://www.kutchtourguide.com/blog/wp-content/uploads/2015/01/Vijay_Vilas_Palace.jpg",
+                        covTit: "Gujarat",
+                        covDes: "Rich traditions, White Desert of Kutch, and royal historical palaces.",
+                        link: "gujarat.html",
+                        innTit: "Gujarat – Heritage & Culture",
+                        innStory: "Experienced the vibrant culture of Gujarat, historical architecture, traditional handicrafts, and visited famous landmarks.",
+                        innImgs: []
+                    },
+                    {
+                        id: 4,
+                        covSrc: "https://media.licdn.com/dms/image/v2/C4E12AQGmIluMk0G6GA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520238944692?e=2147483647&v=beta&t=pYZiKqRVUWP0vq0UDPY_-kRGwRbYQUYK1sgBoBjVib4",
+                        covTit: "Chennai",
+                        covDes: "Coastal gateway of South India, ancient temples, and rich Carnatic arts.",
+                        link: "chennai.html",
+                        innTit: "Chennai – The Gateway of South India",
+                        innStory: "Explored the historic Marina Beach, magnificent Dravidian temples, rich cultural heritage, and authentic South Indian cuisine.",
+                        innImgs: []
+                    },
+                    {
+                        id: 5,
+                        covSrc: "https://cdn.pixabay.com/photo/2017/06/12/08/29/victoria-memorial-2394784_1280.jpg",
+                        covTit: "Kolkata",
+                        covDes: "City of Joy, colonial architecture, cultural festivals, and iconic Howrah Bridge.",
+                        link: "kolkata.html",
+                        innTit: "Kolkata – City of Joy",
+                        innStory: "Walked along the iconic Howrah Bridge, visited Victoria Memorial, witnessed the grand cultural passion, literary heritage, and traditional Bengali sweets.",
+                        innImgs: []
+                    },
+                    {
+                        id: 6,
+                        covSrc: "https://as1.ftcdn.net/v2/jpg/03/97/74/64/1000_F_397746410_YP1kxMSzQUhzDrlXCGu9wpKeDakisHjH.jpg",
+                        covTit: "Hyderabad",
+                        covDes: "City of Pearls, historic Charminar, Golconda Fort, and world-famous cuisine.",
+                        link: "hyderabad.html",
+                        innTit: "Hyderabad – City of Pearls",
+                        innStory: "Home to my university studies! Explored the historic Charminar, majestic Golconda Fort, Hussain Sagar Lake, HITEC City, and authentic Hyderabadi Biryani.",
+                        innImgs: []
+                    },
+                    {
+                        id: 7,
+                        covSrc: "https://i.pinimg.com/736x/d4/0c/e3/d40ce388bbde6e0c4160433ddd132e74.jpg",
+                        covTit: "Bihar",
+                        covDes: "Land of ancient Nalanda University, Bodh Gaya enlightenment, and rich historic legacy.",
+                        link: "bihar.html",
+                        innTit: "Bihar – Ancient Legacy & Roots",
+                        innStory: "Visited historical monuments and cultural roots, exploring historical sites that shaped early Indian history and knowledge.",
+                        innImgs: []
+                    }
+                ]
+            },
+            projects: {
+                title: "My Projects",
+                desc: "Showcase of real-world freelance web applications, referral platforms, and utility tools developed with modern technologies.",
+                items: [
+                    {
+                        id: 101,
+                        covSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=870&q=80",
+                        covTit: "Folioo – Freelance Business Website",
+                        covDes: "Fully responsive business website for web development services with a custom 50-50 milestone payment structure. Uses Supabase for database & cloud storage, and EmailJS for automated client communication.",
+                        tags: "Next.js, Supabase, EmailJS, Vercel",
+                        demoUrl: "https://folioo-omega.vercel.app",
+                        githubUrl: "https://github.com/MohammadSahilshaikh/folioo.git",
+                        innTit: "Folioo – Freelance Business Website",
+                        innStory: "Built for freelance web design & development services. Features client onboarding, milestone-based automated contracts, portfolio showcase, and direct cloud integration.",
+                        innImgs: []
+                    },
+                    {
+                        id: 102,
+                        covSrc: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=870&q=80",
+                        covTit: "People Plus Network",
+                        covDes: "E-commerce-style referral platform with Supabase user authentication, database operations and referral tracking. Cloudinary for media delivery, monitored on Vercel and Render.",
+                        tags: "Supabase, Cloudinary, Vercel, Render, Git",
+                        demoUrl: "https://people-plus-network.vercel.app",
+                        githubUrl: "https://github.com/MohammadSahilshaikh/People-plus-network.git",
+                        innTit: "People Plus Network",
+                        innStory: "Full-featured referral networking application with role-based dashboard, points calculation, media uploads, and real-time database synchronisation.",
+                        innImgs: []
+                    },
+                    {
+                        id: 103,
+                        covSrc: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=870&q=80",
+                        covTit: "Colour Detector Application",
+                        covDes: "Web app that identifies colours from images and displays colour names, HEX codes and other colour values in real time.",
+                        tags: "HTML5, CSS3, JavaScript",
+                        demoUrl: "",
+                        githubUrl: "https://github.com/MohammadSahilshaikh/earning-website.git",
+                        innTit: "Colour Detector Application",
+                        innStory: "Interactive JavaScript tool with canvas pixel sampling that extracts colors from uploaded pictures and provides exact HEX, RGB, and color names.",
+                        innImgs: []
+                    },
+                    {
+                        id: 104,
+                        covSrc: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=870&q=80",
+                        covTit: "Online Free Education Website",
+                        covDes: "Responsive educational website giving access to free learning resources with easy navigation and organized course content.",
+                        tags: "HTML5, CSS3, JavaScript",
+                        demoUrl: "",
+                        githubUrl: "https://github.com/MohammadSahilshaikh/APNA-COLLEGE.git",
+                        innTit: "Online Free Education Website",
+                        innStory: "Organized learning portal with categorized courses, responsive video playlists, downloadable PDFs, and student discussion sections.",
+                        innImgs: []
+                    }
+                ]
+            },
+            profession: {
+                title: "My Profession",
+                desc: "My core technical and creative specializations spanning modern web development, digital media strategy, and visual production.",
+                items: [
+                    {
+                        id: 201,
+                        covSrc: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80",
+                        covTit: "Web Development",
+                        covDes: "Specializing in front-end and back-end web development using modern technologies to create responsive, user-friendly websites and web applications.",
+                        tags: "HTML5, CSS3, JavaScript, React.js, Node.js",
+                        link: "web-development.html",
+                        innTit: "Web Development",
+                        innStory: "Building high-performance, responsive web applications with semantic HTML, modern CSS frameworks, modern JavaScript (ES6+), React, and robust backend integrations.",
+                        innImgs: []
+                    },
+                    {
+                        id: 202,
+                        covSrc: "https://th.bing.com/th/id/OIP.vTMd7y4Fa9PNB_jxTVL4NAHaEK?w=328&h=184&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+                        covTit: "Social Media Management",
+                        covDes: "Managing and strategizing social media presence, content creation, and digital marketing to build brand awareness and engage audiences.",
+                        tags: "Content Strategy, Audience Engagement, Analytics, Campaign Management",
+                        link: "social-media-management.html",
+                        innTit: "Social Media Management",
+                        innStory: "Strategic planning, content creation, analytics tracking, and audience engagement across Instagram, YouTube, and LinkedIn to maximize organic reach.",
+                        innImgs: []
+                    },
+                    {
+                        id: 203,
+                        covSrc: "https://www.sammyfans.com/wp-content/uploads/2024/12/galaxy-s24-ultra-camera-img.jpg",
+                        covTit: "Videography & Photography",
+                        covDes: "Professional videography and photography services capturing moments, events, and creating visual content for various platforms.",
+                        tags: "Video Shooting, Photography, Lighting, Composition",
+                        link: "videography-photography.html",
+                        innTit: "Videography & Photography",
+                        innStory: "Cinematic filming, professional event photography, drone shots, studio lighting, and color grading for commercial and creative projects.",
+                        innImgs: []
+                    }
+                ]
+            },
+            achievements: {
+                title: "My Achievements",
+                desc: "Milestones in technical hackathons, national cultural competitions, and National Cadet Corps leadership.",
+                items: [
+                    {
+                        id: 301,
+                        covSrc: "https://wasim-ibrar-portfolio.netlify.app/images/P-photo2.jpg",
+                        covTit: "Hackathon 2025",
+                        covDes: "Selected at national level in Hackathon 2025, representing MANUU in prestigious coding competition.",
+                        date: "March 2025",
+                        link: "hackathon-2025.html",
+                        innTit: "Hackathon 2025",
+                        innStory: "Selected at the national level to represent Maulana Azad National Urdu University (MANUU) in a high-intensity hackathon, building collaborative real-time technology solutions.",
+                        innImgs: []
+                    },
+                    {
+                        id: 302,
+                        covSrc: "mime2.jpeg",
+                        covTit: "Cultural Achievements",
+                        covDes: "Multiple awards in cultural activities including mime and play competitions at zonal and national levels.",
+                        date: "2023-2024",
+                        link: "cultural-achievements.html",
+                        innTit: "Cultural Achievements",
+                        innStory: "Achieved First Position in Mime at South Zone Level, Second Position in One-Act Play at South East Zone level, and represented the university at the National Youth Festival.",
+                        innImgs: []
+                    },
+                    {
+                        id: 303,
+                        covSrc: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=876&q=80",
+                        covTit: "NCC Achievements",
+                        covDes: "Participated in national level NCC camps including ATC Camp, NER Trek-2 Camp Nagaland, and won Best Photography & Videography Award.",
+                        date: "2022-2024",
+                        link: "ncc-achievements.html",
+                        innTit: "NCC Achievements",
+                        innStory: "Represented NCC at NER Trek-2 National Camp in Wokha, Nagaland. Awarded Best Photography & Videography honor across all participating directorates.",
+                        innImgs: []
+                    },
+                    {
+                        id: 304,
+                        covSrc: "sahil22.jpeg",
+                        covTit: "NCC (National Cadet Corps)",
+                        covDes: "Dedicated NCC cadet with leadership experience, discipline, and commitment to national service. Passed B & C Certificates with B grade.",
+                        date: "2023 – 2026",
+                        link: "ncc.html",
+                        innTit: "NCC (National Cadet Corps)",
+                        innStory: "Successfully cleared NCC 'B' Certificate and 'C' Certificate exams with B grade, exemplifying drill discipline, physical training, and patriotic leadership.",
+                        innImgs: []
+                    }
+                ]
             }
-        };
-        // Migrate old flat cards if they existed
-        if(db.cards && Array.isArray(db.cards)) {
-            db.cards.forEach(c => {
-                if(db.cats[c.cat]) db.cats[c.cat].items.push({ id: c.id, covSrc: c.src, covTit: c.tit, covDes: c.des, innTit: c.tit, innStory: c.des, innImgs: [] });
-            });
-            delete db.cards;
+        },
+        webdev: {
+            title: "Web Development",
+            subtitle: "Specializing in front-end and back-end web development using modern technologies to create responsive, user-friendly websites and web applications.",
+            img1: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80",
+            img2: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80",
+            img3: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+            expHead: "Web Development Expertise",
+            expPara: "As a web developer, I create dynamic, responsive, and user-friendly websites and web applications using the latest technologies and best practices. My expertise spans both front-end and back-end development, allowing me to deliver complete web solutions.",
+            skills: ["HTML5", "CSS3", "JavaScript", "React.js", "Vue.js", "Node.js", "Express.js", "MongoDB", "MySQL", "REST API", "Git", "Bootstrap"],
+            groups: [
+                {
+                    heading: "Front-End Development:",
+                    items: [
+                        "HTML5, CSS3, and JavaScript (ES6+) for building responsive interfaces",
+                        "React.js and Vue.js for creating interactive single-page applications",
+                        "Responsive design with CSS Grid, Flexbox, and Bootstrap",
+                        "UI/UX design principles for optimal user experience",
+                        "Cross-browser compatibility and performance optimization"
+                    ]
+                },
+                {
+                    heading: "Back-End Development:",
+                    items: [
+                        "Node.js with Express.js for server-side development",
+                        "RESTful API design and development",
+                        "Database design with MongoDB and MySQL",
+                        "Authentication and authorization systems",
+                        "Server deployment and maintenance"
+                    ]
+                },
+                {
+                    heading: "Development Approach:",
+                    items: [
+                        "I follow an agile development methodology with a focus on clean code, scalability, and maintainability.",
+                        "Each project begins with thorough planning, wireframing, and prototyping before moving to development.",
+                        "I prioritize responsive design, accessibility, and performance optimization."
+                    ]
+                }
+            ]
+        }
+    };
+
+    const DB_KEY = "portfolioCMS";
+    let db = JSON.parse(localStorage.getItem(DB_KEY)) || {};
+
+    // Auto-migrate & guarantee defaults for all sections
+    function ensureDatabaseDefaults() {
+        if (!db) db = {};
+        if (!db.meta) db.meta = {};
+        Object.keys(DEFAULT_WEBSITE_DATA.meta).forEach(k => {
+            if (!db.meta[k]) db.meta[k] = DEFAULT_WEBSITE_DATA.meta[k];
+        });
+        if (!db.slider || !Array.isArray(db.slider) || db.slider.length === 0) {
+            db.slider = JSON.parse(JSON.stringify(DEFAULT_WEBSITE_DATA.slider));
+        }
+        if (!db.professions || !Array.isArray(db.professions) || db.professions.length === 0) {
+            db.professions = [...DEFAULT_WEBSITE_DATA.professions];
+        }
+        if (!db.cats) db.cats = {};
+        ['travel', 'projects', 'profession', 'achievements'].forEach(cat => {
+            if (!db.cats[cat]) db.cats[cat] = {};
+            if (!db.cats[cat].title) db.cats[cat].title = DEFAULT_WEBSITE_DATA.cats[cat].title;
+            if (!db.cats[cat].desc && DEFAULT_WEBSITE_DATA.cats[cat].desc) db.cats[cat].desc = DEFAULT_WEBSITE_DATA.cats[cat].desc;
+            if (!db.cats[cat].items || !Array.isArray(db.cats[cat].items) || db.cats[cat].items.length === 0) {
+                db.cats[cat].items = JSON.parse(JSON.stringify(DEFAULT_WEBSITE_DATA.cats[cat].items));
+            }
+        });
+        if (!db.webdev) {
+            db.webdev = JSON.parse(JSON.stringify(DEFAULT_WEBSITE_DATA.webdev));
         }
         localStorage.setItem(DB_KEY, JSON.stringify(db));
     }
 
-    let activeCat = null;
+    ensureDatabaseDefaults();
 
-    // === ROUTING & HYDRATION ===
-    function switchTab(id, btnNode) {
-        activeCat = null;
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        let targetBtn = btnNode;
-        if (!targetBtn && typeof event !== 'undefined' && event && event.target && event.target.classList && event.target.classList.contains('tab-btn')) {
-            targetBtn = event.target;
-        }
-        if (!targetBtn) {
-            targetBtn = document.querySelector(`.tab-btn[onclick*="'${id}'"]`);
-        }
-        if (targetBtn && targetBtn.classList) targetBtn.classList.add('active');
-        const targetContent = document.getElementById(id);
-        if (targetContent) targetContent.classList.add('active');
-        if (id === 'home' || id === 'about') bootGlobal();
+    let activeCat = null;
+    let editingCardIndex = null;
+    let _activeCardTemp = { covSrc: "", innImgs: [] };
+
+    // === LIVE ABOUT PREVIEW ===
+    function updateAboutPreview() {
+        const p1 = document.getElementById('about1')?.value || '';
+        const p2 = document.getElementById('about2')?.value || '';
+        const name = document.getElementById('profName')?.value || 'Mohammad Sahil Shaikh';
+        
+        const p1El = document.getElementById('aboutPrev1');
+        const p2El = document.getElementById('aboutPrev2');
+        const nameEl = document.getElementById('aboutPrevName');
+        if (p1El) p1El.innerText = p1;
+        if (p2El) p2El.innerText = p2;
+        if (nameEl) nameEl.innerText = name;
+
+        const expEl = document.getElementById('statPrevExp');
+        const projEl = document.getElementById('statPrevProj');
+        const certEl = document.getElementById('statPrevCert');
+        const cityEl = document.getElementById('statPrevCity');
+        if (expEl) expEl.innerText = document.getElementById('stExp')?.value || '3+';
+        if (projEl) projEl.innerText = document.getElementById('stProj')?.value || '5+';
+        if (certEl) certEl.innerText = document.getElementById('stCert')?.value || '10+';
+        if (cityEl) cityEl.innerText = document.getElementById('stCity')?.value || '7+';
     }
 
+    function resetAboutDefault() {
+        if (!confirm("Reset About Me section to website defaults?")) return;
+        ['about1', 'about2', 'stExp', 'stProj', 'stCert', 'stCity'].forEach(k => {
+            db.meta[k] = DEFAULT_WEBSITE_DATA.meta[k];
+            const el = document.getElementById(k);
+            if (el) el.value = DEFAULT_WEBSITE_DATA.meta[k];
+        });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        updateAboutPreview();
+        alert('About Section reset to defaults and saved!');
+    }
+
+    // === CATEGORY MANAGER (TRAVEL, PROJECTS, PROFESSION, ACHIEVEMENTS) ===
     function viewCategoryManager(catKey, btnNode) {
         activeCat = catKey;
+        editingCardIndex = null;
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btnNode.classList.add('active');
+        if (btnNode && btnNode.classList) btnNode.classList.add('active');
         document.getElementById('catTemplate').classList.add('active');
+
+        // Ensure category data exists
+        if (!db.cats[catKey] || !db.cats[catKey].items || db.cats[catKey].items.length === 0) {
+            db.cats[catKey] = JSON.parse(JSON.stringify(DEFAULT_WEBSITE_DATA.cats[catKey]));
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+        }
 
         // Hydrate specific category text
         document.getElementById('catHeaderLabel').innerText = catKey.toUpperCase();
         document.getElementById('catTitle').value = db.cats[catKey].title || "";
         document.getElementById('catDesc').value = db.cats[catKey].desc || "";
 
-        // Reset builder form
-        _activeCardTemp = { covSrc: "", innImgs: [] };
-        document.getElementById('covImg').value = ""; document.getElementById('covPreview').style.display='none';
-        document.getElementById('innPic1').value = ""; document.getElementById('innPic2').value = ""; document.getElementById('innPic3').value = "";
-        document.getElementById('innPreviewZone').innerHTML = "";
-        document.getElementById('covTit').value = ""; document.getElementById('covDes').value = "";
-        document.getElementById('innTit').value = ""; document.getElementById('innStory').value = "";
-        
+        // Customise extra field labels based on category
+        const extraGroup = document.getElementById('cardExtraGroup');
+        const extraLabel = document.getElementById('cardExtraLabel');
+        const extraInput = document.getElementById('cardExtraText');
+        const projUrls = document.getElementById('projectSpecificUrls');
+        const linkLabel = document.getElementById('cardLinkGroupLabel');
+
+        if (catKey === 'projects') {
+            extraGroup.style.display = 'block';
+            extraLabel.innerText = 'Tech Stack Tags (comma separated, e.g. Next.js, Supabase, Vercel)';
+            extraInput.placeholder = 'Next.js, Supabase, EmailJS, Vercel';
+            projUrls.style.display = 'block';
+            linkLabel.innerText = 'Sub-page or Demo Link';
+        } else if (catKey === 'profession') {
+            extraGroup.style.display = 'block';
+            extraLabel.innerText = 'Core Skills (comma separated, e.g. HTML5, CSS3, JavaScript)';
+            extraInput.placeholder = 'HTML5, CSS3, JavaScript, React.js';
+            projUrls.style.display = 'none';
+            linkLabel.innerText = 'Sub-page Link (e.g. web-development.html)';
+        } else if (catKey === 'achievements') {
+            extraGroup.style.display = 'block';
+            extraLabel.innerText = 'Award Date / Year (e.g. March 2025 or 2023–2024)';
+            extraInput.placeholder = 'March 2025';
+            projUrls.style.display = 'none';
+            linkLabel.innerText = 'Sub-page Link (e.g. hackathon-2025.html or cultural-achievements.html)';
+        } else {
+            // Travel
+            extraGroup.style.display = 'none';
+            projUrls.style.display = 'none';
+            linkLabel.innerText = 'City Sub-page Link (e.g. delhi.html, bangalore.html)';
+        }
+
+        cancelCardEdit();
         renderCatItems();
     }
 
-    const DEFAULT_SLIDER_IMAGES = [
-        { src: 'Sahil.jpg', position: '50% 18%' },
-        { src: 'sahil6.jpeg', position: '50% 20%' },
-        { src: 'sahil14.jpeg', position: '50% 20%' },
-        { src: 'sahil23.jpeg', position: '50% 50%' },
-        { src: 'sahil33.jpeg', position: '50% 50%' },
-        { src: 'sahil39.jpeg', position: '50% 50%' }
-    ];
+    function applyCoverUrl() {
+        const url = (document.getElementById('covUrlInput').value || '').trim();
+        if (!url) { alert('Please paste an image URL first!'); return; }
+        _activeCardTemp.covSrc = url;
+        const prev = document.getElementById('covPreview');
+        prev.src = url;
+        prev.style.display = 'block';
+    }
+
+    function cancelCardEdit() {
+        editingCardIndex = null;
+        _activeCardTemp = { covSrc: "", innImgs: [] };
+        document.getElementById('covImg').value = "";
+        const prev = document.getElementById('covPreview');
+        prev.src = "";
+        prev.style.display = 'none';
+        document.getElementById('covUrlInput').value = "";
+        document.getElementById('covTit').value = "";
+        document.getElementById('covDes').value = "";
+        document.getElementById('cardExtraText').value = "";
+        document.getElementById('cardLink').value = "";
+        document.getElementById('cardDemoUrl').value = "";
+        document.getElementById('cardGithubUrl').value = "";
+        document.getElementById('innTit').value = "";
+        document.getElementById('innStory').value = "";
+        document.getElementById('innPic1').value = "";
+        document.getElementById('innPic2').value = "";
+        document.getElementById('innPic3').value = "";
+        document.getElementById('innPreviewZone').innerHTML = "";
+
+        const formTitle = document.getElementById('cardFormTitle');
+        if (formTitle) formTitle.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Card';
+        const cancelBtn = document.getElementById('cancelEditBtn');
+        if (cancelBtn) cancelBtn.style.display = 'none';
+        const saveBtn = document.getElementById('saveCardBtn');
+        if (saveBtn) saveBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Card to Website';
+    }
+
+    function editCard(idx) {
+        if (!activeCat || !db.cats[activeCat]) return;
+        const card = db.cats[activeCat].items[idx];
+        if (!card) return;
+
+        editingCardIndex = idx;
+        _activeCardTemp.covSrc = card.covSrc || "";
+        _activeCardTemp.innImgs = card.innImgs ? [...card.innImgs] : [];
+
+        // Populate fields
+        document.getElementById('covTit').value = card.covTit || "";
+        document.getElementById('covDes').value = card.covDes || "";
+        document.getElementById('cardExtraText').value = card.tags || card.date || "";
+        document.getElementById('cardLink').value = card.link || "";
+        document.getElementById('cardDemoUrl').value = card.demoUrl || "";
+        document.getElementById('cardGithubUrl').value = card.githubUrl || "";
+        document.getElementById('innTit').value = card.innTit || card.covTit || "";
+        document.getElementById('innStory').value = card.innStory || "";
+
+        const prev = document.getElementById('covPreview');
+        if (card.covSrc) {
+            prev.src = card.covSrc;
+            prev.style.display = 'block';
+            document.getElementById('covUrlInput').value = card.covSrc.startsWith('http') ? card.covSrc : '';
+        } else {
+            prev.style.display = 'none';
+            document.getElementById('covUrlInput').value = '';
+        }
+
+        drawInnImgs();
+
+        // Switch form to Edit Mode
+        const formTitle = document.getElementById('cardFormTitle');
+        if (formTitle) formTitle.innerHTML = `<i class="fas fa-edit" style="color:#38bdf8;"></i> Editing Card #${idx + 1}: ${card.covTit}`;
+        const cancelBtn = document.getElementById('cancelEditBtn');
+        if (cancelBtn) cancelBtn.style.display = 'inline-block';
+        const saveBtn = document.getElementById('saveCardBtn');
+        if (saveBtn) saveBtn.innerHTML = `<i class="fas fa-check"></i> Save Changes to Card #${idx + 1}`;
+
+        // Scroll to editor
+        document.getElementById('cardEditorBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function saveSuperCard() {
+        if (!activeCat) return;
+        if (!_activeCardTemp.covSrc) {
+            alert("Please provide a cover image! (Upload from computer or paste an Image URL)");
+            return;
+        }
+        const covTit = (document.getElementById('covTit').value || '').trim();
+        if (!covTit) {
+            alert("Please enter a Card Title!");
+            return;
+        }
+
+        const covDes = document.getElementById('covDes').value || "";
+        const extraText = document.getElementById('cardExtraText').value || "";
+        const link = document.getElementById('cardLink').value || "";
+        const demoUrl = document.getElementById('cardDemoUrl').value || "";
+        const githubUrl = document.getElementById('cardGithubUrl').value || "";
+        const innTit = document.getElementById('innTit').value || covTit;
+        const innStory = document.getElementById('innStory').value || "";
+
+        const cardObj = {
+            id: editingCardIndex !== null && db.cats[activeCat].items[editingCardIndex] ? db.cats[activeCat].items[editingCardIndex].id : Date.now(),
+            covSrc: _activeCardTemp.covSrc,
+            covTit,
+            covDes,
+            innTit,
+            innStory,
+            innImgs: [..._activeCardTemp.innImgs],
+            link
+        };
+
+        if (activeCat === 'projects') {
+            cardObj.tags = extraText;
+            cardObj.demoUrl = demoUrl;
+            cardObj.githubUrl = githubUrl;
+        } else if (activeCat === 'profession') {
+            cardObj.tags = extraText;
+        } else if (activeCat === 'achievements') {
+            cardObj.date = extraText;
+        }
+
+        if (editingCardIndex !== null) {
+            // Update in place
+            db.cats[activeCat].items[editingCardIndex] = cardObj;
+            alert(`Card #${editingCardIndex + 1} ("${covTit}") updated successfully! Live on website.`);
+        } else {
+            // Add new card to end of list
+            db.cats[activeCat].items.push(cardObj);
+            alert(`New card ("${covTit}") published successfully! Live on website.`);
+        }
+
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        cancelCardEdit();
+        renderCatItems();
+    }
+
+    function deleteCatItem(idx) {
+        if (!activeCat) return;
+        const item = db.cats[activeCat].items[idx];
+        const tit = item ? item.covTit : 'this card';
+        if (!confirm(`Are you sure you want to delete "${tit}"?\nThis will remove it from the website.`)) return;
+
+        db.cats[activeCat].items.splice(idx, 1);
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        if (editingCardIndex === idx) cancelCardEdit();
+        renderCatItems();
+    }
+
+    function moveCatItem(idx, dir) {
+        if (!activeCat) return;
+        const items = db.cats[activeCat].items;
+        const targetIdx = idx + dir;
+        if (targetIdx < 0 || targetIdx >= items.length) return;
+
+        const temp = items[idx];
+        items[idx] = items[targetIdx];
+        items[targetIdx] = temp;
+
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderCatItems();
+    }
+
+    function resetActiveCategoryDefault() {
+        if (!activeCat) return;
+        if (!confirm(`Reset all cards in ${activeCat.toUpperCase()} back to original website defaults?\n(Your custom cards for this section will be replaced with defaults)`)) return;
+
+        db.cats[activeCat] = JSON.parse(JSON.stringify(DEFAULT_WEBSITE_DATA.cats[activeCat]));
+        document.getElementById('catTitle').value = db.cats[activeCat].title;
+        document.getElementById('catDesc').value = db.cats[activeCat].desc;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        cancelCardEdit();
+        renderCatItems();
+        alert(`${activeCat.toUpperCase()} reset to website defaults!`);
+    }
+
+    function renderCatItems() {
+        if (!activeCat) return;
+        const grid = document.getElementById('catGrid');
+        if (!grid) return;
+
+        const items = db.cats[activeCat].items || [];
+        const countBadge = document.getElementById('catCardCountBadge');
+        if (countBadge) countBadge.innerText = `${items.length} Live Cards`;
+
+        if (items.length === 0) {
+            grid.innerHTML = `
+                <div style="grid-column:1/-1; text-align:center; padding:35px; background:#090e17; border-radius:12px; border:1px dashed #334155;">
+                    <p style="color:#94a3b8; font-size:1rem; margin-bottom:12px;">No cards currently in this section.</p>
+                    <button class="btn btn-primary" onclick="resetActiveCategoryDefault()"><i class="fas fa-undo"></i> Load Website Default Cards</button>
+                </div>`;
+            return;
+        }
+
+        let h = "";
+        items.forEach((c, idx) => {
+            const isFirst = idx === 0;
+            const isLast = idx === items.length - 1;
+            const extraBadge = c.tags ? `<span class="slide-badge" style="background:#0e2a47; color:#38bdf8; font-size:0.75rem;">${c.tags}</span>` :
+                               (c.date ? `<span class="slide-badge" style="background:#064e3b; color:#34d399; font-size:0.75rem;">${c.date}</span>` : '');
+            const linkBadge = c.link ? `<span class="slide-badge" style="background:#312e81; color:#a5b4fc; font-size:0.75rem;"><i class="fas fa-link"></i> ${c.link}</span>` : '';
+            const demoBadge = c.demoUrl ? `<span class="slide-badge" style="background:#065f46; color:#6ee7b7; font-size:0.75rem;"><i class="fas fa-external-link-alt"></i> Demo</span>` : '';
+
+            h += `
+            <div class="card-admin-item">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="slide-badge">#${idx + 1} of ${items.length}</span>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn" style="padding:3px 8px; font-size:0.75rem; background:#1e293b;" ${isFirst ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : `onclick="moveCatItem(${idx}, -1)" title="Move Up"`}><i class="fas fa-arrow-up"></i></button>
+                        <button class="btn" style="padding:3px 8px; font-size:0.75rem; background:#1e293b;" ${isLast ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : `onclick="moveCatItem(${idx}, 1)" title="Move Down"`}><i class="fas fa-arrow-down"></i></button>
+                    </div>
+                </div>
+                <div class="card-admin-thumb">
+                    <img src="${c.covSrc || ''}" onerror="this.src='${FALLBACK_SVG}'" alt="${c.covTit}">
+                </div>
+                <div>
+                    <div style="font-weight:600; font-size:1rem; color:#f8fafc; margin-bottom:4px;">${c.covTit}</div>
+                    <div style="font-size:0.85rem; color:#94a3b8; max-height:42px; overflow:hidden; text-overflow:ellipsis; line-height:1.4;">${c.covDes || ''}</div>
+                    <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:6px;">
+                        ${extraBadge}
+                        ${linkBadge}
+                        ${demoBadge}
+                    </div>
+                </div>
+                <div class="card-admin-actions" style="margin-top:auto;">
+                    <button class="btn" style="background:#3b82f6;" onclick="editCard(${idx})"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn btn-danger" onclick="deleteCatItem(${idx})"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            </div>`;
+        });
+        grid.innerHTML = h;
+    }
+
+    function saveCategoryMeta() {
+        if (!activeCat) return;
+        db.cats[activeCat].title = document.getElementById('catTitle').value;
+        db.cats[activeCat].desc = document.getElementById('catDesc').value;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert(`${activeCat.toUpperCase()} Section Settings Saved!`);
+    }
+
+    function drawInnImgs() {
+        const zone = document.getElementById('innPreviewZone');
+        if (!zone) return;
+        zone.innerHTML = "";
+        (_activeCardTemp.innImgs || []).forEach((src, i) => {
+            zone.innerHTML += `<div style="position:relative; width:80px; height:60px;">
+                <img src="${src}" style="width:100%; height:100%; object-fit:cover; border-radius:5px;">
+                <span onclick="_activeCardTemp.innImgs.splice(${i},1); drawInnImgs();" style="position:absolute; top:-5px; right:-5px; background:#ef4444; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:10px;">✕</span>
+            </div>`;
+        });
+    }
+
+    // === BOOT GLOBAL (HOME & ABOUT) ===
+    const DEFAULT_SLIDER_IMAGES = DEFAULT_WEBSITE_DATA.slider;
     const DEFAULT_HERO_IMAGE = 'Sahil.jpg';
 
     function normalizeSliderData() {
@@ -592,7 +1303,6 @@
         if (!db.slider || !Array.isArray(db.slider) || db.slider.length === 0) {
             db.slider = JSON.parse(JSON.stringify(DEFAULT_SLIDER_IMAGES));
         } else {
-            // Upgrade any string entries to objects with position
             db.slider = db.slider.map(item => {
                 if (typeof item === 'string') {
                     const isHeadshot = item.includes('Sahil') || item.includes('sahil6') || item.includes('sahil14');
@@ -613,17 +1323,15 @@
     }
 
     function bootGlobal() {
-        if (!db) db = {};
-        if (!db.meta) db.meta = {};
+        ensureDatabaseDefaults();
         const m = db.meta;
         ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink','about1','about2','stExp','stProj','stCert','stCity'].forEach(id => {
-            if(document.getElementById(id)) document.getElementById(id).value = m[id] || "";
+            const el = document.getElementById(id);
+            if (el) el.value = m[id] || "";
         });
 
-        // Normalize slider data
         normalizeSliderData();
 
-        // Initialize Hero Image
         const currentHero = m.profImg || DEFAULT_HERO_IMAGE;
         const heroPrev = document.getElementById('profPicPreview');
         if (heroPrev) heroPrev.src = currentHero;
@@ -632,7 +1340,6 @@
             heroUrlEl.value = m.profImg;
         }
 
-        // Hydrate Supabase settings
         try {
             const sb = JSON.parse(localStorage.getItem('supabase_config') || '{}');
             if (sb.url && document.getElementById('sbUrl')) document.getElementById('sbUrl').value = sb.url;
@@ -642,6 +1349,7 @@
 
         renderProf();
         renderSlider();
+        updateAboutPreview();
     }
 
     function applyHeroUrl() {
@@ -681,23 +1389,22 @@
             if(el) m[id] = el.value;
         });
         localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert('About Section Saved!');
+        updateAboutPreview();
+        alert('About Section Saved! Live on website.');
     }
 
     function saveCurrentTab() {
         const m = db.meta;
         const allIds = ['profName','cLoc','cMail','cPhone','socInsta','socFb','socLi','socGit','cvLink','about1','about2','stExp','stProj','stCert','stCity'];
         allIds.forEach(id => { const el = document.getElementById(id); if(el) m[id] = el.value; });
+        if (activeCat && db.cats[activeCat]) {
+            const titEl = document.getElementById('catTitle');
+            const descEl = document.getElementById('catDesc');
+            if (titEl) db.cats[activeCat].title = titEl.value;
+            if (descEl) db.cats[activeCat].desc = descEl.value;
+        }
         localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert('Changes Saved!');
-    }
-
-    function saveCategoryMeta() {
-        if(!activeCat) return;
-        db.cats[activeCat].title = document.getElementById('catTitle').value;
-        db.cats[activeCat].desc = document.getElementById('catDesc').value;
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert("Section Headers Saved!");
+        alert('All Changes Saved!');
     }
 
     // === PROFESSIONS VIEWS ===
@@ -747,75 +1454,50 @@
             let imgPos = (typeof s === 'object' && s.position) ? s.position : 
                          (imgSrc.includes('Sahil') || imgSrc.includes('sahil6') || imgSrc.includes('sahil14') ? '50% 18%' : '50% 50%');
             
-            // Extract numeric vertical percentage
-            let posVal = 18;
-            const match = imgPos.match(/(\d+)%/g);
-            if (match && match.length > 1) {
-                posVal = parseInt(match[1]);
-            } else if (match && match.length === 1) {
-                posVal = parseInt(match[0]);
-            } else {
-                posVal = 50;
-            }
+            let posPercent = 50;
+            const match = imgPos.match(/(\d+)%/);
+            if (match) posPercent = parseInt(match[1]);
 
-            const displayName = imgSrc.length > 32 ? imgSrc.substring(0, 29) + '...' : imgSrc;
-
-            h += `<div class="slider-admin-card" id="slideCard_${i}">
+            h += `
+            <div class="slider-admin-card">
                 <div class="slider-card-header">
-                    <span class="slide-badge">Slide #${i + 1}</span>
-                    <button class="btn-danger" style="padding:3px 8px; border-radius:4px; font-size:0.75rem;" onclick="rmS(${i})" title="Delete Slide">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <span class="slide-badge">#${i + 1} of ${list.length}</span>
+                    <div style="display:flex; gap:4px;">
+                        <button class="btn" style="padding:4px 8px; font-size:0.75rem; background:#1e293b;" ${isFirst ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : `onclick="moveSlide(${i}, -1)" title="Move Left"`}><i class="fas fa-arrow-left"></i></button>
+                        <button class="btn" style="padding:4px 8px; font-size:0.75rem; background:#1e293b;" ${isLast ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : `onclick="moveSlide(${i}, 1)" title="Move Right"`}><i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
 
-                <!-- 16:9 Exact Aspect Ratio Live Preview -->
                 <div class="slider-thumb-box">
-                    <img id="slideThumb_${i}" src="${imgSrc}" alt="Slide ${i+1}" style="object-position: ${imgPos};" onerror="this.src='${FALLBACK_SVG}'">
-                    <div style="position:absolute; bottom:6px; right:8px; background:rgba(0,0,0,0.7); color:#38bdf8; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600;">
-                        16:9 Live Preview
-                    </div>
+                    <img id="thumbImg_${i}" src="${imgSrc}" style="object-position: ${imgPos};" onerror="this.src='${FALLBACK_SVG}'" alt="Slide ${i + 1}">
+                    <span style="position:absolute; bottom:6px; right:8px; background:rgba(0,0,0,0.7); color:#60a5fa; font-size:0.7rem; padding:2px 6px; border-radius:4px; font-family:monospace;">
+                        Y: ${posPercent}%
+                    </span>
                 </div>
 
-                <div class="slide-path-text" title="${imgSrc}">${displayName}</div>
-
-                <!-- Fit Mode & Face / Vertical Alignment Controls -->
-                <div style="background:#0b1322; padding:8px 10px; border-radius:8px; border:1px solid #1e293b;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.75rem; color:#cbd5e1;"><i class="fas fa-expand" style="color:#10b981;"></i> Display Fit:</span>
-                        <div style="display:flex; gap:4px;">
-                            <button type="button" class="btn" style="padding:2px 8px; font-size:0.7rem; background:${(s.fit === 'cover') ? '#10b981' : '#1e293b'}; color:white;" onclick="setSlideFit(${i}, 'cover')" title="Fill Entire Container">Fill (Cover)</button>
-                            <button type="button" class="btn" style="padding:2px 8px; font-size:0.7rem; background:${(s.fit !== 'cover') ? '#10b981' : '#1e293b'}; color:white;" onclick="setSlideFit(${i}, 'contain')" title="Show 100% Full Photo (No Cutoff)">Full Photo (Contain)</button>
-                        </div>
-                    </div>
-                    
-                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:#cbd5e1; margin-bottom:4px;">
-                        <span><i class="fas fa-arrows-alt-v" style="color:#38bdf8;"></i> Face / Focus:</span>
-                        <span id="posValBadge_${i}" style="color:#38bdf8; font-weight:700;">${posVal}%</span>
-                    </div>
-                    <input type="range" min="0" max="100" value="${posVal}" 
-                        style="width:100%; accent-color:#38bdf8; cursor:pointer;" 
-                        oninput="onSlidePosInput(${i}, this.value)" 
-                        onchange="saveSlidePos(${i}, this.value)">
-                    
-                    <div style="display:flex; gap:4px; margin-top:6px;">
-                        <button type="button" class="btn" style="flex:1; padding:3px 2px; font-size:0.68rem; background:${posVal <= 25 ? '#2563eb' : '#1e293b'}; color:white;" onclick="applySlidePreset(${i}, 15)" title="Align for faces/headshots">🎯 Face (15%)</button>
-                        <button type="button" class="btn" style="flex:1; padding:3px 2px; font-size:0.68rem; background:${posVal > 25 && posVal <= 65 ? '#2563eb' : '#1e293b'}; color:white;" onclick="applySlidePreset(${i}, 50)" title="Center framing">↔️ Center (50%)</button>
-                        <button type="button" class="btn" style="flex:1; padding:3px 2px; font-size:0.68rem; background:${posVal > 65 ? '#2563eb' : '#1e293b'}; color:white;" onclick="applySlidePreset(${i}, 85)" title="Lower focus">⬇️ Lower (85%)</button>
-                    </div>
+                <div class="slide-path-text" title="${imgSrc}">
+                    ${imgSrc.startsWith('data:') ? '[Base64 Uploaded Image]' : imgSrc}
                 </div>
 
-                <!-- Crop to 16:9 tool -->
-                <button type="button" class="btn" style="background:#0f766e; color:white; padding:5px 8px; font-size:0.75rem;" onclick="cropSlideImage(${i})">
-                    <i class="fas fa-crop-alt"></i> Crop This Image (16:9)
-                </button>
+                <div style="background:#070d17; padding:8px; border-radius:6px; border:1px solid #1f2937;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                        <span style="font-size:0.75rem; color:#94a3b8;"><i class="fas fa-arrows-alt-v"></i> Face / Focus Alignment:</span>
+                        <span id="posLabel_${i}" style="font-size:0.75rem; color:#60a5fa; font-weight:600;">${posPercent}%</span>
+                    </div>
+                    <div style="display:flex; gap:4px; margin-bottom:6px;">
+                        <button class="btn" style="flex:1; padding:3px; font-size:0.7rem; background:#1e293b;" onclick="setPresetPosition(${i}, '50% 18%')">Top / Face (18%)</button>
+                        <button class="btn" style="flex:1; padding:3px; font-size:0.7rem; background:#1e293b;" onclick="setPresetPosition(${i}, '50% 50%')">Center (50%)</button>
+                        <button class="btn" style="flex:1; padding:3px; font-size:0.7rem; background:#1e293b;" onclick="setPresetPosition(${i}, '50% 82%')">Bottom (82%)</button>
+                    </div>
+                    <input type="range" min="0" max="100" value="${posPercent}" style="width:100%; accent-color:#3b82f6; cursor:pointer;" oninput="updateSlidePositionLive(${i}, this.value)" onchange="saveSlidePosition(${i}, this.value)">
+                </div>
 
-                <!-- Order Controls -->
                 <div class="slide-btn-group">
-                    <button class="btn" style="background:#334155;" onclick="moveSlide(${i}, -1)" ${isFirst ? 'disabled style="opacity:0.4; cursor:not-allowed;"' : ''} title="Move Earlier">
-                        <i class="fas fa-arrow-left"></i> Earlier
+                    <button class="btn" style="background:#334155;" onclick="triggerCropForSlide(${i})" title="Crop to 16:9 widescreen ratio">
+                        <i class="fas fa-crop-alt"></i> Crop
                     </button>
-                    <button class="btn" style="background:#334155;" onclick="moveSlide(${i}, 1)" ${isLast ? 'disabled style="opacity:0.4; cursor:not-allowed;"' : ''} title="Move Later">
-                        Later <i class="fas fa-arrow-right"></i>
+                    <button class="btn btn-danger" onclick="deleteSlide(${i})">
+                        <i class="fas fa-trash"></i> Delete
                     </button>
                 </div>
             </div>`;
@@ -823,228 +1505,113 @@
         grid.innerHTML = h;
     }
 
-    function onSlidePosInput(i, val) {
-        const thumb = document.getElementById('slideThumb_' + i);
-        if (thumb) thumb.style.objectPosition = '50% ' + val + '%';
-        const badge = document.getElementById('posValBadge_' + i);
-        if (badge) badge.innerText = val + '%';
+    function updateSlidePositionLive(i, val) {
+        const thumb = document.getElementById(`thumbImg_${i}`);
+        if (thumb) thumb.style.objectPosition = `50% ${val}%`;
+        const label = document.getElementById(`posLabel_${i}`);
+        if (label) label.innerText = `${val}%`;
     }
 
-    function setSlideFit(i, fitMode) {
+    function saveSlidePosition(i, val) {
         if (!db.slider || !db.slider[i]) return;
-        const current = db.slider[i];
-        const src = typeof current === 'string' ? current : (current.src || current.url);
-        const pos = typeof current === 'object' && current.position ? current.position : '50% 50%';
-        db.slider[i] = { src: src, position: pos, fit: fitMode };
+        const newPos = `50% ${val}%`;
+        if (typeof db.slider[i] === 'string') {
+            db.slider[i] = { src: db.slider[i], position: newPos };
+        } else {
+            db.slider[i].position = newPos;
+        }
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+    }
+
+    function setPresetPosition(i, posStr) {
+        if (!db.slider || !db.slider[i]) return;
+        if (typeof db.slider[i] === 'string') {
+            db.slider[i] = { src: db.slider[i], position: posStr };
+        } else {
+            db.slider[i].position = posStr;
+        }
         localStorage.setItem(DB_KEY, JSON.stringify(db));
         renderSlider();
     }
 
-    function saveSlidePos(i, val) {
-        if (!db.slider || !db.slider[i]) return;
-        const current = db.slider[i];
-        const src = typeof current === 'string' ? current : (current.src || current.url);
-        db.slider[i] = { src: src, position: '50% ' + val + '%' };
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-    }
-
-    function applySlidePreset(i, val) {
-        onSlidePosInput(i, val);
-        saveSlidePos(i, val);
-        renderSlider();
-    }
-
-    let activeCroppingSlideIndex = null;
-    function cropSlideImage(i) {
-        if (!db.slider || !db.slider[i]) return;
-        const current = db.slider[i];
-        const src = typeof current === 'string' ? current : (current.src || current.url);
-        activeCroppingSlideIndex = i;
-        pendingTgt = 'cropExistingSlide';
-        
-        document.getElementById('cropperModal').style.display = 'flex';
-        document.getElementById('cropperImage').src = src;
-        if (cropperObj) cropperObj.destroy();
-        cropperObj = new Cropper(document.getElementById('cropperImage'), {
-            aspectRatio: 16 / 9,
-            viewMode: 1
-        });
-    }
-
-    function moveSlide(i, dir) {
-        const target = i + dir;
+    function moveSlide(idx, dir) {
+        normalizeSliderData();
+        const target = idx + dir;
         if (target < 0 || target >= db.slider.length) return;
-        const temp = db.slider[i];
-        db.slider[i] = db.slider[target];
+        const temp = db.slider[idx];
+        db.slider[idx] = db.slider[target];
         db.slider[target] = temp;
         localStorage.setItem(DB_KEY, JSON.stringify(db));
         renderSlider();
     }
 
-    function rmS(i) {
-        if (!confirm('Are you sure you want to delete Slide #' + (i + 1) + '?')) return;
-        db.slider.splice(i, 1);
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        renderSlider();
+    function deleteSlide(i) {
+        normalizeSliderData();
+        if (confirm(`Delete Slide #${i + 1} from rotation?`)) {
+            db.slider.splice(i, 1);
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+            renderSlider();
+        }
     }
 
-    function addSlideByUrl() {
-        const input = document.getElementById('newSlideUrlInput');
+    function resetSliderDefault() {
+        if (confirm("Reset slider rotation to original 6 default photos with face alignment?")) {
+            db.slider = JSON.parse(JSON.stringify(DEFAULT_SLIDER_IMAGES));
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+            renderSlider();
+            alert("Slider reset to default 6 photos!");
+        }
+    }
+
+    let activeCroppingSlideIndex = null;
+    function triggerCropForSlide(i) {
+        normalizeSliderData();
+        const slide = db.slider[i];
+        const src = typeof slide === 'string' ? slide : (slide.src || slide.url || '');
+        if (!src) return;
+        activeCroppingSlideIndex = i;
+        pendingTgt = 'cropExistingSlide';
+        document.getElementById('cropperModal').style.display = 'flex';
+        document.getElementById('cropperImage').src = src;
+        if (cropperObj) cropperObj.destroy();
+        cropperObj = new Cropper(document.getElementById('cropperImage'), { aspectRatio: 16 / 9, viewMode: 1 });
+    }
+
+    function addSliderUrl() {
+        const input = document.getElementById('sliderUrlInput');
         const url = (input.value || '').trim();
-        if (!url) { alert('Please enter a valid Image URL!'); return; }
-        if (!db.slider) db.slider = [];
+        if (!url) { alert('Please enter or paste an image URL!'); return; }
+        normalizeSliderData();
         db.slider.push({ src: url, position: '50% 50%' });
         localStorage.setItem(DB_KEY, JSON.stringify(db));
         input.value = '';
         renderSlider();
-        alert('New slide added to rotation!');
+        alert('New Slide added to rotation!');
     }
 
-    function resetSliderDefault() {
-        if (!confirm('Reset slider to the default 6 portfolio images with face alignment?')) return;
-        db.slider = JSON.parse(JSON.stringify(DEFAULT_SLIDER_IMAGES));
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        renderSlider();
-        alert('Slider reset to default 6 photos with face alignment!');
-    }
+    // === CROPPER SYSTEM ===
+    let cropperObj = null;
+    let pendingTgt = null;
 
-    // === SUPABASE STORAGE CLIENT-SIDE INTEGRATION ===
-    function saveSupabaseConfig() {
-        const url = (document.getElementById('sbUrl').value || '').trim().replace(/\/$/, '');
-        const key = (document.getElementById('sbAnonKey').value || '').trim();
-        const bucket = (document.getElementById('sbBucket').value || 'portfolio').trim();
+    document.getElementById('profPicInput')?.addEventListener('change', e => handleFile(e, 'prof'));
+    document.getElementById('sliderInput')?.addEventListener('change', e => handleFile(e, 'slide'));
+    document.getElementById('covImg')?.addEventListener('change', e => handleFile(e, 'cardCov'));
 
-        if (!url || !key) {
-            alert('Please enter both Supabase Project URL and Anon Key!');
-            return;
-        }
-
-        const config = { url, key, bucket };
-        localStorage.setItem('supabase_config', JSON.stringify(config));
-        alert('Supabase credentials saved successfully!');
-    }
-
-    async function testSupabaseConnection() {
-        const url = (document.getElementById('sbUrl').value || '').trim().replace(/\/$/, '');
-        const key = (document.getElementById('sbAnonKey').value || '').trim();
-        const bucket = (document.getElementById('sbBucket').value || 'portfolio').trim();
-
-        if (!url || !key) {
-            alert('Please fill in Supabase URL and Key first!');
-            return;
-        }
-
-        try {
-            const res = await fetch(`${url}/storage/v1/bucket/${bucket}`, {
-                headers: {
-                    'apikey': key,
-                    'Authorization': 'Bearer ' + key
-                }
-            });
-            if (res.ok) {
-                alert('Connection SUCCESS! Connected to Supabase bucket: ' + bucket);
-            } else {
-                const errText = await res.text();
-                alert('Connected to Supabase, but bucket check returned: ' + res.status + ' (' + errText + '). Make sure the bucket exists and is set to PUBLIC.');
-            }
-        } catch(e) {
-            alert('Connection failed: ' + e.message);
-        }
-    }
-
-    // Direct Upload to Supabase Bucket
-    const sbInput = document.getElementById('sbUploadInput');
-    if (sbInput) {
-        sbInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const url = (document.getElementById('sbUrl').value || '').trim().replace(/\/$/, '');
-            const key = (document.getElementById('sbAnonKey').value || '').trim();
-            const bucket = (document.getElementById('sbBucket').value || 'portfolio').trim();
-
-            if (!url || !key) {
-                alert('Please enter your Supabase URL and Anon Key in the fields above first!');
-                e.target.value = '';
-                return;
-            }
-
-            const status = document.getElementById('sbUploadStatus');
-            status.innerHTML = '<span style="color:#38bdf8;"><i class="fas fa-spinner fa-spin"></i> Uploading to Supabase Cloud Storage...</span>';
-
-            // Clean filename
-            const cleanName = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-
-            try {
-                const uploadRes = await fetch(`${url}/storage/v1/object/${bucket}/${cleanName}`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': key,
-                        'Authorization': 'Bearer ' + key,
-                        'Content-Type': file.type || 'image/jpeg'
-                    },
-                    body: file
+    function buildInnEvt(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('change', e => {
+            if (e.target.files[0]) {
+                const u = URL.createObjectURL(e.target.files[0]);
+                buildBase64(u, b => {
+                    _activeCardTemp.innImgs.push(b);
+                    drawInnImgs();
                 });
-
-                if (!uploadRes.ok) {
-                    const err = await uploadRes.text();
-                    status.innerHTML = '<span style="color:#ef4444;"><i class="fas fa-times"></i> Upload failed: ' + err + '</span>';
-                    return;
-                }
-
-                // Public URL
-                const publicUrl = `${url}/storage/v1/object/public/${bucket}/${cleanName}`;
-                status.innerHTML = `<div style="background:#0b1329; border:1px solid #10b981; border-radius:8px; padding:12px; margin-top:8px;">
-                    <p style="color:#10b981; font-weight:600; margin-bottom:6px;"><i class="fas fa-check-circle"></i> Uploaded Successfully to Supabase!</p>
-                    <div style="font-size:0.75rem; word-break:break-all; color:#94a3b8; margin-bottom:8px;">${publicUrl}</div>
-                    <div style="display:flex; gap:8px;">
-                        <button class="btn btn-success" style="font-size:0.8rem; padding:6px 12px;" onclick="setAsHero('${publicUrl}')">
-                            <i class="fas fa-user"></i> Set as Hero Image
-                        </button>
-                        <button class="btn" style="font-size:0.8rem; padding:6px 12px; background:#3b82f6;" onclick="addAsSlide('${publicUrl}')">
-                            <i class="fas fa-images"></i> Add to Slider Track
-                        </button>
-                    </div>
-                </div>`;
-                e.target.value = '';
-            } catch(err) {
-                status.innerHTML = '<span style="color:#ef4444;"><i class="fas fa-times"></i> Error: ' + err.message + '</span>';
+                e.target.value = "";
             }
         });
     }
-
-    function setAsHero(url) {
-        db.meta.profImg = url;
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        const heroPrev = document.getElementById('profPicPreview');
-        if (heroPrev) heroPrev.src = url;
-        const heroUrlEl = document.getElementById('heroUrlInput');
-        if (heroUrlEl) heroUrlEl.value = url;
-        alert('Hero Image updated to Supabase Cloud URL!');
-    }
-
-    function addAsSlide(url) {
-        if (!db.slider) db.slider = [];
-        db.slider.push(url);
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        renderSlider();
-        alert('Added to Slider Track! Now active on website.');
-    }
-
-    // === CROPPER SYSTEM (Lightweight with resize) ===
-    let cropperObj = null;
-    let pendingTgt = null;
-    let _activeCardTemp = { covSrc: "", innImgs: [] };
-
-    document.getElementById('profPicInput').addEventListener('change', e => handleFile(e, 'prof'));
-    document.getElementById('sliderInput').addEventListener('change', e => handleFile(e, 'slide'));
-    document.getElementById('covImg').addEventListener('change', e => handleFile(e, 'cardCov'));
-    function buildInnEvt(id) { document.getElementById(id).addEventListener('change', e=> { if(e.target.files[0]){ const u=URL.createObjectURL(e.target.files[0]); buildBase64(u,b=>{_activeCardTemp.innImgs.push(b); drawInnImgs();}); e.target.value="";} }); }
     buildInnEvt('innPic1'); buildInnEvt('innPic2'); buildInnEvt('innPic3');
-
-    function drawInnImgs() {
-        document.getElementById('innPreviewZone').innerHTML = _activeCardTemp.innImgs.map((b,i)=> `<div style="position:relative"><img src="${b}" style="width:80px;height:80px;object-fit:cover;border-radius:5px;"><button onclick="_activeCardTemp.innImgs.splice(${i},1);drawInnImgs()" style="position:absolute;top:0;right:0;background:red;color:white;border:none;cursor:pointer;padding:2px 5px;">X</button></div>`).join("");
-    }
 
     function buildBase64(url, cb) {
         let i = new Image();
@@ -1065,109 +1632,188 @@
     }
 
     function handleFile(e, tgt) {
-        if(e.target.files[0]) {
+        if (e.target.files[0]) {
             pendingTgt = tgt;
             let u = URL.createObjectURL(e.target.files[0]);
-            document.getElementById('cropperModal').style.display='flex';
+            document.getElementById('cropperModal').style.display = 'flex';
             document.getElementById('cropperImage').src = u;
-            if(cropperObj) cropperObj.destroy();
+            if (cropperObj) cropperObj.destroy();
             let ratio = NaN;
-            if(tgt === 'prof') ratio = 1; // square/circle for profile
-            if(tgt === 'slide') ratio = 16 / 9; // 16:9 widescreen ratio for slider
-            if(tgt === 'cropExistingSlide') ratio = 16 / 9;
-            cropperObj = new Cropper(document.getElementById('cropperImage'), { aspectRatio: ratio, viewMode:1 });
+            if (tgt === 'prof') ratio = 1;
+            if (tgt === 'slide') ratio = 16 / 9;
+            if (tgt === 'cardCov') ratio = NaN; // free ratio
+            cropperObj = new Cropper(document.getElementById('cropperImage'), { aspectRatio: ratio, viewMode: 1 });
             e.target.value = "";
         }
     }
-    function cancelCrop() { document.getElementById('cropperModal').style.display='none'; if(cropperObj) cropperObj.destroy(); }
-    
+
+    function cancelCrop() {
+        document.getElementById('cropperModal').style.display = 'none';
+        if (cropperObj) cropperObj.destroy();
+    }
+
     function executeCrop() {
-        if(!cropperObj) return;
-        // Limit output dimensions to avoid filling localStorage quota
-        const b64 = cropperObj.getCroppedCanvas({maxWidth: 2560, maxHeight: 2560}).toDataURL('image/jpeg', 0.94);
+        if (!cropperObj) return;
+        const b64 = cropperObj.getCroppedCanvas({ maxWidth: 2560, maxHeight: 2560 }).toDataURL('image/jpeg', 0.94);
         cancelCrop();
-        
-        if(pendingTgt === 'prof') {
+
+        if (pendingTgt === 'prof') {
             db.meta.profImg = b64;
             localStorage.setItem(DB_KEY, JSON.stringify(db));
             const prev = document.getElementById('profPicPreview');
             if (prev) prev.src = b64;
             alert('Hero Image updated!');
-        } else if(pendingTgt === 'slide') {
-            if (!db.slider) db.slider = [];
+        } else if (pendingTgt === 'slide') {
+            normalizeSliderData();
             db.slider.push({ src: b64, position: '50% 50%' });
             localStorage.setItem(DB_KEY, JSON.stringify(db));
             renderSlider();
             alert('New slide added to rotation!');
-        } else if(pendingTgt === 'cropExistingSlide' && activeCroppingSlideIndex !== null) {
+        } else if (pendingTgt === 'cropExistingSlide' && activeCroppingSlideIndex !== null) {
             const idx = activeCroppingSlideIndex;
             db.slider[idx] = { src: b64, position: '50% 50%' };
             localStorage.setItem(DB_KEY, JSON.stringify(db));
             activeCroppingSlideIndex = null;
             renderSlider();
             alert('Slide #' + (idx + 1) + ' cropped successfully to 16:9!');
-        } else if(pendingTgt === 'cardCov') {
-            _activeCardTemp.covSrc = b64; 
-            document.getElementById('covPreview').src = b64;
-            document.getElementById('covPreview').style.display = 'block';
+        } else if (pendingTgt === 'cardCov') {
+            _activeCardTemp.covSrc = b64;
+            const prev = document.getElementById('covPreview');
+            if (prev) { prev.src = b64; prev.style.display = 'block'; }
+            const urlInp = document.getElementById('covUrlInput');
+            if (urlInp) urlInp.value = '';
         }
     }
 
-    // === ADD SUPER CARD ===
-    function addSuperCard() {
-        if(!activeCat) return;
-        if(!_activeCardTemp.covSrc) { alert("Missing Cover Image!"); return; }
-        let covTit = document.getElementById('covTit').value || "Untiled";
-        let covDes = document.getElementById('covDes').value || "";
-        let innTit = document.getElementById('innTit').value || covTit;
-        let innSty = document.getElementById('innStory').value || "";
-
-        db.cats[activeCat].items.unshift({
-            id: Date.now(),
-            covSrc: _activeCardTemp.covSrc, covTit, covDes,
-            innTit, innStory: innSty, innImgs: [..._activeCardTemp.innImgs]
-        });
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert("Card Published!");
-        viewCategoryManager(activeCat, document.querySelector('.tab-btn.active')); // refresh form setup
+    // === SUPABASE CLOUD SYNC ===
+    function saveSupabaseConfig() {
+        const config = {
+            url: (document.getElementById('sbUrl').value || '').trim().replace(/\/+$/, ''),
+            key: (document.getElementById('sbAnonKey').value || '').trim(),
+            bucket: (document.getElementById('sbBucket').value || 'portfolio-images').trim()
+        };
+        localStorage.setItem('supabase_config', JSON.stringify(config));
+        alert('Supabase credentials saved locally in browser!');
     }
 
-    function renderCatItems() {
-        if(!activeCat) return;
-        let h=""; db.cats[activeCat].items.forEach((c, idx) => {
-            h+= `<div class="list-item">
-                    <img src="${c.covSrc}">
-                    <div style="margin-bottom:10px;"><strong>${c.covTit}</strong><br><small style="color:#94a3b8">${c.covDes.substring(0,30)}...</small></div>
-                    <div style="font-size:0.8rem; color:#10b981; margin-bottom:10px;"><i class="fas fa-file-alt"></i> Inner Data Attached: ${c.innImgs.length} photos</div>
-                    <button class="btn-danger" style="width:100%; border-radius:5px;" onclick="db.cats['${activeCat}'].items.splice(${idx},1); localStorage.setItem(DB_KEY, JSON.stringify(db)); renderCatItems();">Delete Entry</button>
-                 </div>`;
+    async function testSupabaseConnection() {
+        const config = JSON.parse(localStorage.getItem('supabase_config') || '{}');
+        const url = config.url || (document.getElementById('sbUrl').value || '').trim().replace(/\/+$/, '');
+        const key = config.key || (document.getElementById('sbAnonKey').value || '').trim();
+        const bucket = config.bucket || (document.getElementById('sbBucket').value || 'portfolio-images').trim();
+
+        if (!url || !key) { alert('Please enter both Project URL and Anon Public Key!'); return; }
+        try {
+            const res = await fetch(`${url}/storage/v1/bucket/${bucket}`, {
+                headers: { 'apikey': key, 'Authorization': 'Bearer ' + key }
+            });
+            if (res.ok) alert('Connection Successful! Supabase bucket is reachable.');
+            else alert('Failed to connect: Status ' + res.status + '. Check URL & Key.');
+        } catch(err) {
+            alert('Network Error connecting to Supabase: ' + err.message);
+        }
+    }
+
+    const sbUploadInput = document.getElementById('sbUploadInput');
+    if (sbUploadInput) {
+        sbUploadInput.addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const config = JSON.parse(localStorage.getItem('supabase_config') || '{}');
+            const url = config.url || (document.getElementById('sbUrl').value || '').trim().replace(/\/+$/, '');
+            const key = config.key || (document.getElementById('sbAnonKey').value || '').trim();
+            const bucket = config.bucket || (document.getElementById('sbBucket').value || 'portfolio-images').trim();
+
+            if (!url || !key) { alert('Please configure Supabase Project URL & Anon Key first!'); return; }
+            const statusEl = document.getElementById('sbUploadStatus');
+            statusEl.innerHTML = '<span style="color:#38bdf8;"><i class="fas fa-spinner fa-spin"></i> Uploading to Supabase...</span>';
+
+            const fileName = 'upload_' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+            const uploadUrl = `${url}/storage/v1/object/${bucket}/${fileName}`;
+
+            try {
+                const res = await fetch(uploadUrl, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': key,
+                        'Authorization': 'Bearer ' + key,
+                        'Content-Type': file.type,
+                        'x-upsert': 'true'
+                    },
+                    body: file
+                });
+
+                if (res.ok) {
+                    const publicUrl = `${url}/storage/v1/object/public/${bucket}/${fileName}`;
+                    statusEl.innerHTML = `
+                        <div style="background:#091624; border:1px solid #10b981; border-radius:8px; padding:10px; margin-top:8px;">
+                            <span style="color:#10b981; font-weight:600;"><i class="fas fa-check-circle"></i> Uploaded!</span>
+                            <div style="font-family:monospace; font-size:0.75rem; color:#94a3b8; word-break:break-all; margin:6px 0;">${publicUrl}</div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn btn-success" style="font-size:0.75rem; padding:4px 10px;" onclick="setAsHero('${publicUrl}')">Set as Hero Image</button>
+                                <button class="btn" style="background:#0284c7; font-size:0.75rem; padding:4px 10px;" onclick="addAsSlide('${publicUrl}')">Add to Slider</button>
+                            </div>
+                        </div>`;
+                } else {
+                    const text = await res.text();
+                    statusEl.innerHTML = `<span style="color:#ef4444;">Upload Failed (${res.status}): ${text}</span>`;
+                }
+            } catch(err) {
+                statusEl.innerHTML = `<span style="color:#ef4444;">Error: ${err.message}</span>`;
+            }
         });
-        document.getElementById('catGrid').innerHTML = h;
+    }
+
+    function setAsHero(url) {
+        db.meta.profImg = url;
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        const heroPrev = document.getElementById('profPicPreview');
+        if (heroPrev) heroPrev.src = url;
+        const heroUrlEl = document.getElementById('heroUrlInput');
+        if (heroUrlEl) heroUrlEl.value = url;
+        alert('Hero Image updated to Supabase Cloud URL!');
+    }
+
+    function addAsSlide(url) {
+        normalizeSliderData();
+        db.slider.push({ src: url, position: '50% 50%' });
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        renderSlider();
+        alert('Added to Slider Track! Now active on website.');
     }
 
     function doReset() {
-        if(confirm("DANGER! This wipes the whole database!")) { localStorage.removeItem(DB_KEY); window.location.reload(); }
+        if (confirm("DANGER! This wipes the entire database and reloads website defaults!")) {
+            localStorage.removeItem(DB_KEY);
+            window.location.reload();
+        }
     }
-    
+
+    // === WEB DEV PAGE MANAGER ===
     function bootWebDev() {
-        const wd = db.webdev || {};
+        if (!db.webdev) {
+            db.webdev = JSON.parse(JSON.stringify(DEFAULT_WEBSITE_DATA.webdev));
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+        }
+        const wd = db.webdev;
         document.getElementById('wdTitle').value = wd.title || '';
         document.getElementById('wdSubtitle').value = wd.subtitle || '';
         document.getElementById('wdExpHead').value = wd.expHead || '';
         document.getElementById('wdExpPara').value = wd.expPara || '';
         document.getElementById('wdSkills').value = (wd.skills || []).join(', ');
-        // Show stored images
+
         ['1','2','3'].forEach(n => {
-            const url = wd['img'+n] || '';
-            document.getElementById('wdImg'+n).value = url;
-            if(url) { document.getElementById('wdImg'+n+'Preview').src=url; document.getElementById('wdImg'+n+'Preview').style.display='block'; }
+            const url = wd['img' + n] || '';
+            document.getElementById('wdImg' + n).value = url;
+            const prev = document.getElementById('wdImg' + n + 'Preview');
+            if (url && prev) { prev.src = url; prev.style.display = 'block'; }
         });
-        // Render bullet groups
+
         document.getElementById('wdBulletGroups').innerHTML = '';
-        (wd.groups || []).forEach(g => addWdBulletGroup(g.heading, g.items.join('\n')));
+        (wd.groups || []).forEach(g => addWdBulletGroup(g.heading, (g.items || []).join('\n')));
     }
 
-    function addWdBulletGroup(heading='', items='') {
+    function addWdBulletGroup(heading = '', items = '') {
         const div = document.createElement('div');
         div.className = 'card';
         div.style.cssText = 'background:#0f172a; margin-bottom:15px; position:relative;';
@@ -1179,51 +1825,52 @@
     }
 
     function saveWebDev() {
-        if(!db.webdev) db.webdev = {};
+        if (!db.webdev) db.webdev = {};
         const wd = db.webdev;
         wd.title = document.getElementById('wdTitle').value;
         wd.subtitle = document.getElementById('wdSubtitle').value;
         wd.expHead = document.getElementById('wdExpHead').value;
         wd.expPara = document.getElementById('wdExpPara').value;
-        wd.skills = document.getElementById('wdSkills').value.split(',').map(s=>s.trim()).filter(Boolean);
+        wd.skills = document.getElementById('wdSkills').value.split(',').map(s => s.trim()).filter(Boolean);
         ['1','2','3'].forEach(n => {
-            const urlVal = document.getElementById('wdImg'+n).value.trim();
-            if(urlVal) wd['img'+n] = urlVal;
+            const urlVal = document.getElementById('wdImg' + n).value.trim();
+            if (urlVal) wd['img' + n] = urlVal;
         });
         wd.groups = [];
         document.querySelectorAll('#wdBulletGroups .card').forEach(card => {
             const h = card.querySelector('.wdGrpHead').value.trim();
-            const items = card.querySelector('.wdGrpItems').value.split('\n').map(s=>s.trim()).filter(Boolean);
-            if(h) wd.groups.push({ heading: h, items });
+            const items = card.querySelector('.wdGrpItems').value.split('\n').map(s => s.trim()).filter(Boolean);
+            if (h) wd.groups.push({ heading: h, items });
         });
         localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert('Web Development Page Saved!');
+        alert('Web Development Sub-Page Saved! Live on web-development.html.');
     }
 
-    // Web Dev image file listeners (base64 convert, no cropper needed for these)
     ['1','2','3'].forEach(n => {
-        document.getElementById('wdImg'+n+'File').addEventListener('change', function(e) {
-            const f = e.target.files[0]; if(!f) return;
+        document.getElementById('wdImg' + n + 'File')?.addEventListener('change', function(e) {
+            const f = e.target.files[0];
+            if (!f) return;
             const reader = new FileReader();
             reader.onload = ev => {
                 const b64 = ev.target.result;
-                if(!db.webdev) db.webdev = {};
-                db.webdev['img'+n] = b64;
-                document.getElementById('wdImg'+n).value = '';
-                document.getElementById('wdImg'+n+'Preview').src = b64;
-                document.getElementById('wdImg'+n+'Preview').style.display = 'block';
+                if (!db.webdev) db.webdev = {};
+                db.webdev['img' + n] = b64;
+                document.getElementById('wdImg' + n).value = '';
+                const prev = document.getElementById('wdImg' + n + 'Preview');
+                prev.src = b64;
+                prev.style.display = 'block';
             };
             reader.readAsDataURL(f);
             e.target.value = '';
         });
     });
 
-    // Patch switchTab to safely handle events and also boot webdev
+    // === TAB ROUTING ===
     function switchTab(id, btnNode) {
         activeCat = null;
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        
+
         let targetBtn = btnNode;
         if (!targetBtn && typeof event !== 'undefined' && event && event.target && event.target.classList && event.target.classList.contains('tab-btn')) {
             targetBtn = event.target;
@@ -1232,20 +1879,22 @@
             targetBtn = document.querySelector(`.tab-btn[onclick*="'${id}'"]`);
         }
         if (targetBtn && targetBtn.classList) targetBtn.classList.add('active');
-        
+
         const targetContent = document.getElementById(id);
         if (targetContent) targetContent.classList.add('active');
-        
+
         if (id === 'home' || id === 'about') bootGlobal();
         if (id === 'webdev') bootWebDev();
     }
 
+    // Auto boot on load
     try {
         bootGlobal();
     } catch(e) {
         console.error('Error booting global:', e);
     }
     switchTab('home');
+
 </script>
 </body>
 </html>

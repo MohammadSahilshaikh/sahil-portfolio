@@ -3114,19 +3114,24 @@
                 cmsDB.professions.forEach(p => professions.push(p));
             }
 
-            // Grid Cards — NEW SCHEMA: db.cats[category].items
+            // Grid Cards — Dynamic Sync with Admin CMS
             const gridMap = {
                 'travel': document.querySelector('.travel-grid'),
                 'projects': document.querySelector('.projects-grid'),
                 'achievements': document.querySelector('.achievements-grid'),
                 'profession': document.querySelector('.profession-grid')
             };
-            const cardClassMap = { 'travel': 'travel-card', 'projects': 'project-card', 'achievements': 'achievement-card', 'profession': 'profession-card' };
-            const prefixMap = { 'travel': 'travel', 'projects': 'project', 'achievements': 'achievement', 'profession': 'profession' };
+            const cardClassMap = {
+                'travel': 'travel-card',
+                'projects': 'project-card',
+                'achievements': 'achievement-card',
+                'profession': 'profession-card'
+            };
 
             // Inject section titles from cats
             if (cmsDB.cats) {
                 if (cmsDB.cats.travel && cmsDB.cats.travel.title) { const el = document.querySelector('#travel .section-title'); if (el) el.innerText = cmsDB.cats.travel.title; }
+                if (cmsDB.cats.travel && cmsDB.cats.travel.desc) { const el = document.querySelector('#travel p'); if (el) el.innerText = cmsDB.cats.travel.desc; }
                 if (cmsDB.cats.projects && cmsDB.cats.projects.title) { const el = document.querySelector('#projects .section-title'); if (el) el.innerText = cmsDB.cats.projects.title; }
                 if (cmsDB.cats.profession && cmsDB.cats.profession.title) { const el = document.querySelector('#profession .section-title'); if (el) el.innerText = cmsDB.cats.profession.title; }
                 if (cmsDB.cats.achievements && cmsDB.cats.achievements.title) { const el = document.querySelector('#achievements .section-title'); if (el) el.innerText = cmsDB.cats.achievements.title; }
@@ -3136,48 +3141,91 @@
                     const catData = cmsDB.cats[catKey];
                     if (!parent || !catData || !catData.items || catData.items.length === 0) return;
 
+                    // Clear hardcoded cards so user in Admin has full control to add, edit, reorder, or delete cards!
+                    parent.innerHTML = '';
+
                     catData.items.forEach(card => {
-                        const el = document.createElement('div');
+                        const hasLink = Boolean(card.link);
+                        const el = document.createElement(hasLink ? 'a' : 'div');
                         el.className = cardClassMap[catKey];
-                        el.style.cursor = 'pointer';
+                        if (hasLink) el.href = card.link;
 
                         let html = '';
                         if (catKey === 'travel') {
-                            html = `<img src="${card.covSrc}" class="travel-img" style="object-fit:cover;"><div class="travel-name">${card.covTit}</div>`;
-                        } else {
-                            const prefix = prefixMap[catKey];
                             html = `
-                                <div class="${prefix}-img-container">
-                                    <img src="${card.covSrc}" class="${prefix}-img" style="object-fit:cover;">
+                                <img src="${card.covSrc}" alt="${card.covTit}" class="travel-img" style="object-fit:cover;">
+                                <div class="travel-name">${card.covTit}</div>`;
+                        } else if (catKey === 'projects') {
+                            const tagsHtml = card.tags ? card.tags.split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join(' ') : '';
+                            const demoBtn = card.demoUrl ? `<a href="${card.demoUrl}" target="_blank" rel="noopener noreferrer" class="view-project-btn" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : '';
+                            const ghBtn = card.githubUrl ? `<a href="${card.githubUrl}" target="_blank" rel="noopener noreferrer" class="view-project-btn btn-github" onclick="event.stopPropagation()"><i class="fab fa-github"></i> GitHub</a>` : '';
+                            html = `
+                                <div class="project-img-container">
+                                    <img src="${card.covSrc}" alt="${card.covTit}" class="project-img" style="object-fit:cover;">
+                                    <div class="project-overlay">
+                                        <div>
+                                            <h3 class="project-title">${card.covTit}</h3>
+                                            <p class="project-description">${card.covDes || ''}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="${prefix}-content">
-                                    <h3 class="${prefix}-card-title">${card.covTit}</h3>
-                                    <p class="${prefix}-description" style="color:#cbd5e1; margin-bottom:10px;">${card.covDes}</p>
+                                <div class="project-content">
+                                    <h3 class="project-title">${card.covTit}</h3>
+                                    <p class="project-description">${card.covDes || ''}</p>
+                                    ${tagsHtml ? `<div class="project-tech">${tagsHtml}</div>` : ''}
+                                    ${(demoBtn || ghBtn) ? `<div class="project-links">${demoBtn} ${ghBtn}</div>` : ''}
+                                </div>`;
+                        } else if (catKey === 'profession') {
+                            const skillsHtml = card.tags ? card.tags.split(',').map(s => `<span class="skill-tag">${s.trim()}</span>`).join(' ') : '';
+                            html = `
+                                <div class="profession-img-container">
+                                    <img src="${card.covSrc}" alt="${card.covTit}" class="profession-img" style="object-fit:cover;">
+                                    <div class="profession-overlay">
+                                        <div>
+                                            <h3 class="profession-card-title">${card.covTit}</h3>
+                                            <p class="profession-description">Click to view details</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profession-content">
+                                    <h3 class="profession-card-title">${card.covTit}</h3>
+                                    <p class="profession-description">${card.covDes || ''}</p>
+                                    ${skillsHtml ? `<div class="profession-skills">${skillsHtml}</div>` : ''}
+                                    <div class="view-profession-btn">
+                                        View Details <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>`;
+                        } else if (catKey === 'achievements') {
+                            html = `
+                                <div class="achievement-img-container">
+                                    <img src="${card.covSrc}" alt="${card.covTit}" class="achievement-img" style="object-fit:cover;">
+                                    <div class="achievement-overlay">
+                                        <div>
+                                            <h3 class="achievement-card-title">${card.covTit}</h3>
+                                            <p class="achievement-description">Click to view details</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="achievement-content">
+                                    <h3 class="achievement-card-title">${card.covTit}</h3>
+                                    <p class="achievement-description">${card.covDes || ''}</p>
+                                    ${card.date ? `<div class="achievement-date"><i class="far fa-calendar-alt"></i> ${card.date}</div>` : ''}
+                                    <div class="view-achievement-btn">
+                                        View Details <i class="fas fa-arrow-right"></i>
+                                    </div>
                                 </div>`;
                         }
+
                         el.innerHTML = html;
 
-                        // Click opens detail modal
-                        el.addEventListener('click', () => openDetailModal(card));
-                        parent.insertBefore(el, parent.firstChild);
-                    });
-                });
-            }
+                        // Detail modal listener if not a direct link
+                        if (!hasLink) {
+                            el.style.cursor = 'pointer';
+                            el.addEventListener('click', () => openDetailModal(card));
+                        }
 
-            // Legacy flat cards fallback
-            if (cmsDB.cards && cmsDB.cards.length > 0) {
-                cmsDB.cards.forEach(card => {
-                    const parent = gridMap[card.cat];
-                    if (parent) {
-                        const el = document.createElement('div');
-                        el.className = cardClassMap[card.cat];
-                        el.style.cursor = 'pointer';
-                        const prefix = prefixMap[card.cat];
-                        el.innerHTML = card.cat === 'travel'
-                            ? `<img src="${card.src}" class="travel-img" style="object-fit:cover;"><div class="travel-name">${card.tit}</div>`
-                            : `<div class="${prefix}-img-container"><img src="${card.src}" class="${prefix}-img" style="object-fit:cover;"></div><div class="${prefix}-content"><h3 class="${prefix}-card-title">${card.tit}</h3><p style="color:#cbd5e1">${card.des}</p></div>`;
-                        parent.insertBefore(el, parent.firstChild);
-                    }
+                        parent.appendChild(el);
+                    });
                 });
             }
         }
