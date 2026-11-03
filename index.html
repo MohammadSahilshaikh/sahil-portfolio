@@ -610,10 +610,14 @@
 
         /* ======= SECTIONS ======= */
         .page-section {
-            min-height: auto;
-            padding: 50px 0 35px;
+            min-height: calc(100vh - 70px);
+            padding: 45px 0 35px;
             position: relative;
             scroll-margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .section-title {
@@ -640,12 +644,15 @@
 
         /* ======= HOME SECTION ======= */
         #home {
+            min-height: calc(100vh - 70px);
             display: flex;
             align-items: center;
-            padding: 25px 0 35px;
+            justify-content: center;
+            padding: 30px 0;
             position: relative;
             overflow: hidden;
             scroll-margin-top: 70px;
+            box-sizing: border-box;
         }
 
         #home::before {
@@ -953,6 +960,12 @@
         }
 
         @media (max-width: 768px) {
+            .page-section, #home {
+                min-height: auto !important;
+                height: auto !important;
+                padding: 40px 0 !important;
+            }
+
             .top-slider {
                 margin-top: 80px;
                 aspect-ratio: 16 / 9;
