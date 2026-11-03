@@ -610,15 +610,17 @@
 
         /* ======= SECTIONS ======= */
         .page-section {
-            min-height: 100vh;
-            padding: 120px 0 60px;
+            min-height: auto;
+            padding: 50px 0 35px;
             position: relative;
+            scroll-margin-top: 70px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 50px;
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 25px;
             color: #f8fafc;
             font-family: 'Montserrat', sans-serif;
             position: relative;
@@ -627,11 +629,11 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: #3b82f6;
             border-radius: 2px;
         }
@@ -1001,36 +1003,37 @@
         /* About Content */
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 30px;
             align-items: center;
-            margin-bottom: 60px;
+            margin-bottom: 25px;
         }
 
         .about-text-content h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 12px;
             color: #3b82f6;
             font-family: 'Montserrat', sans-serif;
         }
 
         .about-text-content p {
             color: #cbd5e1;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            line-height: 1.65;
+            margin-bottom: 14px;
+            font-size: 1rem;
         }
 
         .about-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 15px;
         }
 
         .stat-item {
             background: rgba(30, 41, 59, 0.7);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 16px 14px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid rgba(59, 130, 246, 0.1);
             transition: all 0.3s ease;
@@ -1038,11 +1041,11 @@
 
         .stat-item:hover {
             border-color: #3b82f6;
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.1rem;
             font-weight: 700;
             color: #3b82f6;
             font-family: 'Montserrat', sans-serif;
@@ -2646,9 +2649,11 @@
                     });
                     this.classList.add('active');
 
-                    // Scroll to section
+                    // Scroll to section with clean header offset
+                    const headerHeight = 70;
+                    const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: elementTop - headerHeight,
                         behavior: 'smooth'
                     });
                 }
