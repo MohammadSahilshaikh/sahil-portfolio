@@ -2660,9 +2660,8 @@
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
 
-                if (targetId === '#home') {
-                    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-                    this.classList.add('active');
+                // Clicking logo goes to very top of page (slider)
+                if (this.classList.contains('logo')) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
@@ -2675,7 +2674,7 @@
                     });
                     this.classList.add('active');
 
-                    // Scroll to section with clean header offset
+                    // Scroll to section with clean header offset (lands on Hello I'm section)
                     const headerHeight = 70;
                     const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     window.scrollTo({
