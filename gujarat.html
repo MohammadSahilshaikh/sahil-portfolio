@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -334,13 +334,13 @@
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                 <li><a href="travel.html" class="active">Travel</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="profession.html">Profession</a></li>
-                <li><a href="achievements.html">Achievements</a></li>
-                <li><a href="reach.html">Reach Us</a></li>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                 <li><a href="index.html#travel" class="active">Travel</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#profession">Profession</a></li>
+                <li><a href="index.html#achievements">Achievements</a></li>
+                <li><a href="index.html#reach">Reach Us</a></li>
             </ul>
         </div>
     </header>
@@ -351,6 +351,11 @@
             <h1>Gujarat - The Land of Legends</h1>
         </div>
     </section>
+
+    <!-- Live Wikipedia API Overview Section -->
+    <div class="container">
+        <div class="wiki-overview-card" data-wiki-query="Gujarat" data-wiki-interactive="false"></div>
+    </div>
 
     <!-- 6 Famous Places Title -->
     <div class="container">
@@ -459,7 +464,12 @@
                 </div>
             </div>
             
-            <!-- Back to About Button - Scrolls back to Gujarat card on about page -->
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="index.html#travel" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Travel Experiences
+                </a>
+            </div>
            
         </div>
     </section>
@@ -496,11 +506,14 @@
         });
         
         // Handle back button - will scroll to Gujarat section on about page
-        document.querySelector('.back-button').addEventListener('click', function(e) {
-            // We'll use localStorage to remember which city to scroll to
-            localStorage.setItem('scrollToCity', 'gujarat');
-        });
+        const backBtn = document.querySelector('.back-button');
+        if (backBtn) {
+            backBtn.addEventListener('click', function(e) {
+                localStorage.setItem('scrollToCity', 'gujarat');
+            });
+        }
     </script>
+    <script src="wikipedia-api.js"></script>
 </body>
 </html>
 
